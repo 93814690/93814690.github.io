@@ -243,6 +243,8 @@
 </li>
 <li><p>byte, short, char参与运算会首先转换为int类型。</p>
 </li>
+<li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
+</li>
 <li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
 </li>
 <li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
@@ -256,6 +258,19 @@
 <li><p>类体中不能声明签名完全相同的两个方法。</p>
 </li>
 <li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
+</li>
+<li><p>类的初始化过程总结:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">1.加载Student.class文件进内存</span></div><div class="line"><span class="comment">2.在栈内存为s开辟空间</span></div><div class="line"><span class="comment">3.在堆内存为学生对象开辟空间</span></div><div class="line"><span class="comment">4.对学生对象的成员变量进行默认初始化</span></div><div class="line"><span class="comment">5.通过构造方法对学生对象的成员变量赋值</span></div><div class="line"><span class="comment">6.学生对象初始化完毕，把对象地址赋值给s变量</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在静态方法中没有this关键字</p>
+</li>
+<li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
+</li>
+<li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
+</li>
+<li><p>区分引用传递和值传递:</p>
+<p>  如果数据类型是一个类的名字，就是引用变量</p>
+<p>  如果数据类型是一个基本数据类型，就是值传递</p>
 </li>
 </ul>
 
