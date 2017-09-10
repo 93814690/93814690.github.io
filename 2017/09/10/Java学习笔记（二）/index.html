@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/9 | 云飞扬的博客</title>
+  <title>Java学习笔记（二） | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="云飞扬的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+  <meta name="description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2017/09/10/Java学习笔记（二）/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
+<meta property="og:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-10T10:09:23.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="云飞扬的博客">
+<meta name="twitter:title" content="Java学习笔记（二）">
+<meta name="twitter:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -134,74 +139,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java学习笔记（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/Java学习笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-09-10T10:05:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Java学习笔记（三）/">Java学习笔记（三）</a>
+    <h1 class="article-title" itemprop="name">
+      Java学习笔记（二）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/Java学习笔记（二）/" class="archive-article-date">
+        
+        <a href="/2017/09/10/Java学习笔记（二）/" class="archive-article-date">
   	<time datetime="2017-09-10T08:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Java学习笔记（二）/">Java学习笔记（二）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>运行时多态前提：</p>
+<pre><code>1 要有继承关系
+2 要有方法覆盖
+3 子类实例赋值给父类引用
+</code></pre></li>
+<li><p>只要满足这三个条件就一定能发生运行时多态吗？</p>
+<pre><code>1 private 
+2 静态方法没有运行时多态
+</code></pre></li>
+</ul>
+<ul>
+<li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
+</li>
+<li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
+</li>
+<li><p>方法覆盖的注意事项：</p>
+<pre><code>1 父类中被final修饰的方法，在子类中不允许覆盖
+2 父类被覆盖的方法的参数列表中，被声明为final的参数，
+  在子类覆盖方法中可以不必声明为final
+3 只有在子类类体中可以访问的父类或祖先类的方法才能被覆盖
+</code></pre></li>
+<li><p>父类引用指向子类对象：</p>
+<pre><code>成员变量：编译看左边，运行看左边
+成员方法：编译看左边，运行看右边
+</code></pre></li>
+<li><p>运行时多态的优点：</p>
+<pre><code>1 提高代码的可维护性
+2 提高代码的扩展性
+</code></pre></li>
+<li><p>运行时多态的弊端：</p>
+<pre><code>无法使用子类特有的功能
+</code></pre></li>
+<li><p>解决方案：</p>
+<pre><code>1 创建子类的实例，调用子类的方法
+  （打破了运行时多态发生的条件，因此无法使用运行时多态）
+2 把父类的引用强转换为子类的引用
+</code></pre></li>
+<li><p>强制类型转换，并非一定是正确的，即我们如果直接将父类的引用转化为子类类型的引用，<br>  我们是要承担风险的。强转之前我们可以通过instanceof关键字，<br>  来帮我们判断待强转的对象是否是目标类型的实例</p>
+</li>
+<li><p>转型：</p>
+<pre><code>1 向上转型：子类转换为父类类型
+2 向下转型：父类转换为子类
+</code></pre></li>
+<li><p>抽象类:</p>
+<pre><code>1 抽象类和抽象方法必须使用abstract声明
+2 抽象方法不能有方法体
+3 抽象类中不一定含有抽象方法，但含有抽象方法的类必须是抽象类
+4 抽象类本身不能实例化
+  （多态机制可以用子类实例化，其核心是将抽象方法变为非核心的）
+</code></pre></li>
+<li><p>抽象类可以有构造方法：</p>
+<pre><code>为了完成抽象类自身的初始化过程
+</code></pre></li>
+<li><p>接口：一个完全抽象的类，所有的方法都是抽象方法</p>
+</li>
+<li><p>接口的特点：</p>
+<pre><code>1 成员默认都是public的，不能指定其他的访问控制修饰符
+2 成员变量默认都是static final，必须显式初始化
+3 方法不能提供实现
+4 不同于普通类，本身可以多继承
+</code></pre></li>
+<li><p>空接口（标记接口）</p>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -213,122 +264,131 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/10/Java学习笔记（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java习题记录/" class="archive-article-date">
-  	<time datetime="2017-09-07T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/09/10/Java学习笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java学习笔记（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/07/Java习题记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java习题记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java习题记录/">Java习题记录</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java学习笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java学习笔记（一）/">Java学习笔记（一）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/hello-world/" class="archive-article-date">
-  	<time datetime="2017-09-07T08:45:55.193Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/09/10/Java学习笔记（二）/",
+  owner: '93814690',
+  repo: 'https://github.com/93814690/93814690.github.io',
+  oauth: {
+    client_id: 'd43c3cbe16c82b44085e',
+    client_secret: 'b3a2a27ef223b6079e9bcde0d2189931036e9e75',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -351,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

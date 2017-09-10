@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java习题记录 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;">
+  <meta name="description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java习题记录">
 <meta property="og:url" content="http://yoursite.com/2017/09/07/Java习题记录/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;">
+<meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-07T12:32:25.976Z">
+<meta property="og:updated_time" content="2017-09-10T08:49:44.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java习题记录">
-<meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;">
+<meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -163,6 +163,18 @@
 <li>哪句是编译失败的呢？为什么呢？</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">3</span>, b2  = <span class="number">4</span>, b;</div><div class="line"></div><div class="line"><span class="comment">//编译失败，参与运算会首先转换为int类型</span></div><div class="line">b = b1 + b2;</div><div class="line"></div><div class="line"><span class="comment">//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。</span></div><div class="line">b = <span class="number">3</span> + <span class="number">4</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>补齐程序，在控制分别输出：30，20，10</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(？);</div><div class="line">            System.out.println(？？);</div><div class="line">            System.out.println(？？？);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>num
+this.num
+Outer.this.num
+</code></pre></li>
+<li><p>按照要求，补齐代码:在控制台输出”HelloWorld”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; &#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; <span class="comment">//补齐代码 </span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Outer.method().show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; </div><div class="line">    <span class="function"><span class="keyword">static</span> Inter <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">                System.out.println(<span class="string">"HelloWorld"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -266,6 +278,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/09/10/Java学习笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java学习笔记（二）
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/07/Java学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">

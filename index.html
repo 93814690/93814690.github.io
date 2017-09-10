@@ -136,6 +136,250 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java学习笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/10/Java学习笔记（三）/">Java学习笔记（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/10/Java学习笔记（三）/" class="archive-article-date">
+  	<time datetime="2017-09-10T10:05:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>内部类：定义在其他类的内部</p>
+</li>
+<li><p>内部类的访问：</p>
+<pre><code>1 可以直接访问所在外部类的成员，包括私有的
+2 所在外部类要访问内部类成员，必须创建对象
+</code></pre></li>
+</ul>
+<ul>
+<li><p>对于普通内部类来讲：</p>
+<pre><code>1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，
+  需要先存在外部类对象，然后在外部类对象的基础上，创建内部类.
+2.无法定义静态成员
+3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象的引用
+</code></pre></li>
+</ul>
+<ul>
+<li><p>对于static修饰的内部类来讲：</p>
+<pre><code>1.内部类可以对立与外部类对象而存在
+2.可以定义静态成员
+3.对于该种内部类而言，这样的引用不存在
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Outer.this 这里的类名.this仅仅是为了区分this的层次,与静态没有关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(num);</div><div class="line">            System.out.println(<span class="keyword">this</span>.num);</div><div class="line">            System.out.println(Outer.<span class="keyword">this</span>.num);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当在局部内部类中访问局部变量时，该局部变量一定要用final修饰，原因如下：</p>
+<pre><code>对于局部内部类对象而言，其物理空间在java内存中的堆上,
+对于局部变量而言，其物理空间在其所在函数的栈帧中,
+栈中的变量(包括对象的引用变量)一旦出了作用域，就立马被当做垃圾回收，但是对象并非如此.
+</code></pre></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/10/Java学习笔记（三）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java学习笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/10/Java学习笔记（二）/">Java学习笔记（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/10/Java学习笔记（二）/" class="archive-article-date">
+  	<time datetime="2017-09-10T08:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>运行时多态前提：</p>
+<pre><code>1 要有继承关系
+2 要有方法覆盖
+3 子类实例赋值给父类引用
+</code></pre></li>
+<li><p>只要满足这三个条件就一定能发生运行时多态吗？</p>
+<pre><code>1 private 
+2 静态方法没有运行时多态
+</code></pre></li>
+</ul>
+<ul>
+<li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
+</li>
+<li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
+</li>
+<li><p>方法覆盖的注意事项：</p>
+<pre><code>1 父类中被final修饰的方法，在子类中不允许覆盖
+2 父类被覆盖的方法的参数列表中，被声明为final的参数，
+  在子类覆盖方法中可以不必声明为final
+3 只有在子类类体中可以访问的父类或祖先类的方法才能被覆盖
+</code></pre></li>
+<li><p>父类引用指向子类对象：</p>
+<pre><code>成员变量：编译看左边，运行看左边
+成员方法：编译看左边，运行看右边
+</code></pre></li>
+<li><p>运行时多态的优点：</p>
+<pre><code>1 提高代码的可维护性
+2 提高代码的扩展性
+</code></pre></li>
+<li><p>运行时多态的弊端：</p>
+<pre><code>无法使用子类特有的功能
+</code></pre></li>
+<li><p>解决方案：</p>
+<pre><code>1 创建子类的实例，调用子类的方法
+  （打破了运行时多态发生的条件，因此无法使用运行时多态）
+2 把父类的引用强转换为子类的引用
+</code></pre></li>
+<li><p>强制类型转换，并非一定是正确的，即我们如果直接将父类的引用转化为子类类型的引用，<br>  我们是要承担风险的。强转之前我们可以通过instanceof关键字，<br>  来帮我们判断待强转的对象是否是目标类型的实例</p>
+</li>
+<li><p>转型：</p>
+<pre><code>1 向上转型：子类转换为父类类型
+2 向下转型：父类转换为子类
+</code></pre></li>
+<li><p>抽象类:</p>
+<pre><code>1 抽象类和抽象方法必须使用abstract声明
+2 抽象方法不能有方法体
+3 抽象类中不一定含有抽象方法，但含有抽象方法的类必须是抽象类
+4 抽象类本身不能实例化
+  （多态机制可以用子类实例化，其核心是将抽象方法变为非核心的）
+</code></pre></li>
+<li><p>抽象类可以有构造方法：</p>
+<pre><code>为了完成抽象类自身的初始化过程
+</code></pre></li>
+<li><p>接口：一个完全抽象的类，所有的方法都是抽象方法</p>
+</li>
+<li><p>接口的特点：</p>
+<pre><code>1 成员默认都是public的，不能指定其他的访问控制修饰符
+2 成员变量默认都是static final，必须显式初始化
+3 方法不能提供实现
+4 不同于普通类，本身可以多继承
+</code></pre></li>
+<li><p>空接口（标记接口）</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/10/Java学习笔记（二）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java习题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -160,6 +404,18 @@
 <li>哪句是编译失败的呢？为什么呢？</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">3</span>, b2  = <span class="number">4</span>, b;</div><div class="line"></div><div class="line"><span class="comment">//编译失败，参与运算会首先转换为int类型</span></div><div class="line">b = b1 + b2;</div><div class="line"></div><div class="line"><span class="comment">//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。</span></div><div class="line">b = <span class="number">3</span> + <span class="number">4</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>补齐程序，在控制分别输出：30，20，10</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(？);</div><div class="line">            System.out.println(？？);</div><div class="line">            System.out.println(？？？);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>num
+this.num
+Outer.this.num
+</code></pre></li>
+<li><p>按照要求，补齐代码:在控制台输出”HelloWorld”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; &#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; <span class="comment">//补齐代码 </span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Outer.method().show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; </div><div class="line">    <span class="function"><span class="keyword">static</span> Inter <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">                System.out.println(<span class="string">"HelloWorld"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -256,8 +512,16 @@
 <li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
 </li>
 <li><p>类的初始化过程总结:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">1.加载Student.class文件进内存</span></div><div class="line"><span class="comment">2.在栈内存为s开辟空间</span></div><div class="line"><span class="comment">3.在堆内存为学生对象开辟空间</span></div><div class="line"><span class="comment">4.对学生对象的成员变量进行默认初始化</span></div><div class="line"><span class="comment">5.通过构造方法对学生对象的成员变量赋值</span></div><div class="line"><span class="comment">6.学生对象初始化完毕，把对象地址赋值给s变量</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
+<pre><code>1.加载Student.class文件进内存
+2.在栈内存为s开辟空间
+3.在堆内存为学生对象开辟空间
+4.对学生对象的成员变量进行默认初始化
+5.通过构造方法对学生对象的成员变量赋值
+6.学生对象初始化完毕，把对象地址赋值给s变量
+</code></pre></li>
+</ul>
+<ul>
 <li><p>在静态方法中没有this关键字</p>
 </li>
 <li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
@@ -265,9 +529,40 @@
 <li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
 </li>
 <li><p>区分引用传递和值传递:</p>
-<p>  如果数据类型是一个类的名字，就是引用变量</p>
-<p>  如果数据类型是一个基本数据类型，就是值传递</p>
+<pre><code>如果数据类型是一个类的名字，就是引用变量
+如果数据类型是一个基本数据类型，就是值传递
+</code></pre></li>
+<li><p>对于包含静态代码块，初始化代码块和构造方法的子类，其初始化顺序为：</p>
+<pre><code>（B是A的子类）
+A static block
+B static block
+A init block
+A initialized
+B init block
+B initialized
+</code></pre></li>
+<li><p>当父类没有提供默认构造函数时，必须在子类构造函数的第一条语句通过super(…)<br>  完成父类对象成员的初始化工作。</p>
 </li>
+<li><p>父类当中用private修饰的成员，子类继承了，但是不可见</p>
+</li>
+<li><p>使用final修饰类和方法：</p>
+<pre><code>可以提高安全性
+可以加快某些类型检查过程
+</code></pre></li>
+<li><p>对于final所修饰的常量来讲，其初始化时机有：</p>
+<pre><code>1. 声明该常量时初始化
+2. 在构造方法中给常量赋值（每个构造方法都要）
+</code></pre></li>
+<li><p>package用途：</p>
+<pre><code>1 将相关的类和接口分组，包名通常表示包中各个类和接口的用途
+2 包创建不同的命名空间，解决了命名冲突问题
+3 提供了对应程序内部实现机制的保护域
+  （实际的保护还要和访问权限修饰符结合）
+</code></pre></li>
+<li><p>静态导入局限性：</p>
+<pre><code>1 静态导入的单位只能是一个类
+2 导入的成员与本类成员相同时，将被隐藏
+</code></pre></li>
 </ul>
 
       
