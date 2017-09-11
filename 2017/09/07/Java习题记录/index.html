@@ -17,7 +17,7 @@
 <meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/93814690/MarkdownPhotos/blob/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png">
-<meta property="og:updated_time" content="2017-09-11T14:22:24.415Z">
+<meta property="og:updated_time" content="2017-09-11T15:07:18.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java习题记录">
 <meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
@@ -181,6 +181,9 @@ Outer.this.num
 <li><code>String s = new String(“hello”)和String s = “hello”;</code>的区别?</li>
 </ul>
 <p><img src="https://github.com/93814690/MarkdownPhotos/blob/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png" alt="字符串2"></p>
+<ul>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s3 = <span class="string">"HelloWorld"</span>;</div><div class="line">System.out.println(s3 == <span class="string">"Hello"</span> + <span class="string">"World"</span>);<span class="comment">//true</span></div><div class="line"><span class="comment">//字符串拼接时,如果+的两个操作数都是字面值常量,则先拼接,再到常量池中查看拼接结果是否存在.</span></div><div class="line"><span class="comment">//如果存在,则直接将已存在的字面值常量地址赋值给引用变量;如不存在,则在常量池中存储该结果,</span></div><div class="line"><span class="comment">//并赋值</span></div><div class="line"></div><div class="line">String s4 = <span class="string">"World"</span>;</div><div class="line">System.out.println(s3 == <span class="string">"Hello"</span> + s4);<span class="comment">//false</span></div><div class="line"><span class="comment">//如果+的两个操作数中至少有一个为字符串引用变量,则先给对象开辟空间,在拼接</span></div></pre></td></tr></table></figure></li>
+</ul>
 
       
 
