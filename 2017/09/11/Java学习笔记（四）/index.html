@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java习题记录 | 云飞扬的博客</title>
+  <title>Java学习笔记（四） | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
+  <meta name="description" content="String类:  123456789101112131415161.字符串是由多个字符组成的一串数据(字符序列)2.字符串可以看成是字符数组构造方法:    public String()    public String(byte[] bytes)    //length 表示从offset元素开始,将其后(包括该元素本身),的多少个元素拿来构造字符串    public String(by">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java习题记录">
-<meta property="og:url" content="http://yoursite.com/2017/09/07/Java习题记录/index.html">
+<meta property="og:title" content="Java学习笔记（四）">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/Java学习笔记（四）/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
+<meta property="og:description" content="String类:  123456789101112131415161.字符串是由多个字符组成的一串数据(字符序列)2.字符串可以看成是字符数组构造方法:    public String()    public String(byte[] bytes)    //length 表示从offset元素开始,将其后(包括该元素本身),的多少个元素拿来构造字符串    public String(by">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-10T08:49:44.547Z">
+<meta property="og:updated_time" content="2017-09-11T12:50:07.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java习题记录">
-<meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
+<meta name="twitter:title" content="Java学习笔记（四）">
+<meta name="twitter:description" content="String类:  123456789101112131415161.字符串是由多个字符组成的一串数据(字符序列)2.字符串可以看成是字符数组构造方法:    public String()    public String(byte[] bytes)    //length 表示从offset元素开始,将其后(包括该元素本身),的多少个元素拿来构造字符串    public String(by">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,20 +139,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java习题记录" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记（四）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java习题记录
+      Java学习笔记（四）
     </h1>
   
 
         
-        <a href="/2017/09/07/Java习题记录/" class="archive-article-date">
-  	<time datetime="2017-09-07T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+        <a href="/2017/09/11/Java学习笔记（四）/" class="archive-article-date">
+  	<time datetime="2017-09-11T12:44:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
 </a>
         
       </header>
@@ -160,22 +160,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>哪句是编译失败的呢？为什么呢？</li>
+<li>String类:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">3</span>, b2  = <span class="number">4</span>, b;</div><div class="line"></div><div class="line"><span class="comment">//编译失败，参与运算会首先转换为int类型</span></div><div class="line">b = b1 + b2;</div><div class="line"></div><div class="line"><span class="comment">//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。</span></div><div class="line">b = <span class="number">3</span> + <span class="number">4</span>;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>补齐程序，在控制分别输出：30，20，10</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(？);</div><div class="line">            System.out.println(？？);</div><div class="line">            System.out.println(？？？);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>num
-this.num
-Outer.this.num
-</code></pre></li>
-<li><p>按照要求，补齐代码:在控制台输出”HelloWorld”</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; &#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; <span class="comment">//补齐代码 </span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Outer.method().show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; </div><div class="line">    <span class="function"><span class="keyword">static</span> Inter <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">                System.out.println(<span class="string">"HelloWorld"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.字符串是由多个字符组成的一串数据(字符序列)</div><div class="line"><span class="number">2</span>.字符串可以看成是字符数组</div><div class="line"></div><div class="line">构造方法:</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//length 表示从offset元素开始,将其后(包括该元素本身),的多少个元素拿来构造字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">byte</span>[] bytes,<span class="keyword">int</span> offset,<span class="keyword">int</span> length)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span>[] value)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span>[] value,<span class="keyword">int</span> offset,<span class="keyword">int</span> count)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(String original)</span></span></div></pre></td></tr></table></figure>
       
 
       
@@ -265,7 +252,7 @@ Outer.this.num
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/07/Java习题记录/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/11/Java学习笔记（四）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +266,9 @@ Outer.this.num
   
 <nav id="article-nav">
   
-    <a href="/2017/09/10/Java学习笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java学习笔记（二）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/07/Java学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记（一）</div>
+    <a href="/2017/09/10/Java学习笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记（三）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -329,7 +307,7 @@ Outer.this.num
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/07/Java习题记录/",
+  id: "http://yoursite.com/2017/09/11/Java学习笔记（四）/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {

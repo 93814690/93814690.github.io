@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="内部类：定义在其他类的内部  内部类的访问： 1 可以直接访问所在外部类的成员，包括私有的 2 所在外部类要访问内部类成员，必须创建对象    对于普通内部类来讲： 1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，   需要先存在外部类对象，然后在外部类对象的基础上，创建内部类. 2.无法定义静态成员 3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-11T06:26:28.025Z">
+<meta property="og:updated_time" content="2017-09-11T12:15:22.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记（三）">
 <meta name="twitter:description" content="内部类：定义在其他类的内部  内部类的访问： 1 可以直接访问所在外部类的成员，包括私有的 2 所在外部类要访问内部类成员，必须创建对象    对于普通内部类来讲： 1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，   需要先存在外部类对象，然后在外部类对象的基础上，创建内部类. 2.无法定义静态成员 3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象">
@@ -197,7 +197,11 @@
 <pre><code>1 抽象类 利用抽象类的构造方法来进行成员变量的初始化
 2 接口   使用初始化代码块
 </code></pre></li>
-<li></li>
+<li><p>Object类：java中所有类的根类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">构造方法:<span class="function"><span class="keyword">public</span> <span class="title">Object</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">方法:</div><div class="line"><span class="comment">//返回该对象的哈希码值。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></div><div class="line"><span class="function">    常规协定:</span></div><div class="line"><span class="function">        1 在 Java 应用程序执行期间,在对同一对象多次调用 hashCode 方法时,</span></div><div class="line"><span class="function">          必须一致地返回相同的整数,前提是将对象进行 equals 比较时所用的信息没有被修改.</span></div><div class="line"><span class="function">          从某一应用程序的一次执行到同一应用程序的另一次执行,该整数无需保持一致. </span></div><div class="line"><span class="function">        2 如果根据 <span class="title">equals</span><span class="params">(Object)</span> 方法,两个对象是相等的,那么对这两个对象中的每个对象调用 </span></div><div class="line"><span class="function">          hashCode 方法都必须生成相同的整数结果. </span></div><div class="line"><span class="function">        3 如果根据 <span class="title">equals</span><span class="params">(java.lang.Object)</span> 方法,两个对象不相等,</span></div><div class="line"><span class="function">          那么对这两个对象中的任一对象上调用hashCode方法不要求一定生成不同的整数结果.</span></div><div class="line"><span class="function">          但是,程序员应该意识到,为不相等的对象生成不同整数结果可以提高哈希表的性能. </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回此 Object 的运行时类.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span></div><div class="line"><span class="function">    Class:jvm将字节码文件内容,封装成一个类,这个类就是Class</span></div><div class="line"><span class="function">        1.<span class="title">getName</span><span class="params">()</span>:以 String 的形式返回此 Class对象所表示的实体</span></div><div class="line"><span class="function">         （类、接口、数组类、基本类型或 <span class="keyword">void</span>）名称.</span></div><div class="line"><span class="function">          <span class="title">getName</span><span class="params">()</span>返回的是一个类的全类名</span></div><div class="line"><span class="function">        2.如果我们只想得到某个类的简单类名,那么就是用<span class="title">getSimpleName</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回该对象的字符串表示.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span></div><div class="line"><span class="function">    当我们用输出语句输出一个对象的时候,实际上,输出语句输出的是该对象的<span class="title">toSting</span><span class="params">()</span>方法的返回结果</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//指示其他某个对象是否与此对象“相等”.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></div><div class="line"><span class="function">    满足自反,对称,传递,一致性</span></div><div class="line"><span class="function">    对于任何非空引用值 x,x.<span class="title">equals</span><span class="params">(<span class="keyword">null</span>)</span> 都应返回 <span class="keyword">false</span></span></div><div class="line"><span class="function">    equals方法的默认实现,比较的是对象地址<span class="params">(这个默认的equals方法无法完成比较对象内容的功能)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//创建并返回此对象的一个副本</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//当垃圾回收器确定不存在对该对象的更多引用时,由对象的垃圾回收器调用此方法</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span></span></div><div class="line"><span class="function">    对于jvm中的垃圾回收期,它所能回收的仅仅只是java语言范围类所申请的资源,</span></div><div class="line"><span class="function">    如果程序当中有调用c或c++或者其他语言,那这些语言,所占用的资源是jvm所无法管理和回收的,</span></div><div class="line"><span class="function">    finalize这个方法存在的意义,就是能够给我们开发者一个机会,在调用本地方法的java对象被回收时,</span></div><div class="line"><span class="function">    手动释放被其他语言所占用的资源</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>如果要使用clone方法，必须实现Cloneable接口，否则会报错</p>
+</li>
 </ul>
 
       
@@ -302,6 +306,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/09/11/Java学习笔记（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java学习笔记（四）
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/10/Java学习笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
