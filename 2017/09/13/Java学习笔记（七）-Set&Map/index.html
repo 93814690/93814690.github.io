@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记（一） | 云飞扬的博客</title>
+  <title>Java学习笔记（七）-Set&amp;Map | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
+  <meta name="description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2017/09/07/Java学习笔记（一）/index.html">
+<meta property="og:title" content="Java学习笔记（七）-Set&amp;Map">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&Map/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
+<meta property="og:description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-14T13:12:12.347Z">
+<meta property="og:updated_time" content="2017-09-16T00:41:32.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记（一）">
-<meta name="twitter:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
+<meta name="twitter:title" content="Java学习笔记（七）-Set&amp;Map">
+<meta name="twitter:description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,106 +139,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记（七）-Set&amp;Map" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记（一）
+      Java学习笔记（七）-Set&amp;Map
     </h1>
   
 
         
-        <a href="/2017/09/07/Java学习笔记（一）/" class="archive-article-date">
-  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+        <a href="/2017/09/13/Java学习笔记（七）-Set&Map/" class="archive-article-date">
+  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一些知识点</p>
-<ul>
-<li><p>java是跨平台的，jvm不是跨平台的。</p>
-</li>
-<li><p>byte, short, char参与运算会首先转换为int类型。</p>
-</li>
-<li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
-</li>
-<li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
-</li>
-<li><p>四舍五入相关：</p>
-<pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
-Math.ceil  向上取整     Math.ceil(1.4)=2.0
-Math.round 四舍五入,
-算法为Math.floor(x+0.5) 
-Math.round(11.5)=12     Math.round(-11.5)=11
-</code></pre></li>
-<li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
-</li>
-<li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>
-</li>
-<li><p>break利用标签跳出外层循环。</p>
-</li>
-<li><p>方法不能嵌套定义。</p>
-</li>
-<li><p>类体中不能声明签名完全相同的两个方法。</p>
-</li>
-<li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
-</li>
-<li><p>类的初始化过程总结:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
-<pre><code>1.加载Student.class文件进内存
-2.在栈内存为s开辟空间
-3.在堆内存为学生对象开辟空间
-4.对学生对象的成员变量进行默认初始化
-5.通过构造方法对学生对象的成员变量赋值
-6.学生对象初始化完毕，把对象地址赋值给s变量
+        <ul>
+<li><p>Set: </p>
+<pre><code>元素无序：
+    注意这里所说的无序的含义：
+    1 就是元素存进去和取出来的顺序不同
+    2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序
+
+元素唯一：
+    add() 当返回true时放入成功（元素不重复）
 </code></pre></li>
 </ul>
 <ul>
-<li><p>在静态方法中没有this关键字</p>
+<li><p>HashSet:实现依赖于HashMap</p>
 </li>
-<li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
+<li><p>Map接口（不属于Collection）：存储的是key-value键值对</p>
+<pre><code>1 将键映射到值（键和值一一对应）
+2 一个Map中不能包含重复的键
+3 每个键最多只能映射到一个值
+</code></pre></li>
+<li><p>Map与Collection的不同：</p>
+<pre><code>1 Map是双列的，Collection是单列的
+2 Map的键唯一，Collection的子体系Set内的元素是唯一的
+3 Map集合的数据结构 （HashMap） 只针对键有效（唯一性的约束），跟值无关
+  Collection集合HashSet的数据结构是针对元素有效
+</code></pre></li>
+<li><p>Map接口的成员方法</p>
 </li>
-<li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Map&lt;K,V&gt;</div><div class="line"><span class="function">V <span class="title">put</span><span class="params">(K key,V value)</span></span></div><div class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></div><div class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></div><div class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></div><div class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>访问Map的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//得到Map对象</span></div><div class="line">Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="comment">//存入键值对</span></div><div class="line">map.put(<span class="number">2</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">3</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">4</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">5</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//第一种：1.拿到所有的key值的集合</span></div><div class="line">Set&lt;Integer&gt; keySet = map.keySet();</div><div class="line"><span class="comment">//2.针对每一个键值，获取其value值</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x: keySet) &#123;</div><div class="line">    Integer value = map.get(x);</div><div class="line">    System.out.println(<span class="string">"key = "</span> + x + <span class="string">" ----- "</span> + <span class="string">"value = "</span>+ value);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//第二种遍历方式</span></div><div class="line"><span class="keyword">for</span>(Map.Entry x : map.entrySet()) &#123;</div><div class="line">    System.out.println(x.getKey() + <span class="string">" -- "</span> + x.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>区分引用传递和值传递:</p>
-<pre><code>如果数据类型是一个类的名字，就是引用变量
-如果数据类型是一个基本数据类型，就是值传递
-</code></pre></li>
-<li><p>对于包含静态代码块，初始化代码块和构造方法的子类，其初始化顺序为：</p>
-<pre><code>（B是A的子类）
-A static block
-B static block
-A init block
-A initialized
-B init block
-B initialized
-</code></pre></li>
-<li><p>当父类没有提供默认构造函数时，必须在子类构造函数的第一条语句通过super(…)<br>  完成父类对象成员的初始化工作。</p>
-</li>
-<li><p>父类当中用private修饰的成员，子类继承了，但是不可见</p>
-</li>
-<li><p>使用final修饰类和方法：</p>
-<pre><code>可以提高安全性
-可以加快某些类型检查过程
-</code></pre></li>
-<li><p>对于final所修饰的常量来讲，其初始化时机有：</p>
-<pre><code>1. 声明该常量时初始化
-2. 在构造方法中给常量赋值（每个构造方法都要）
-</code></pre></li>
-<li><p>package用途：</p>
-<pre><code>1 将相关的类和接口分组，包名通常表示包中各个类和接口的用途
-2 包创建不同的命名空间，解决了命名冲突问题
-3 提供了对应程序内部实现机制的保护域
-  （实际的保护还要和访问权限修饰符结合）
-</code></pre></li>
-<li><p>静态导入局限性：</p>
-<pre><code>1 静态导入的单位只能是一个类
-2 导入的成员与本类成员相同时，将被隐藏
+<li><p>如何解决我们自己程序中的逻辑bug：</p>
+<pre><code>1.其实，最主要的一步是定位问题发生的地方
+2.定位问题的核心，其实就是，梳理代码的执行逻辑，和我们真正的业务逻辑相比
+  较，找到不一致，这个不一致的地方就是问题的所在。
+3.方式：
+        1.看日志，就是在代码的一些关键的地方，打上标记
+        2.debug 记住一定要先打断点，不打断点，直接进入debug模式是没有效果的
 </code></pre></li>
 </ul>
 
@@ -331,7 +291,7 @@ B initialized
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/07/Java学习笔记（一）/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&Map/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -345,18 +305,18 @@ B initialized
   
 <nav id="article-nav">
   
-    <a href="/2017/09/07/Java习题记录/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/15/Java学习笔记（八）-异常/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java习题记录
+          Java学习笔记（八）-异常
         
       </div>
     </a>
   
   
-    <a href="/2017/09/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2017/09/12/Java学习笔记（六）-List/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记（六）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -395,7 +355,7 @@ B initialized
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/07/Java学习笔记（一）/",
+  id: "http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&amp;Map/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {

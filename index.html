@@ -136,20 +136,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java学习笔记（七）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java学习笔记（八）-异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/13/Java学习笔记（七）/">Java学习笔记（七）</a>
+      <a class="article-title" href="/2017/09/15/Java学习笔记（八）-异常/">Java学习笔记（八）-异常</a>
     </h1>
   
 
         
-        <a href="/2017/09/13/Java学习笔记（七）/" class="archive-article-date">
-  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
+        <a href="/2017/09/15/Java学习笔记（八）-异常/" class="archive-article-date">
+  	<time datetime="2017-09-15T11:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
 </a>
         
       </header>
@@ -157,25 +157,77 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>Set: </p>
-<pre><code>元素无序：
-    注意这里所说的无序的含义：
-    1 就是元素存进去和取出来的顺序不同
-    2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序
+<li><p>异常：就是Java程序运行过程中出现的错误（通常有不同严重程度）</p>
+</li>
+<li><p>常见异常：数组越界异常，空指针异常</p>
+</li>
+<li><p>异常的分类：</p>
+<pre><code>1.所有异常都有一个超类(基类或父类)，Throwable(类)
+2.Throwable有两个子类Exception和Error(依据错误的严重程度来区分)
+3.Exception，有两个子类CheckableException（编译时异常）和运行时异常（RuntimeException）
+</code></pre></li>
+<li><p>在我们自己没有处理异常的情况下，jvm对异常有一个默认的处理：</p>
+<pre><code>1.终止我们的程序
+2.将异常的详细信息输出到控制台，终止整个程序
+</code></pre></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="comment">//当我们没有对异常做任何处理的情况下，jvm做了两件事情</span></div><div class="line"><span class="comment">// 1.终止我们的程序(从异常发生的地方)</span></div><div class="line"><span class="comment">// 2.会将该异常对象的相关信息输出到控制台中</span></div><div class="line"><span class="comment">// 3.从该位置起，程序一分为2（从这里开始我们的代码被分成已执行和未执行，</span></div><div class="line"><span class="comment">//   同时jvm，从这里开始转而执行其对错误的默认处理程序）</span></div><div class="line">System.out.println(s.hashCode());</div><div class="line"></div><div class="line"><span class="comment">//默认情况下，由于这句代码在异常发生的那点之后，因此永远不会执行到</span></div><div class="line">System.out.println(<span class="string">"over"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>如何处理异常?  通过try-catch语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="comment">//告诉jvm我们自己来处理异常，你不用插手</span></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    <span class="comment">//空指针异常</span></div><div class="line">    <span class="comment">//System.out.println(s.hashCode());</span></div><div class="line">    <span class="comment">//在try代码块当中，异常发生之后的代码没有运行</span></div><div class="line">    System.out.println(<span class="string">"after null pointer exception"</span>);</div><div class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</div><div class="line">    <span class="comment">//当我们自己处理异常的时候，一旦异常发生，就会执行catch代码块中的代码</span></div><div class="line">    <span class="comment">//我们可以在catch代码块中，来写一些处理错误的代码，来恢复我们的程序，是我们的程序更加健壮</span></div><div class="line">    <span class="comment">//catch代码块中的代码，并非每次都会执行，只有当异常发生的时候，才会执行catch代码块中的代码</span></div><div class="line">    System.out.println(<span class="string">"发生异常了"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当可能发生多个异常的情况,通常需要区分发生的究竟是哪个异常，然后才能有针对性的处理</p>
+</li>
+<li><p>多分支的catch：</p>
+<pre><code>1.当异常发生时，jvm将错误信息封装成对象，并终止try代码块中原有代码的执行
+2.从第一个catch分支开始匹配，当发现某catch分支的异常类型与当前异常对象类型相同就进入该catch分支，并执行catch代码块中的代码
+3.执行完成后直接忽略其余catch分支，继续执行try-catch代码块之后的代码
+</code></pre></li>
+<li><p>有多个catch语句的情况下，没有继承关系的异常其前后顺序无所谓，但是如果出现了继承关系的异常，则子必须在父之前</p>
+</li>
+<li><p>jdk7的特性：针对多种异常类型，具有相同的错误处理代码的这样一种情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span>(exception1|exception2|..)&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意 | 符号连接的异常类型，不能存在继承关系，必须都是平行关系的异常</p>
+</li>
+<li><p>编译时异常  vs 运行时异常</p>
+<pre><code>编译时异常：必须在编译前处理，否则无法通过编译 
+运行时异常：运行时处理
+</code></pre></li>
+<li><p>Throwable:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">getMessage();</div><div class="line">toString();</div><div class="line">printStackTrace();</div><div class="line"></div><div class="line">SimpleDateFormat a = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">//编译时异常，编译之前，必须处理</span></div><div class="line">    Date parse = a.parse(<span class="string">"90iu09u"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (ParseException e) &#123;</div><div class="line">    <span class="comment">//输出异常发生时的调用过程信息</span></div><div class="line"></div><div class="line">    <span class="comment">//java.text.ParseException: Unparseable date: "90iu09u"</span></div><div class="line">    <span class="comment">//at java.text.DateFormat.parse(DateFormat.java:357)</span></div><div class="line">    <span class="comment">//at com.cskaoyan.exception.www.Demo5.main(Demo5.java:27)</span></div><div class="line">    e.printStackTrace();</div><div class="line">    </div><div class="line">    <span class="comment">//java.text.ParseException: Unparseable date: "90iu09u"</span></div><div class="line">    System.out.println(e.toString());</div><div class="line">    </div><div class="line">    <span class="comment">//Unparseable date: "90iu09u"</span></div><div class="line">    System.out.println(e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>throws 关键字 声明异常</p>
+<pre><code>语法：
+    &lt;返回类型&gt; &lt;方法签名&gt; throws &lt;异常列表&gt;（可以throws 多种异常）
+</code></pre></li>
+<li><p>throw 关键字 抛出异常</p>
+<pre><code>throw &lt;异常类的对象&gt;
+</code></pre></li>
+<li><p>throw vs throws</p>
+<pre><code>throws：
+    用在方法后，跟异常类名
+    可跟多个异常类名，由方法调用者处理
+    表示可能抛出这些异常，但是不是一定会抛
 
-元素唯一：
-    add() 当返回true时放入成功（元素不重复）
+throw：
+    用在方法体内，后跟异常对象名
+    只能抛出一个异常对象名
+    表示抛出异常，由方法体内的语句产生
+    执行throw 语句必然抛出某种异常
 </code></pre></li>
-</ul>
-<ul>
-<li><p>HashSet:</p>
-<pre><code>HashSet 的实现依赖于HashMap
+<li><p>异常处理原则：如内部功能可以处理该异常，用try，否则用throws </p>
+</li>
+<li><p>finally</p>
+<pre><code>特点：
+    被finally控制的语句块一定会执行（不管try内是否有抛出异常）
+    特殊情况，走到finally之前JVM退出了
+
+作用：
+    用于释放资源
 </code></pre></li>
-</ul>
-<ul>
-<li><p>Map</p>
-<pre><code>通过将key和value存放在一起，不仅仅存储了key和value的值，
-</code></pre></li>
+<li><p>自定义异常</p>
+</li>
 </ul>
 
       
@@ -200,7 +252,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/13/Java学习笔记（七）/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/15/Java学习笔记（八）-异常/">展开全文 >></a>
         </p>
       
 
@@ -230,19 +282,134 @@
 
 
   
-    <article id="post-Java学习笔记（六）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java学习笔记（七）-Set&amp;Map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/12/Java学习笔记（六）/">Java学习笔记（六）</a>
+      <a class="article-title" href="/2017/09/13/Java学习笔记（七）-Set&Map/">Java学习笔记（七）-Set&amp;Map</a>
     </h1>
   
 
         
-        <a href="/2017/09/12/Java学习笔记（六）/" class="archive-article-date">
+        <a href="/2017/09/13/Java学习笔记（七）-Set&Map/" class="archive-article-date">
+  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>Set: </p>
+<pre><code>元素无序：
+    注意这里所说的无序的含义：
+    1 就是元素存进去和取出来的顺序不同
+    2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序
+
+元素唯一：
+    add() 当返回true时放入成功（元素不重复）
+</code></pre></li>
+</ul>
+<ul>
+<li><p>HashSet:实现依赖于HashMap</p>
+</li>
+<li><p>Map接口（不属于Collection）：存储的是key-value键值对</p>
+<pre><code>1 将键映射到值（键和值一一对应）
+2 一个Map中不能包含重复的键
+3 每个键最多只能映射到一个值
+</code></pre></li>
+<li><p>Map与Collection的不同：</p>
+<pre><code>1 Map是双列的，Collection是单列的
+2 Map的键唯一，Collection的子体系Set内的元素是唯一的
+3 Map集合的数据结构 （HashMap） 只针对键有效（唯一性的约束），跟值无关
+  Collection集合HashSet的数据结构是针对元素有效
+</code></pre></li>
+<li><p>Map接口的成员方法</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Map&lt;K,V&gt;</div><div class="line"><span class="function">V <span class="title">put</span><span class="params">(K key,V value)</span></span></div><div class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></div><div class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></div><div class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></div><div class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>访问Map的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//得到Map对象</span></div><div class="line">Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="comment">//存入键值对</span></div><div class="line">map.put(<span class="number">2</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">3</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">4</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">5</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//第一种：1.拿到所有的key值的集合</span></div><div class="line">Set&lt;Integer&gt; keySet = map.keySet();</div><div class="line"><span class="comment">//2.针对每一个键值，获取其value值</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x: keySet) &#123;</div><div class="line">    Integer value = map.get(x);</div><div class="line">    System.out.println(<span class="string">"key = "</span> + x + <span class="string">" ----- "</span> + <span class="string">"value = "</span>+ value);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//第二种遍历方式</span></div><div class="line"><span class="keyword">for</span>(Map.Entry x : map.entrySet()) &#123;</div><div class="line">    System.out.println(x.getKey() + <span class="string">" -- "</span> + x.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何解决我们自己程序中的逻辑bug：</p>
+<pre><code>1.其实，最主要的一步是定位问题发生的地方
+2.定位问题的核心，其实就是，梳理代码的执行逻辑，和我们真正的业务逻辑相比
+  较，找到不一致，这个不一致的地方就是问题的所在。
+3.方式：
+        1.看日志，就是在代码的一些关键的地方，打上标记
+        2.debug 记住一定要先打断点，不打断点，直接进入debug模式是没有效果的
+</code></pre></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/13/Java学习笔记（七）-Set&Map/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java学习笔记（六）-List" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/12/Java学习笔记（六）-List/">Java学习笔记（六）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/12/Java学习笔记（六）-List/" class="archive-article-date">
   	<time datetime="2017-09-12T12:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
 </a>
         
@@ -344,7 +511,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/12/Java学习笔记（六）/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/12/Java学习笔记（六）-List/">展开全文 >></a>
         </p>
       
 
@@ -697,8 +864,12 @@
 <pre><code>1 private 
 2 静态方法没有运行时多态
 </code></pre></li>
-</ul>
-<ul>
+<li><p>在Java中有两种形式可以实现多态：继承和接口。</p>
+</li>
+<li><p>基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。</p>
+</li>
+<li><p>基于接口实现的多态</p>
+</li>
 <li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
 </li>
 <li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
@@ -731,6 +902,8 @@
 <pre><code>1 向上转型：子类转换为父类类型
 2 向下转型：父类转换为子类
 </code></pre></li>
+</ul>
+<ul>
 <li><p>抽象类:</p>
 <pre><code>1 抽象类和抽象方法必须使用abstract声明
 2 抽象方法不能有方法体
@@ -931,6 +1104,13 @@ Outer.this.num
 </li>
 <li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
 </li>
+<li><p>四舍五入相关：</p>
+<pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
+Math.ceil  向上取整     Math.ceil(1.4)=2.0
+Math.round 四舍五入,
+算法为Math.floor(x+0.5) 
+Math.round(11.5)=12     Math.round(-11.5)=11
+</code></pre></li>
 <li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
 </li>
 <li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>

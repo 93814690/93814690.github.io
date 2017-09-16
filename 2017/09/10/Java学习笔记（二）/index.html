@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记（二） | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
+  <meta name="description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记（二）">
 <meta property="og:url" content="http://yoursite.com/2017/09/10/Java学习笔记（二）/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
+<meta property="og:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-10T10:09:23.696Z">
+<meta property="og:updated_time" content="2017-09-15T06:22:13.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记（二）">
-<meta name="twitter:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态    对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型（返回值类型不一定完全相同，可以是父类返回值类型的子类）  关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小  方法覆盖的">
+<meta name="twitter:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -169,8 +169,12 @@
 <pre><code>1 private 
 2 静态方法没有运行时多态
 </code></pre></li>
-</ul>
-<ul>
+<li><p>在Java中有两种形式可以实现多态：继承和接口。</p>
+</li>
+<li><p>基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。</p>
+</li>
+<li><p>基于接口实现的多态</p>
+</li>
 <li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
 </li>
 <li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
@@ -203,6 +207,8 @@
 <pre><code>1 向上转型：子类转换为父类类型
 2 向下转型：父类转换为子类
 </code></pre></li>
+</ul>
+<ul>
 <li><p>抽象类:</p>
 <pre><code>1 抽象类和抽象方法必须使用abstract声明
 2 抽象方法不能有方法体
