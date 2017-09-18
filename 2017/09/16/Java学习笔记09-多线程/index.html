@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 云飞扬的博客</title>
+  <title>Java学习笔记09-多线程 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="云飞扬的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因： 1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习笔记09-多线程">
+<meta property="og:url" content="http://yoursite.com/2017/09/16/Java学习笔记09-多线程/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
+<meta property="og:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因： 1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/image/线程状态转换图.png">
+<meta property="og:updated_time" content="2017-09-18T15:21:22.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="云飞扬的博客">
+<meta name="twitter:title" content="Java学习笔记09-多线程">
+<meta name="twitter:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因： 1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切">
+<meta name="twitter:image" content="http://yoursite.com/image/线程状态转换图.png">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -134,36 +141,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Java学习笔记09-多线程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java学习笔记09-多线程
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/16/Java学习笔记09-多线程/" class="archive-article-date">
+
+        
+        <a href="/2017/09/16/Java学习笔记09-多线程/" class="archive-article-date">
   	<time datetime="2017-09-16T11:02:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/16/Java学习笔记09-多线程/">Java学习笔记09-多线程</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>引入多进程机制，使得cpu的利用率大大的提高了。</p>
+</li>
+<li><p>线程引入的原因：</p>
+<pre><code>1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。
+2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源
+3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切换
+</code></pre></li>
+<li><p>进程和线程的区别：</p>
+<pre><code>进程是资源分配的基本单位，线程是程序执行的基本单位
+在切换上下文时，进程之间切换花费较大，线程相对来说就小
+</code></pre></li>
+</ul>
+<ul>
+<li><p>并发和并行</p>
+<pre><code>并发： 在某一时间段内，同时执行多个程序
+并行： 在同一时刻，有多个程序在运行
+</code></pre></li>
+<li><p>在操作系统中有两个结论：</p>
+<pre><code>1.进程是资源分配的基本单位
+2.线程是程序执行的基本单位
+</code></pre></li>
+<li><p>JVM是多线程</p>
+</li>
+<li><p>线程两种调度模型：分时调度模型和抢占式调度模型</p>
+</li>
+<li><p>Java使用抢占式调度模型</p>
+</li>
+<li><p>线程的生命周期：</p>
+<pre><code>新建
+    创建线程对象
+就绪  start() 之后  sleep()睡醒之后 yield()之后
+    有执行资格，等待cpu调度
+运行
+    取得执行权，开始执行
+阻塞
+    无执行资格，无执行权
+死亡
+    执行完毕，等待垃圾回收
+</code></pre></li>
+</ul>
+<ul>
+<li><p>实现线程的第一种方式：</p>
+<pre><code>1 创建一个类继承自Thread类
+2 重写run方法
+</code></pre></li>
+<li><p>实现线程的第二种方式：</p>
+<pre><code>1.声明实现 Runnable 接口的类
+2.然后实现 run 方法
+3.创建该类的实例
+4.在创建 Thread 时将该对象作为一个参数来传递
+5.启动该线程
+</code></pre></li>
+<li><p>方式一 VS 方式二</p>
+<pre><code>方式一的缺陷
+    如果某个类已经有父类，则无法再继承Thread类
+方式二的优点
+    解决了单继承的局限性
+    便于多线程共享数据
+</code></pre></li>
+<li><p>线程的正确启动方法： 通过start()方法</p>
+</li>
+<li><p>获取线程对象的名称：</p>
+<pre><code>1.通过线程对象.getName()
+2.通过Thread.currentThread().getName()
+</code></pre></li>
+<li><p>设置线程名称：</p>
+<pre><code>1.通过线程对象的set方法
+2.通过构造方法
+</code></pre></li>
+<li><p>线程控制：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">        <span class="comment">//线程睡眠</span></div><div class="line">        <span class="comment">//old style</span></div><div class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">(<span class="keyword">long</span> millis)</span> </span></div><div class="line"><span class="function">        <span class="comment">//还可以使用</span></span></div><div class="line"><span class="function">        TimeUnit.MILLISECONDS.<span class="title">sleep</span><span class="params">()</span></span></div><div class="line"><span class="function">        <span class="comment">//允许指定延迟的时间单元，可以提供更好的可阅读性</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//线程加入</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//线程礼让</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">yield</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="comment">/*      yield:程序执行的不确定性</span></span></div><div class="line"><span class="function"><span class="comment">        调用的yield方法的线程确实暂停了自己的运行,但对于cpu来讲，该线程的暂停只是一瞬间</span></span></div><div class="line"><span class="function"><span class="comment">        会使得cpu重新选择线程来执行,满足争夺cpu条件的线程，同样也包括刚刚调用yield方法的线程</span></span></div><div class="line"><span class="function"><span class="comment">        于是就出现了两个线程的竞争，谁抢夺到cpu的执行权，谁就执行</span></span></div><div class="line"><span class="function"><span class="comment">*/</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//后台线程（守护线程）</span></span></div><div class="line"><span class="function">        <span class="comment">//该方法必须在启动线程前调用</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setDaemon</span><span class="params">(<span class="keyword">boolean</span> on)</span></span></div><div class="line"><span class="function">        <span class="comment">//没有任何一个普通线程在执行时，守护线程就会自动终止运行</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//中断线程</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">interrupt</span><span class="params">()</span></span></div><div class="line"><span class="function">        <span class="comment">//允许我们结束处于阻塞状态的线程</span></span></div><div class="line"><span class="function">        <span class="comment">//如果在某线程对象上调用该方法时，该线程并未处于阻塞状态，那么该方法无效</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>线程的优先级：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">MAX_PRIORITY <span class="number">10</span></div><div class="line">MIN_PRIORITY <span class="number">1</span></div><div class="line">NORM_PRIORITY <span class="number">5</span></div><div class="line"></div><div class="line"><span class="comment">//获取线程的优先级</span></div><div class="line">getPriority()</div><div class="line"></div><div class="line"><span class="comment">//设置线程的优先级</span></div><div class="line">setPriority()</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意：不可以通过设置线程优先级的方式，来控制线程的执行顺序</p>
+</li>
+<li><p>线程的数据安全问题产生的根本原因：</p>
+<pre><code>1.多线程的运行环境
+2.数据共享
+3.操作没有原子性（操作可以被打断）
+</code></pre></li>
+<li><p>解决方法：同步代码块和同步方法</p>
+</li>
+<li><p>同步代码块：</p>
+<pre><code>格式：
+    synchronized（对象）{
+        需同步代码块（我走你不能走， 你走我不能走）
+    }
+</code></pre></li>
+<li><p>注意，需要同步的操作必须使用同一把锁</p>
+</li>
+<li><p>同步方法：</p>
+<pre><code>格式：
+    把同步关键字加在方法声明前
+</code></pre></li>
+<li><p>对于静态的同步方法而言，其锁对象是：该类的字节码对象</p>
+</li>
+<li><p>在用synchronized关键字的时候，能缩小代码段的范围就尽量缩小，能在代码段上加同步就不要在整个方法上加同步。这叫<strong>减小锁的粒度，使代码更大程度的并发</strong>。</p>
+</li>
+<li><p>多线程的同步除了使用同步代码块或者同步方法，还可以使用Lock。Lock相比于synchronized具有更强的灵活性和更广泛的使用场景，但是因为使用Lock，加锁和解锁操作都必须要我们自己来完成，相比于使用synchronized，可能就会犯一些错误</p>
+</li>
+<li><p>同步弊端：</p>
+<pre><code>1.影响执行效率
+2.在使用嵌套锁的时候，有可鞥会产生死锁
+</code></pre></li>
+<li><p>死锁：死锁是指两个以上的线程在执行过程中，因为争夺资源而产生的一种相互等待的现象（经典问题，哲学家问题）</p>
+</li>
+<li><p>线程间通信机制：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Object</div><div class="line">    <span class="comment">//</span></div><div class="line">    Wait()</div><div class="line"></div><div class="line">    notify()</div><div class="line">    <span class="comment">//直到当前线程放弃此对象上的锁定，才能继续执行被唤醒的线程</span></div><div class="line"></div><div class="line">    notifyAll()</div></pre></td></tr></table></figure>
+</li>
+<li><p>wait和sleep的区别：</p>
+<pre><code>wait()方法和sleep方法都可以使得当前线程放弃cpu的执行权,但是对于所持有的锁对象，情况就有所不同，
+wait()在放弃cpu执行权的同时，会放弃锁，但是sleep不会放弃当前所持有的锁对象
+</code></pre></li>
+<li><p>线程状态转换图<br><img src="/image/线程状态转换图.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>异常不能跨线程捕获：使用<code>void setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)</code></p>
+</li>
+<li><p>线程池里每一个线程代码结束后，并不会死亡，而是再次回到线程池中成为空闲状态，等待下一次被使用。</p>
+</li>
+<li><p>JDK5提供了一Executors来产生线程池:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//线程池中的线程数不固定，可以自适应</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//创建线程数固定的线程池，具体多少由参数决定</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">static</span> ExecutorService  <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//只有一个线程的线程池</span></span></div><div class="line"><span class="function">        <span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>以上方法返回了一个ExecutorService ，该对象表示一个线程池，它可以执行Runable对象代表的线程。它提供了如下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Future&lt;?&gt; submit(Runnable task)  </div><div class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务。 </span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//尝试停止所有主动执行的任务，停止等待任务的处理，并返回正在等待执行的任务列表。 </span></span></div><div class="line"><span class="function">List&lt;Runnable&gt; <span class="title">shutdownNow</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>shutdown和shutdownNow方法的区别：是否立即关闭线程池</p>
+</li>
+<li><p>定时器Timer: 用于调度多个定时任务以后台线程的方式来执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//单次调度,安排在指定延迟后执行指定的任务。</span></div><div class="line">schedule(TimerTask task, <span class="keyword">long</span> delay)</div><div class="line"></div><div class="line"><span class="comment">//重复调度</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">schedule</span><span class="params">(TimerTask task, <span class="keyword">long</span> delay, <span class="keyword">long</span> period)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//结束掉调度器</span></span></div><div class="line"><span class="function"><span class="title">cancel</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>TimerTask：具体的被Timer调度的任务<br><code>cancel() 结束掉当前任务</code></p>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -175,364 +339,121 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/16/Java学习笔记09-多线程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/15/Java学习笔记08-异常/" class="archive-article-date">
-  	<time datetime="2017-09-15T11:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/15/Java学习笔记08-异常/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记08-异常</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/15/Java学习笔记08-异常/">Java学习笔记08-异常</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/13/Java学习笔记07-Set&Map/" class="archive-article-date">
-  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/13/Java学习笔记07-Set&Map/">Java学习笔记07-Set&amp;Map</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/Java学习笔记06-List/" class="archive-article-date">
-  	<time datetime="2017-09-12T12:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/Java学习笔记06-List/">Java学习笔记06-List</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/Java学习笔记05-Collection/" class="archive-article-date">
-  	<time datetime="2017-09-12T12:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/Java学习笔记05-Collection/">Java学习笔记05-Collection</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/11/Java学习笔记04-String/" class="archive-article-date">
-  	<time datetime="2017-09-11T12:44:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/11/Java学习笔记04-String/">Java学习笔记04-String</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/Java学习笔记03/" class="archive-article-date">
-  	<time datetime="2017-09-10T10:05:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Java学习笔记03/">Java学习笔记03</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/Java学习笔记02/" class="archive-article-date">
-  	<time datetime="2017-09-10T08:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Java学习笔记02/">Java学习笔记02</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java习题记录/" class="archive-article-date">
-  	<time datetime="2017-09-07T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java习题记录/">Java习题记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java学习笔记01/" class="archive-article-date">
-  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java学习笔记01/">Java学习笔记01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/09/16/Java学习笔记09-多线程/",
+  owner: '93814690',
+  repo: '93814690.github.io',
+  oauth: {
+    client_id: 'd43c3cbe16c82b44085e',
+    client_secret: 'b3a2a27ef223b6079e9bcde0d2189931036e9e75',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -556,8 +477,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

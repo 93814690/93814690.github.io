@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记（二） | 云飞扬的博客</title>
+  <title>Java学习笔记01 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+  <meta name="description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记（二）">
-<meta property="og:url" content="http://yoursite.com/2017/09/10/Java学习笔记（二）/index.html">
+<meta property="og:title" content="Java学习笔记01">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/Java学习笔记01/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+<meta property="og:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-15T06:22:13.034Z">
+<meta property="og:updated_time" content="2017-09-16T11:05:54.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记（二）">
-<meta name="twitter:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+<meta name="twitter:title" content="Java学习笔记01">
+<meta name="twitter:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,96 +139,107 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记（二）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记01" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记（二）
+      Java学习笔记01
     </h1>
   
 
         
-        <a href="/2017/09/10/Java学习笔记（二）/" class="archive-article-date">
-  	<time datetime="2017-09-10T08:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
+        <a href="/2017/09/07/Java学习笔记01/" class="archive-article-date">
+  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>运行时多态前提：</p>
-<pre><code>1 要有继承关系
-2 要有方法覆盖
-3 子类实例赋值给父类引用
-</code></pre></li>
-<li><p>只要满足这三个条件就一定能发生运行时多态吗？</p>
-<pre><code>1 private 
-2 静态方法没有运行时多态
-</code></pre></li>
-<li><p>在Java中有两种形式可以实现多态：继承和接口。</p>
+        <p>记录一些知识点</p>
+<ul>
+<li><p>java是跨平台的，jvm不是跨平台的。</p>
 </li>
-<li><p>基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。</p>
+<li><p>byte, short, char参与运算会首先转换为int类型。</p>
 </li>
-<li><p>基于接口实现的多态</p>
+<li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
 </li>
-<li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
+<li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
 </li>
-<li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
+<li><p>四舍五入相关：</p>
+<pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
+Math.ceil  向上取整     Math.ceil(1.4)=2.0
+Math.round 四舍五入,
+算法为Math.floor(x+0.5) 
+Math.round(11.5)=12     Math.round(-11.5)=11
+</code></pre></li>
+<li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
 </li>
-<li><p>方法覆盖的注意事项：</p>
-<pre><code>1 父类中被final修饰的方法，在子类中不允许覆盖
-2 父类被覆盖的方法的参数列表中，被声明为final的参数，
-  在子类覆盖方法中可以不必声明为final
-3 只有在子类类体中可以访问的父类或祖先类的方法才能被覆盖
-</code></pre></li>
-<li><p>父类引用指向子类对象：</p>
-<pre><code>成员变量：编译看左边，运行看左边
-成员方法：编译看左边，运行看右边
-</code></pre></li>
-<li><p>运行时多态的优点：</p>
-<pre><code>1 提高代码的可维护性
-2 提高代码的扩展性
-</code></pre></li>
-<li><p>运行时多态的弊端：</p>
-<pre><code>无法使用子类特有的功能
-</code></pre></li>
-<li><p>解决方案：</p>
-<pre><code>1 创建子类的实例，调用子类的方法
-  （打破了运行时多态发生的条件，因此无法使用运行时多态）
-2 把父类的引用强转换为子类的引用
-</code></pre></li>
-<li><p>强制类型转换，并非一定是正确的，即我们如果直接将父类的引用转化为子类类型的引用，<br>  我们是要承担风险的。强转之前我们可以通过instanceof关键字，<br>  来帮我们判断待强转的对象是否是目标类型的实例</p>
+<li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>
 </li>
-<li><p>转型：</p>
-<pre><code>1 向上转型：子类转换为父类类型
-2 向下转型：父类转换为子类
+<li><p>break利用标签跳出外层循环。</p>
+</li>
+<li><p>方法不能嵌套定义。</p>
+</li>
+<li><p>类体中不能声明签名完全相同的两个方法。</p>
+</li>
+<li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
+</li>
+<li><p>类的初始化过程总结:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
+<pre><code>1.加载Student.class文件进内存
+2.在栈内存为s开辟空间
+3.在堆内存为学生对象开辟空间
+4.对学生对象的成员变量进行默认初始化
+5.通过构造方法对学生对象的成员变量赋值
+6.学生对象初始化完毕，把对象地址赋值给s变量
 </code></pre></li>
 </ul>
 <ul>
-<li><p>抽象类:</p>
-<pre><code>1 抽象类和抽象方法必须使用abstract声明
-2 抽象方法不能有方法体
-3 抽象类中不一定含有抽象方法，但含有抽象方法的类必须是抽象类
-4 抽象类本身不能实例化
-  （多态机制可以用子类实例化，其核心是将抽象方法变为非核心的）
-</code></pre></li>
-<li><p>抽象类可以有构造方法：</p>
-<pre><code>为了完成抽象类自身的初始化过程
-</code></pre></li>
-<li><p>接口：一个完全抽象的类，所有的方法都是抽象方法</p>
+<li><p>在静态方法中没有this关键字</p>
 </li>
-<li><p>接口的特点：</p>
-<pre><code>1 成员默认都是public的，不能指定其他的访问控制修饰符
-2 成员变量默认都是static final，必须显式初始化
-3 方法不能提供实现
-4 不同于普通类，本身可以多继承
-</code></pre></li>
-<li><p>空接口（标记接口）</p>
+<li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
 </li>
+<li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
+</li>
+<li><p>区分引用传递和值传递:</p>
+<pre><code>如果数据类型是一个类的名字，就是引用变量
+如果数据类型是一个基本数据类型，就是值传递
+</code></pre></li>
+<li><p>对于包含静态代码块，初始化代码块和构造方法的子类，其初始化顺序为：</p>
+<pre><code>（B是A的子类）
+A static block
+B static block
+A init block
+A initialized
+B init block
+B initialized
+</code></pre></li>
+<li><p>当父类没有提供默认构造函数时，必须在子类构造函数的第一条语句通过super(…)<br>  完成父类对象成员的初始化工作。</p>
+</li>
+<li><p>父类当中用private修饰的成员，子类继承了，但是不可见</p>
+</li>
+<li><p>使用final修饰类和方法：</p>
+<pre><code>可以提高安全性
+可以加快某些类型检查过程
+</code></pre></li>
+<li><p>对于final所修饰的常量来讲，其初始化时机有：</p>
+<pre><code>1. 声明该常量时初始化
+2. 在构造方法中给常量赋值（每个构造方法都要）
+</code></pre></li>
+<li><p>package用途：</p>
+<pre><code>1 将相关的类和接口分组，包名通常表示包中各个类和接口的用途
+2 包创建不同的命名空间，解决了命名冲突问题
+3 提供了对应程序内部实现机制的保护域
+  （实际的保护还要和访问权限修饰符结合）
+</code></pre></li>
+<li><p>静态导入局限性：</p>
+<pre><code>1 静态导入的单位只能是一个类
+2 导入的成员与本类成员相同时，将被隐藏
+</code></pre></li>
 </ul>
 
       
@@ -320,7 +331,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/10/Java学习笔记（二）/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/07/Java学习笔记01/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +345,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/10/Java学习笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/07/Java习题记录/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java学习笔记（三）
+          Java习题记录
         
       </div>
     </a>
   
   
-    <a href="/2017/09/07/Java习题记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java习题记录</div>
+    <a href="/2017/09/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -384,7 +395,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/10/Java学习笔记（二）/",
+  id: "http://yoursite.com/2017/09/07/Java学习笔记01/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {

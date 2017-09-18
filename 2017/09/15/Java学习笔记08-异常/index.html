@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记（三） | 云飞扬的博客</title>
+  <title>Java学习笔记08-异常 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内部类：定义在其他类的内部  内部类的访问： 1 可以直接访问所在外部类的成员，包括私有的 2 所在外部类要访问内部类成员，必须创建对象    对于普通内部类来讲： 1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，   需要先存在外部类对象，然后在外部类对象的基础上，创建内部类. 2.无法定义静态成员 3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象">
+  <meta name="description" content="异常：就是Java程序运行过程中出现的错误（通常有不同严重程度）  常见异常：数组越界异常，空指针异常  异常的分类： 1.所有异常都有一个超类(基类或父类)，Throwable(类) 2.Throwable有两个子类Exception和Error(依据错误的严重程度来区分) 3.Exception，有两个子类CheckableException（编译时异常）和运行时异常（RuntimeExce">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记（三）">
-<meta property="og:url" content="http://yoursite.com/2017/09/10/Java学习笔记（三）/index.html">
+<meta property="og:title" content="Java学习笔记08-异常">
+<meta property="og:url" content="http://yoursite.com/2017/09/15/Java学习笔记08-异常/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="内部类：定义在其他类的内部  内部类的访问： 1 可以直接访问所在外部类的成员，包括私有的 2 所在外部类要访问内部类成员，必须创建对象    对于普通内部类来讲： 1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，   需要先存在外部类对象，然后在外部类对象的基础上，创建内部类. 2.无法定义静态成员 3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象">
+<meta property="og:description" content="异常：就是Java程序运行过程中出现的错误（通常有不同严重程度）  常见异常：数组越界异常，空指针异常  异常的分类： 1.所有异常都有一个超类(基类或父类)，Throwable(类) 2.Throwable有两个子类Exception和Error(依据错误的严重程度来区分) 3.Exception，有两个子类CheckableException（编译时异常）和运行时异常（RuntimeExce">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-11T12:15:22.378Z">
+<meta property="og:updated_time" content="2017-09-16T11:03:10.323Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记（三）">
-<meta name="twitter:description" content="内部类：定义在其他类的内部  内部类的访问： 1 可以直接访问所在外部类的成员，包括私有的 2 所在外部类要访问内部类成员，必须创建对象    对于普通内部类来讲： 1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，   需要先存在外部类对象，然后在外部类对象的基础上，创建内部类. 2.无法定义静态成员 3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象">
+<meta name="twitter:title" content="Java学习笔记08-异常">
+<meta name="twitter:description" content="异常：就是Java程序运行过程中出现的错误（通常有不同严重程度）  常见异常：数组越界异常，空指针异常  异常的分类： 1.所有异常都有一个超类(基类或父类)，Throwable(类) 2.Throwable有两个子类Exception和Error(依据错误的严重程度来区分) 3.Exception，有两个子类CheckableException（编译时异常）和运行时异常（RuntimeExce">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,20 +139,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记（三）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记08-异常" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记（三）
+      Java学习笔记08-异常
     </h1>
   
 
         
-        <a href="/2017/09/10/Java学习笔记（三）/" class="archive-article-date">
-  	<time datetime="2017-09-10T10:05:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
+        <a href="/2017/09/15/Java学习笔记08-异常/" class="archive-article-date">
+  	<time datetime="2017-09-15T11:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
 </a>
         
       </header>
@@ -160,47 +160,76 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>内部类：定义在其他类的内部</p>
+<li><p>异常：就是Java程序运行过程中出现的错误（通常有不同严重程度）</p>
 </li>
-<li><p>内部类的访问：</p>
-<pre><code>1 可以直接访问所在外部类的成员，包括私有的
-2 所在外部类要访问内部类成员，必须创建对象
+<li><p>常见异常：数组越界异常，空指针异常</p>
+</li>
+<li><p>异常的分类：</p>
+<pre><code>1.所有异常都有一个超类(基类或父类)，Throwable(类)
+2.Throwable有两个子类Exception和Error(依据错误的严重程度来区分)
+3.Exception，有两个子类CheckableException（编译时异常）和运行时异常（RuntimeException）
+</code></pre></li>
+<li><p>在我们自己没有处理异常的情况下，jvm对异常有一个默认的处理：</p>
+<pre><code>1.终止我们的程序
+2.将异常的详细信息输出到控制台，终止整个程序
 </code></pre></li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="comment">//当我们没有对异常做任何处理的情况下，jvm做了两件事情</span></div><div class="line"><span class="comment">// 1.终止我们的程序(从异常发生的地方)</span></div><div class="line"><span class="comment">// 2.会将该异常对象的相关信息输出到控制台中</span></div><div class="line"><span class="comment">// 3.从该位置起，程序一分为2（从这里开始我们的代码被分成已执行和未执行，</span></div><div class="line"><span class="comment">//   同时jvm，从这里开始转而执行其对错误的默认处理程序）</span></div><div class="line">System.out.println(s.hashCode());</div><div class="line"></div><div class="line"><span class="comment">//默认情况下，由于这句代码在异常发生的那点之后，因此永远不会执行到</span></div><div class="line">System.out.println(<span class="string">"over"</span>);</div></pre></td></tr></table></figure>
 <ul>
-<li><p>对于普通内部类来讲：</p>
-<pre><code>1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，
-  需要先存在外部类对象，然后在外部类对象的基础上，创建内部类.
-2.无法定义静态成员
-3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象的引用
-</code></pre></li>
-</ul>
-<ul>
-<li><p>对于static修饰的内部类来讲：</p>
-<pre><code>1.内部类可以对立与外部类对象而存在
-2.可以定义静态成员
-3.对于该种内部类而言，这样的引用不存在
-</code></pre></li>
-</ul>
-<ul>
-<li><p>Outer.this 这里的类名.this仅仅是为了区分this的层次,与静态没有关系</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(num);</div><div class="line">            System.out.println(<span class="keyword">this</span>.num);</div><div class="line">            System.out.println(Outer.<span class="keyword">this</span>.num);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>如何处理异常?  通过try-catch语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="comment">//告诉jvm我们自己来处理异常，你不用插手</span></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    <span class="comment">//空指针异常</span></div><div class="line">    <span class="comment">//System.out.println(s.hashCode());</span></div><div class="line">    <span class="comment">//在try代码块当中，异常发生之后的代码没有运行</span></div><div class="line">    System.out.println(<span class="string">"after null pointer exception"</span>);</div><div class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</div><div class="line">    <span class="comment">//当我们自己处理异常的时候，一旦异常发生，就会执行catch代码块中的代码</span></div><div class="line">    <span class="comment">//我们可以在catch代码块中，来写一些处理错误的代码，来恢复我们的程序，是我们的程序更加健壮</span></div><div class="line">    <span class="comment">//catch代码块中的代码，并非每次都会执行，只有当异常发生的时候，才会执行catch代码块中的代码</span></div><div class="line">    System.out.println(<span class="string">"发生异常了"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>当在局部内部类中访问局部变量时，该局部变量一定要用final修饰，原因如下：</p>
-<pre><code>对于局部内部类对象而言，其物理空间在java内存中的堆上,
-对于局部变量而言，其物理空间在其所在函数的栈帧中,
-栈中的变量(包括对象的引用变量)一旦出了作用域，就立马被当做垃圾回收，但是对象并非如此.
-</code></pre></li>
-<li><p>在定义匿名内部类之后，一定记得要调用,否则不会执行相应代码</p>
+<li><p>当可能发生多个异常的情况,通常需要区分发生的究竟是哪个异常，然后才能有针对性的处理</p>
 </li>
-<li><p>匿名类的初始化：</p>
-<pre><code>1 抽象类 利用抽象类的构造方法来进行成员变量的初始化
-2 接口   使用初始化代码块
+<li><p>多分支的catch：</p>
+<pre><code>1.当异常发生时，jvm将错误信息封装成对象，并终止try代码块中原有代码的执行
+2.从第一个catch分支开始匹配，当发现某catch分支的异常类型与当前异常对象类型相同就进入该catch分支，并执行catch代码块中的代码
+3.执行完成后直接忽略其余catch分支，继续执行try-catch代码块之后的代码
 </code></pre></li>
-<li><p>Object类：java中所有类的根类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">构造方法:<span class="function"><span class="keyword">public</span> <span class="title">Object</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">方法:</div><div class="line"><span class="comment">//返回该对象的哈希码值。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></div><div class="line"><span class="function">    常规协定:</span></div><div class="line"><span class="function">        1 在 Java 应用程序执行期间,在对同一对象多次调用 hashCode 方法时,</span></div><div class="line"><span class="function">          必须一致地返回相同的整数,前提是将对象进行 equals 比较时所用的信息没有被修改.</span></div><div class="line"><span class="function">          从某一应用程序的一次执行到同一应用程序的另一次执行,该整数无需保持一致. </span></div><div class="line"><span class="function">        2 如果根据 <span class="title">equals</span><span class="params">(Object)</span> 方法,两个对象是相等的,那么对这两个对象中的每个对象调用 </span></div><div class="line"><span class="function">          hashCode 方法都必须生成相同的整数结果. </span></div><div class="line"><span class="function">        3 如果根据 <span class="title">equals</span><span class="params">(java.lang.Object)</span> 方法,两个对象不相等,</span></div><div class="line"><span class="function">          那么对这两个对象中的任一对象上调用hashCode方法不要求一定生成不同的整数结果.</span></div><div class="line"><span class="function">          但是,程序员应该意识到,为不相等的对象生成不同整数结果可以提高哈希表的性能. </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回此 Object 的运行时类.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span></div><div class="line"><span class="function">    Class:jvm将字节码文件内容,封装成一个类,这个类就是Class</span></div><div class="line"><span class="function">        1.<span class="title">getName</span><span class="params">()</span>:以 String 的形式返回此 Class对象所表示的实体</span></div><div class="line"><span class="function">         （类、接口、数组类、基本类型或 <span class="keyword">void</span>）名称.</span></div><div class="line"><span class="function">          <span class="title">getName</span><span class="params">()</span>返回的是一个类的全类名</span></div><div class="line"><span class="function">        2.如果我们只想得到某个类的简单类名,那么就是用<span class="title">getSimpleName</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回该对象的字符串表示.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span></div><div class="line"><span class="function">    当我们用输出语句输出一个对象的时候,实际上,输出语句输出的是该对象的<span class="title">toSting</span><span class="params">()</span>方法的返回结果</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//指示其他某个对象是否与此对象“相等”.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></div><div class="line"><span class="function">    满足自反,对称,传递,一致性</span></div><div class="line"><span class="function">    对于任何非空引用值 x,x.<span class="title">equals</span><span class="params">(<span class="keyword">null</span>)</span> 都应返回 <span class="keyword">false</span></span></div><div class="line"><span class="function">    equals方法的默认实现,比较的是对象地址<span class="params">(这个默认的equals方法无法完成比较对象内容的功能)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//创建并返回此对象的一个副本</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//当垃圾回收器确定不存在对该对象的更多引用时,由对象的垃圾回收器调用此方法</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span></span></div><div class="line"><span class="function">    对于jvm中的垃圾回收期,它所能回收的仅仅只是java语言范围类所申请的资源,</span></div><div class="line"><span class="function">    如果程序当中有调用c或c++或者其他语言,那这些语言,所占用的资源是jvm所无法管理和回收的,</span></div><div class="line"><span class="function">    finalize这个方法存在的意义,就是能够给我们开发者一个机会,在调用本地方法的java对象被回收时,</span></div><div class="line"><span class="function">    手动释放被其他语言所占用的资源</span></div></pre></td></tr></table></figure>
+<li><p>有多个catch语句的情况下，没有继承关系的异常其前后顺序无所谓，但是如果出现了继承关系的异常，则子必须在父之前</p>
 </li>
-<li><p>如果要使用clone方法，必须实现Cloneable接口，否则会报错</p>
+<li><p>jdk7的特性：针对多种异常类型，具有相同的错误处理代码的这样一种情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span>(exception1|exception2|..)&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意 | 符号连接的异常类型，不能存在继承关系，必须都是平行关系的异常</p>
+</li>
+<li><p>编译时异常  vs 运行时异常</p>
+<pre><code>编译时异常：必须在编译前处理，否则无法通过编译 
+运行时异常：运行时处理
+</code></pre></li>
+<li><p>Throwable:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">getMessage();</div><div class="line">toString();</div><div class="line">printStackTrace();</div><div class="line"></div><div class="line">SimpleDateFormat a = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">//编译时异常，编译之前，必须处理</span></div><div class="line">    Date parse = a.parse(<span class="string">"90iu09u"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (ParseException e) &#123;</div><div class="line">    <span class="comment">//输出异常发生时的调用过程信息</span></div><div class="line"></div><div class="line">    <span class="comment">//java.text.ParseException: Unparseable date: "90iu09u"</span></div><div class="line">    <span class="comment">//at java.text.DateFormat.parse(DateFormat.java:357)</span></div><div class="line">    <span class="comment">//at com.cskaoyan.exception.www.Demo5.main(Demo5.java:27)</span></div><div class="line">    e.printStackTrace();</div><div class="line">    </div><div class="line">    <span class="comment">//java.text.ParseException: Unparseable date: "90iu09u"</span></div><div class="line">    System.out.println(e.toString());</div><div class="line">    </div><div class="line">    <span class="comment">//Unparseable date: "90iu09u"</span></div><div class="line">    System.out.println(e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>throws 关键字 声明异常</p>
+<pre><code>语法：
+    &lt;返回类型&gt; &lt;方法签名&gt; throws &lt;异常列表&gt;（可以throws 多种异常）
+</code></pre></li>
+<li><p>throw 关键字 抛出异常</p>
+<pre><code>throw &lt;异常类的对象&gt;
+</code></pre></li>
+<li><p>throw vs throws</p>
+<pre><code>throws：
+    用在方法后，跟异常类名
+    可跟多个异常类名，由方法调用者处理
+    表示可能抛出这些异常，但是不是一定会抛
+
+throw：
+    用在方法体内，后跟异常对象名
+    只能抛出一个异常对象名
+    表示抛出异常，由方法体内的语句产生
+    执行throw 语句必然抛出某种异常
+</code></pre></li>
+<li><p>异常处理原则：如内部功能可以处理该异常，用try，否则用throws </p>
+</li>
+<li><p>finally</p>
+<pre><code>特点：
+    被finally控制的语句块一定会执行（不管try内是否有抛出异常）
+    特殊情况，走到finally之前JVM退出了
+
+作用：
+    用于释放资源
+</code></pre></li>
+<li><p>自定义异常</p>
 </li>
 </ul>
 
@@ -293,7 +322,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/10/Java学习笔记（三）/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/15/Java学习笔记08-异常/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -307,18 +336,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/11/Java学习笔记（四）-String/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/16/Java学习笔记09-多线程/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java学习笔记（四）
+          Java学习笔记09-多线程
         
       </div>
     </a>
   
   
-    <a href="/2017/09/10/Java学习笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记（二）</div>
+    <a href="/2017/09/13/Java学习笔记07-Set&Map/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记07-Set&amp;Map</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -357,7 +386,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/10/Java学习笔记（三）/",
+  id: "http://yoursite.com/2017/09/15/Java学习笔记08-异常/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {

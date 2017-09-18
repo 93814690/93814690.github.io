@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记（七）-Set&amp;Map | 云飞扬的博客</title>
+  <title>Java学习笔记05-Collection | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
+  <meta name="description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记（七）-Set&amp;Map">
-<meta property="og:url" content="http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&Map/index.html">
+<meta property="og:title" content="Java学习笔记05-Collection">
+<meta property="og:url" content="http://yoursite.com/2017/09/12/Java学习笔记05-Collection/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
+<meta property="og:description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-16T00:41:32.006Z">
+<meta property="og:updated_time" content="2017-09-16T11:04:39.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记（七）-Set&amp;Map">
-<meta name="twitter:description" content="Set:  元素无序：     注意这里所说的无序的含义：     1 就是元素存进去和取出来的顺序不同     2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序  元素唯一：     add() 当返回true时放入成功（元素不重复）    HashSet:实现依赖于HashMap  Map接口（不属于Collection）：存储的是key-value键值对 1 将键映射到值（键和值">
+<meta name="twitter:title" content="Java学习笔记05-Collection">
+<meta name="twitter:description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,20 +139,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记（七）-Set&amp;Map" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记05-Collection" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记（七）-Set&amp;Map
+      Java学习笔记05-Collection
     </h1>
   
 
         
-        <a href="/2017/09/13/Java学习笔记（七）-Set&Map/" class="archive-article-date">
-  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
+        <a href="/2017/09/12/Java学习笔记05-Collection/" class="archive-article-date">
+  	<time datetime="2017-09-12T12:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
 </a>
         
       </header>
@@ -160,46 +160,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>Set: </p>
-<pre><code>元素无序：
-    注意这里所说的无序的含义：
-    1 就是元素存进去和取出来的顺序不同
-    2 对于集合本身而言，它一定有自己内部的一个元素的存储顺序
-
-元素唯一：
-    add() 当返回true时放入成功（元素不重复）
+<li><p>集合类和对象数组的区别:</p>
+<pre><code>1 对象数组长度固定，集合类长度不固定
+2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象
+3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)
+</code></pre></li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Collection a = <span class="keyword">new</span> ArrayList();</div><div class="line"><span class="keyword">int</span> i;</div><div class="line"><span class="comment">//其实存入集合类中的不是基本数据类型的i，而是Interger类的对象，其整数值为i</span></div><div class="line">a.add(i);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Collection:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">针对集合中的单个元素的操作:</div><div class="line"></div><div class="line">    <span class="comment">//向集合中增加元素</span></div><div class="line">    <span class="comment">//返回值为boolean类型,表示collection在插入操作之后是否有变化</span></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//删除某元素</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//清空当前集合中的元素</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//在集合类中是否包含某元素</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//判断当前集合中是否有元素存在</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回当前集合中的实际元素个数</span></span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">对某集合整体进行操作:</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//1.collection在加入集合元素时，首先保持了各元素在其集合中的插入顺序</span></span></div><div class="line"><span class="function">    <span class="comment">//2.对于a.addAll(b)直接把b中的元素，插入到a的末尾</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//这个删除，只会在a集合中删除，a和b中都存在的元素，</span></span></div><div class="line"><span class="function">    <span class="comment">//对于b集合中存在，而a集合中不存在的元素，没有影响</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//只有当b集合中的元素完全包含于a集合，才会返回true</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//求两集合之间的交集</span></span></div><div class="line"><span class="function">    <span class="comment">//该返回值的含义是：交集操作之后，该集合中的元素是否发生变化</span></span></div><div class="line"><span class="function">    <span class="comment">//变化的只是调用方法的那个集合，作为参数的那个集合并不发生任何变化</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection c)</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Collection 元素的遍历:</p>
+<pre><code>1.转化为数组
 </code></pre></li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Object[] array = a.toArray();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">    System.out.print(array[i]);</div><div class="line">    <span class="comment">//安全起见，先判断，在强转</span></div><div class="line">    <span class="keyword">if</span>(array[i] <span class="keyword">instanceof</span> String) &#123;</div><div class="line">        <span class="comment">//在将元素放入集合中时，实际上首先进行了一次向上转型，丢失了自己的类型信息</span></div><div class="line">        <span class="comment">//当我们在此从集合中取出元素，并且需要使用元素所属真实类型的方法时，只能通过</span></div><div class="line">        <span class="comment">//强转，来恢复其类型信息</span></div><div class="line">        String s = (String)array[i];</div><div class="line">        System.out.println(<span class="string">"-- "</span> + s.length());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>2.利用迭代器来遍历，这是集合特有的遍历方式
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Iterator是接口，这里返回的是子类实例</span></div><div class="line">Iterator it = a.iterator();</div><div class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">    System.out.println(it.next());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><p>HashSet:实现依赖于HashMap</p>
-</li>
-<li><p>Map接口（不属于Collection）：存储的是key-value键值对</p>
-<pre><code>1 将键映射到值（键和值一一对应）
-2 一个Map中不能包含重复的键
-3 每个键最多只能映射到一个值
+<li><p>Iterator接口概述:</p>
+<pre><code>对 collection 进行迭代的迭代器
+依赖于集合而存在
 </code></pre></li>
-<li><p>Map与Collection的不同：</p>
-<pre><code>1 Map是双列的，Collection是单列的
-2 Map的键唯一，Collection的子体系Set内的元素是唯一的
-3 Map集合的数据结构 （HashMap） 只针对键有效（唯一性的约束），跟值无关
-  Collection集合HashSet的数据结构是针对元素有效
-</code></pre></li>
-<li><p>Map接口的成员方法</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Map&lt;K,V&gt;</div><div class="line"><span class="function">V <span class="title">put</span><span class="params">(K key,V value)</span></span></div><div class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span></div><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></div><div class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span></div><div class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></div><div class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></div><div class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
-<ul>
-<li><p>访问Map的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//得到Map对象</span></div><div class="line">Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="comment">//存入键值对</span></div><div class="line">map.put(<span class="number">2</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">3</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">4</span>, <span class="number">5</span>);</div><div class="line">map.put(<span class="number">5</span>, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//第一种：1.拿到所有的key值的集合</span></div><div class="line">Set&lt;Integer&gt; keySet = map.keySet();</div><div class="line"><span class="comment">//2.针对每一个键值，获取其value值</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x: keySet) &#123;</div><div class="line">    Integer value = map.get(x);</div><div class="line">    System.out.println(<span class="string">"key = "</span> + x + <span class="string">" ----- "</span> + <span class="string">"value = "</span>+ value);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//第二种遍历方式</span></div><div class="line"><span class="keyword">for</span>(Map.Entry x : map.entrySet()) &#123;</div><div class="line">    System.out.println(x.getKey() + <span class="string">" -- "</span> + x.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何解决我们自己程序中的逻辑bug：</p>
-<pre><code>1.其实，最主要的一步是定位问题发生的地方
-2.定位问题的核心，其实就是，梳理代码的执行逻辑，和我们真正的业务逻辑相比
-  较，找到不一致，这个不一致的地方就是问题的所在。
-3.方式：
-        1.看日志，就是在代码的一些关键的地方，打上标记
-        2.debug 记住一定要先打断点，不打断点，直接进入debug模式是没有效果的
-</code></pre></li>
+<li><p>Iterator接口成员方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span></div><div class="line"><span class="function">E <span class="title">next</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">remove</span><span class="params">()</span></span></div></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -291,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&Map/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/12/Java学习笔记05-Collection/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +289,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/15/Java学习笔记（八）-异常/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/12/Java学习笔记06-List/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java学习笔记（八）-异常
+          Java学习笔记06-List
         
       </div>
     </a>
   
   
-    <a href="/2017/09/12/Java学习笔记（六）-List/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记（六）</div>
+    <a href="/2017/09/11/Java学习笔记04-String/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记04-String</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -355,7 +339,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/13/Java学习笔记（七）-Set&amp;Map/",
+  id: "http://yoursite.com/2017/09/12/Java学习笔记05-Collection/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {
