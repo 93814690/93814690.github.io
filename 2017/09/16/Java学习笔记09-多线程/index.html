@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因： 1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/image/线程状态转换图.png">
-<meta property="og:updated_time" content="2017-09-18T15:21:22.489Z">
+<meta property="og:image" content="http://yoursite.com/images/线程状态转换图.png">
+<meta property="og:updated_time" content="2017-09-19T01:54:15.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记09-多线程">
 <meta name="twitter:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因： 1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切">
-<meta name="twitter:image" content="http://yoursite.com/image/线程状态转换图.png">
+<meta name="twitter:image" content="http://yoursite.com/images/线程状态转换图.png">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -266,18 +266,18 @@
 </li>
 <li><p>同步弊端：</p>
 <pre><code>1.影响执行效率
-2.在使用嵌套锁的时候，有可鞥会产生死锁
+2.在使用嵌套锁的时候，有可能会产生死锁
 </code></pre></li>
 <li><p>死锁：死锁是指两个以上的线程在执行过程中，因为争夺资源而产生的一种相互等待的现象（经典问题，哲学家问题）</p>
 </li>
 <li><p>线程间通信机制：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Object</div><div class="line">    <span class="comment">//</span></div><div class="line">    Wait()</div><div class="line"></div><div class="line">    notify()</div><div class="line">    <span class="comment">//直到当前线程放弃此对象上的锁定，才能继续执行被唤醒的线程</span></div><div class="line"></div><div class="line">    notifyAll()</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Object</div><div class="line">    <span class="comment">//导致当前线程等待，直到另一个线程调用该对象的 notify()方法或 notifyAll()方法。 </span></div><div class="line">    Wait()</div><div class="line"></div><div class="line">    <span class="comment">//唤醒正在等待对象监视器的单个线程。</span></div><div class="line">    notify()</div><div class="line">    <span class="comment">//直到当前线程放弃此对象上的锁定，才能继续执行被唤醒的线程</span></div><div class="line"></div><div class="line">    notifyAll()</div></pre></td></tr></table></figure>
 </li>
 <li><p>wait和sleep的区别：</p>
 <pre><code>wait()方法和sleep方法都可以使得当前线程放弃cpu的执行权,但是对于所持有的锁对象，情况就有所不同，
 wait()在放弃cpu执行权的同时，会放弃锁，但是sleep不会放弃当前所持有的锁对象
 </code></pre></li>
-<li><p>线程状态转换图<br><img src="/image/线程状态转换图.png" alt=""></p>
+<li><p>线程状态转换图<br><img src="/images/线程状态转换图.png" alt=""></p>
 </li>
 </ul>
 <ul>
@@ -298,6 +298,11 @@ wait()在放弃cpu执行权的同时，会放弃锁，但是sleep不会放弃当
 </li>
 <li><p>TimerTask：具体的被Timer调度的任务<br><code>cancel() 结束掉当前任务</code></p>
 </li>
+<li><p>对于单次执行来讲，如果本次执行已经开始，TimerTask的cancel方法是无法结束TimerTask</p>
+</li>
+<li><p>Timer的cancel直接结束掉所有调度任务</p>
+</li>
+<li></li>
 </ul>
 
       
@@ -402,6 +407,15 @@ wait()在放弃cpu执行权的同时，会放弃锁，但是sleep不会放弃当
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/09/19/Java学习笔记10-File/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java学习笔记10-File
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/15/Java学习笔记08-异常/" id="article-nav-older" class="article-nav-link-wrap">

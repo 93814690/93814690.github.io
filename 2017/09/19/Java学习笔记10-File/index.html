@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java习题记录 | 云飞扬的博客</title>
+  <title>Java学习笔记10-File | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
+  <meta name="description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达式  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在wi">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java习题记录">
-<meta property="og:url" content="http://yoursite.com/2017/09/07/Java习题记录/index.html">
+<meta property="og:title" content="Java学习笔记10-File">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/Java学习笔记10-File/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
+<meta property="og:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达式  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在wi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/93814690/MarkdownPhotos/blob/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png">
-<meta property="og:updated_time" content="2017-09-19T10:59:31.133Z">
+<meta property="og:updated_time" content="2017-09-19T11:29:15.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java习题记录">
-<meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
-<meta name="twitter:image" content="https://github.com/93814690/MarkdownPhotos/blob/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png">
+<meta name="twitter:title" content="Java学习笔记10-File">
+<meta name="twitter:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达式  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在wi">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -141,20 +139,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java习题记录" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java学习笔记10-File" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java习题记录
+      Java学习笔记10-File
     </h1>
   
 
         
-        <a href="/2017/09/07/Java习题记录/" class="archive-article-date">
-  	<time datetime="2017-09-07T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+        <a href="/2017/09/19/Java学习笔记10-File/" class="archive-article-date">
+  	<time datetime="2017-09-19T10:54:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
 </a>
         
       </header>
@@ -162,38 +160,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>哪句是编译失败的呢？为什么呢？</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">3</span>, b2  = <span class="number">4</span>, b;</div><div class="line"></div><div class="line"><span class="comment">//编译失败，参与运算会首先转换为int类型</span></div><div class="line">b = b1 + b2;</div><div class="line"></div><div class="line"><span class="comment">//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。</span></div><div class="line">b = <span class="number">3</span> + <span class="number">4</span>;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>补齐程序，在控制分别输出：30，20，10</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(？);</div><div class="line">            System.out.println(？？);</div><div class="line">            System.out.println(？？？);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>num
-this.num
-Outer.this.num
+<li><p>在操作系统中，任何数据都只能一种形式存在——文件</p>
+</li>
+<li><p>File：文件和目录路径名的抽象表达形式</p>
+<pre><code>1.File 既可以表示目录，也可以表示文件
+2.File 只是一种抽象表达式
 </code></pre></li>
-<li><p>按照要求，补齐代码:在控制台输出”HelloWorld”</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Inter</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>; &#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; <span class="comment">//补齐代码 </span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterDemo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Outer.method().show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>构造方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File(String pathname)</div><div class="line">File(String parent, String child)</div><div class="line">File(File parent, String child)</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123; </div><div class="line">    <span class="function"><span class="keyword">static</span> Inter <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">                System.out.println(<span class="string">"HelloWorld"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>String s = new String(“hello”)和String s = “hello”;</code>的区别?</li>
-</ul>
-<p><img src="https://github.com/93814690/MarkdownPhotos/blob/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png" alt="字符串2"></p>
-<ul>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s3 = <span class="string">"HelloWorld"</span>;</div><div class="line">System.out.println(s3 == <span class="string">"Hello"</span> + <span class="string">"World"</span>);<span class="comment">//true</span></div><div class="line"><span class="comment">//字符串拼接时,如果+的两个操作数都是字面值常量,则先拼接,再到常量池中查看拼接结果是否存在.</span></div><div class="line"><span class="comment">//如果存在,则直接将已存在的字面值常量地址赋值给引用变量;如不存在,则在常量池中存储该结果,</span></div><div class="line"><span class="comment">//并赋值</span></div><div class="line"></div><div class="line">String s4 = <span class="string">"World"</span>;</div><div class="line">System.out.println(s3 == <span class="string">"Hello"</span> + s4);<span class="comment">//false</span></div><div class="line"><span class="comment">//如果+的两个操作数中至少有一个为字符串引用变量,则先给对象开辟空间,在拼接</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>同步代码块和同步方法的区别</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下列两个方法有什么区别</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">synchronized</span>  (obj)&#123;&#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<pre><code>同步方法默认用this或者当前类class对象作为锁；
-同步代码块可以选择以什么来加锁，比同步方法要更细颗粒度，我们可以选择只同步会发生同步问题的部分代码而不是整个方法；
+<li><p>关于路径分隔符的问题:</p>
+<pre><code>在windows中我们的文件分割符  \
+在linux系统下我们的文件分隔符是  /
 </code></pre></li>
-<li><p>为什么wait()、notify()、notifyAll()不放在Thread</p>
+<li><p>File类成员方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">创建功能</div><div class="line">    <span class="comment">//当调用createNew方法之后，会实际的去创建该文件</span></div><div class="line">    <span class="comment">//当该文件已经实际存在的时候，不会再次创建该文件</span></div><div class="line">    <span class="comment">//当要创建的文件其父路径不存在的时候，抛出异常</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNewFile</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当使用mkdir的时候如果父目录不存在，创建失败,没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdir</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当父目录不存在的时候，mkdirs会首先帮助我们创建不存在的父路径，然后在该路径下创建目标目录</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdirs</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">删除功能</span></div><div class="line"><span class="function">    <span class="comment">//当要删除的文件并不存在的时候，返回false，没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">重命名功能</span></div><div class="line"><span class="function">    <span class="comment">//如果传递的是不同路径的文件对象，则会做两步：</span></span></div><div class="line"><span class="function">    <span class="comment">//1.移动文件到rename参数所指定的路径下</span></span></div><div class="line"><span class="function">    <span class="comment">//2.重命名</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">renameTo</span><span class="params">(File dest)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">判断功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canRead</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canWrite</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHidden</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">基本获取功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> File <span class="title">getAbsoluteFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getPath</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lastModified</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">高级获取功能</span></div><div class="line"><span class="function">    <span class="comment">//返回一个字符串数组，这些字符串指定此抽象路径名表示的目录中的文件和目录</span></span></div><div class="line"><span class="function">    <span class="comment">//如果此抽象路径名不表示一个目录，那么此方法将返回 null</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String[] <span class="title">list</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> File[] <span class="title">listFiles</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        System.out.println(<span class="string">"Runnable"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;) &#123;</div><div class="line">    <span class="comment">//已经覆盖掉了Thread中的run方法，因此不会再去调用Runnable的run方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Thread"</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;.start();</div></pre></td></tr></table></figure>
-</li>
-<li></li>
+<li><p>文件过滤器:更快速的查找文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">        <span class="keyword">public</span> String[] list(FilenameFilter filter)</div><div class="line">        <span class="keyword">public</span> File[] listFiles(FilenameFilter filter)</div><div class="line"></div><div class="line">        FIle file = <span class="keyword">new</span> File(<span class="string">"d:\\filetest"</span>);</div><div class="line">                </div><div class="line">        <span class="comment">//我们自己过滤</span></div><div class="line"><span class="comment">//      String[] list = file.list();</span></div><div class="line"><span class="comment">//      for(int i = 0; i &lt; list.length; i++) &#123;</span></div><div class="line"><span class="comment">//			if(list[i].endsWith(".txt")) &#123;</span></div><div class="line"><span class="comment">//				System.out.println(list[i]);</span></div><div class="line"><span class="comment">//			&#125;</span></div><div class="line"><span class="comment">//		&#125;</span></div><div class="line">    </div><div class="line">    <span class="comment">//我们利用文件过滤器,根据我们的需求，过滤文件，最终我们得到的结果是满足我们要求的文件名称的集合</span></div><div class="line"></div><div class="line">        File[] names = file.listFiles(<span class="keyword">new</span> FilenameFilter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</div><div class="line">                <span class="comment">// System.out.println("filter: "+dir.getName() + name);</span></div><div class="line">                File file = <span class="keyword">new</span> File(dir, name);</div><div class="line">                <span class="keyword">return</span> file.getName().endsWith(<span class="string">".txt"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; names.length; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"our own: "</span> + names[i].getName());</div><div class="line">        &#125;</div></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -285,7 +269,7 @@ Outer.this.num
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/07/Java习题记录/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/Java学习笔记10-File/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +283,18 @@ Outer.this.num
   
 <nav id="article-nav">
   
-    <a href="/2017/09/10/Java学习笔记02/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/19/Java学习笔记11-IO/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java学习笔记02
+          Java学习笔记11-IO
         
       </div>
     </a>
   
   
-    <a href="/2017/09/07/Java学习笔记01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记01</div>
+    <a href="/2017/09/16/Java学习笔记09-多线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记09-多线程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -349,7 +333,7 @@ Outer.this.num
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/07/Java习题记录/",
+  id: "http://yoursite.com/2017/09/19/Java学习笔记10-File/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {
