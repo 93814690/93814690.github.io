@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记06-List | 云飞扬的博客</title>
+  <title>[LeetCode] Two Sum | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先对于List注意不要导错包，不要导成java.awt。我们使用的是java.util  对于ArrayList中的元素来讲，其add方法，总是返回true  List概述: 1.有序的 collection（也称为序列） 2.此接口的用户可以对列表中每个元素的插入位置进行精确地控制 3.用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素 4.与 set 不同，列表通常允">
-<meta name="keywords" content="Java">
+  <meta name="description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
+<meta name="keywords" content="LeetCode Array HashTable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记06-List">
-<meta property="og:url" content="http://yoursite.com/2017/09/12/Java学习笔记06-List/index.html">
+<meta property="og:title" content="[LeetCode] Two Sum">
+<meta property="og:url" content="http://yoursite.com/2017/09/23/LeetCode-Two-Sum/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="首先对于List注意不要导错包，不要导成java.awt。我们使用的是java.util  对于ArrayList中的元素来讲，其add方法，总是返回true  List概述: 1.有序的 collection（也称为序列） 2.此接口的用户可以对列表中每个元素的插入位置进行精确地控制 3.用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素 4.与 set 不同，列表通常允">
+<meta property="og:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-16T11:04:09.875Z">
+<meta property="og:updated_time" content="2017-09-23T12:23:47.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记06-List">
-<meta name="twitter:description" content="首先对于List注意不要导错包，不要导成java.awt。我们使用的是java.util  对于ArrayList中的元素来讲，其add方法，总是返回true  List概述: 1.有序的 collection（也称为序列） 2.此接口的用户可以对列表中每个元素的插入位置进行精确地控制 3.用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素 4.与 set 不同，列表通常允">
+<meta name="twitter:title" content="[LeetCode] Two Sum">
+<meta name="twitter:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -139,97 +139,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记06-List" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetCode-Two-Sum" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记06-List
+      [LeetCode] Two Sum
     </h1>
   
 
         
-        <a href="/2017/09/12/Java学习笔记06-List/" class="archive-article-date">
-  	<time datetime="2017-09-12T12:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
+        <a href="/2017/09/23/LeetCode-Two-Sum/" class="archive-article-date">
+  	<time datetime="2017-09-23T01:21:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>首先对于List注意不要导错包，不要导成java.awt。我们使用的是java.util</p>
-</li>
-<li><p>对于ArrayList中的元素来讲，其add方法，总是返回true</p>
-</li>
-<li><p>List概述:</p>
-<pre><code>1.有序的 collection（也称为序列）
-2.此接口的用户可以对列表中每个元素的插入位置进行精确地控制
-3.用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素
-4.与 set 不同，列表通常允许重复的元素
-</code></pre></li>
-<li><p>List中独有的方法：</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,E element)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index,E element)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">ListIterator <span class="title">listIterator</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p>Example:<br>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,<br>return [0, 1].</p>
 <ul>
-<li>List独有的遍历器:ListIterator listIterator()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">ListIterator接口的成员方法:</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    E <span class="title">next</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    E <span class="title">previous</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//为了完成逆序遍历，必须首先完成一次正序遍历</span></span></div><div class="line"><span class="function"><span class="comment">//</span></span></div></pre></td></tr></table></figure>
-<ul>
-<li>ConcurrentModificationException</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">原因:</div><div class="line">    <span class="number">1</span>.迭代器的工作依赖于具体的数据集合</div><div class="line">    <span class="number">2</span>.一旦数据集合发生改变，按理来说，迭代器如果要想正常工作，也应该重新在修改过的数据集合上重新生成</div><div class="line">    <span class="number">3</span>.然而我们，直接修改了数据集合，却没有相应的重新这个数据集合上的迭代器</div><div class="line"></div><div class="line">如何避免这种错误呢？</div><div class="line">    <span class="comment">//注意一点，对于两种解决方案，添加元素的位置稍有不同</span></div><div class="line">    <span class="number">1</span>.通过遍历器来添加元素,当然普通的迭代器当然不行，因为没有add方法，因此只能使用List中独有的迭代器</div><div class="line">    <span class="number">2</span>.直接在数据集合上遍历，然后在数据集合上添加</div></pre></td></tr></table></figure>
-<ul>
-<li><p>ArrayList:</p>
-<pre><code>1 其底层实现为数组
-2 随机查找，查找快
-3 增删麻烦，慢
-4 非线程安全（简单理解就是多线程运行环境下，会出错）
-</code></pre></li>
-<li><p>LinkedList：</p>
-<pre><code>1 其底层实现为链表，双向链表
-2 顺序查找，查找慢（针对总体情况）
-3 增删快
-4 非线程安全
-
-注意，对于LinkedList而言，其特有操作（绝大部分）仅仅只是操作链表头、表尾元素（获取，添加，删除），
-因此在Java中，LinkedList实际可以当做队列和栈来使用
-</code></pre></li>
-</ul>
-<ul>
-<li><p>Vector：</p>
-<pre><code>1 其底层实现为数组
-2 查找快
-3 增删慢
-4 线程安全
-
-目前我们在实际开发中，已经基本不使用它了，因此只要知道它是同步的就可以了
-</code></pre></li>
-</ul>
-<ul>
-<li>通过Collections.synchronizedList(List list) 将一个非线程安全的list转化为一个线程安全的list</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List list = Collections.synchronizedList(<span class="keyword">new</span> ArrayList());</div></pre></td></tr></table></figure>
-<ul>
-<li><p>把数组转化为List：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line"></div><div class="line">List asList = Arrays.asList(a);</div><div class="line"><span class="comment">//对于该List不支持添加和删除操作</span></div></pre></td></tr></table></figure>
+<li><p>暴力</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No two sum solution"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>增强的for循环：简化数组和Collection集合的遍历</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(元素数据类型 变量 : 数组或者Collection集合对象) &#123;</div><div class="line">    使用变量即可,该变量就是元素</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>对于普通的集合类而言：</p>
-<pre><code>1 可以add任意类型
-2 当对特定的类型的对象，访问特有的成员时，需要强转，很麻烦
-</code></pre></li>
-<li><p>所以实际开发中，我们通常不会在一个实际的集合中放多种类型的对象，通常只会放一种类型</p>
-</li>
-<li><p>jdk1.5针对该问题，有一个很好的解决方案：参数化类型</p>
-</li>
+<li><p>HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (map.containsKey(target - nums[i])) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, map.get(target - nums[i])&#125;;</div><div class="line">        &#125;</div><div class="line">        map.put(nums[i],i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No two sum solution"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//带参数类型的集合</span></div><div class="line">Collection&lt;A&gt; c = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"><span class="comment">//对于集合c，我们通过参数化类型，告诉编译器，该集合类中只存放A类型对象，于是编译器就可以帮我们做检查。</span></div><div class="line"><span class="comment">//如果放入该集合的类型与所申明的类型不符，编译器就报错</span></div><div class="line">c.add(<span class="keyword">new</span> B())</div></pre></td></tr></table></figure>
 
       
 
@@ -264,7 +204,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LeetCode Array HashTable</a>
         		</li>
       		
 		</ul>
@@ -320,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/12/Java学习笔记06-List/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/23/LeetCode-Two-Sum/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +274,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/13/Java学习笔记07-Set&Map/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/23/Java学习笔记12-Network/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java学习笔记07-Set&amp;Map
+          Java学习笔记12-Network
         
       </div>
     </a>
   
   
-    <a href="/2017/09/12/Java学习笔记05-Collection/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记05-Collection</div>
+    <a href="/2017/09/19/Java学习笔记11-IO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记11-IO</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -384,7 +324,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/12/Java学习笔记06-List/",
+  id: "http://yoursite.com/2017/09/23/LeetCode-Two-Sum/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {

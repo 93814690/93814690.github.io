@@ -136,6 +136,270 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java学习笔记12-Network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/23/Java学习笔记12-Network/">Java学习笔记12-Network</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/23/Java学习笔记12-Network/" class="archive-article-date">
+  	<time datetime="2017-09-23T01:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>网络通信三要素：</p>
+<pre><code>1.ip地址     标识网络中不同的pc
+2.端口       标识进行通信的进程
+3.传输协议    TCP，UDP 规定通信方式
+</code></pre></li>
+<li><p>IP：就是给每一个连接在Internet上的主机分配的一个32bit地址</p>
+</li>
+<li><p>点分十进制表示法</p>
+</li>
+<li><p>IP地址 = 网络号码 + 主机地址</p>
+<pre><code>A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码
+    2^24(数量级)的主机，非常大的机构，比如国家来持有
+    1.0.0.1---127.255.255.254
+        10.X.X.X是私有地址(私有地址就是在互联网上不使用，而被用在局域网络中的地址)
+        127.X.X.X是保留地址，用做循环测试用的。
+B类IP地址：前两段号码为网络号码，剩下的两段号码为本地计算机号码
+    2^16(数量级)
+    128.0.0.1---191.255.255.254
+        172.16.0.0---172.31.255.255是私有地址。169.254.X.X是保留地址
+C类IP地址：前三段号码为网络号码，剩下的一段号码为本地计算机号码
+    2^8(数量级)
+    192.0.0.1---223.255.255.254
+        192.168.X.X是私有地址
+
+特殊地址
+    127.0.0.1
+    xxx.xxx.xxx.0   网络地址
+    xxx.xxx.xxx.255 广播地址
+
+保留地址：
+    D类    224.0.0.1---239.255.255.254
+    E类    240.0.0.1---247.255.255.254
+</code></pre></li>
+</ul>
+<ul>
+<li><p>端口号：指的是逻辑端口(物理端口：网卡口)</p>
+<pre><code>1.每个网络程序都会至少有一个逻辑端口
+2.用于标识进程的逻辑地址，不同进程的标识
+3.有效端口：0~65535，其中0~1024系统使用或保留端口。(2字节)
+</code></pre></li>
+<li><p>协议</p>
+<pre><code>UDP：
+    将数据源地址和目的地址封装成数据包中，不需要建立连接；
+    每个数据报的大小在限制在64k；
+    因无连接，是不可靠协议；
+    不需要建立连接，速度快（传输小量数据）
+
+TCP：
+    传输之前建立连接
+    传输大量数据
+    通过三次握手完成连接，是可靠的协议
+    效率稍低(必须建立连接)
+</code></pre></li>
+<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类InetAddress 供我们使用。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">要掌握的功能</div><div class="line">    <span class="comment">//在给定主机名的情况下确定主机的 IP 地址</span></div><div class="line">    <span class="comment">//主机名可以是机器名（如 "java.sun.com"），也可以是其 IP 地址的文本表示形式。</span></div><div class="line">    <span class="comment">//如果提供字面值 IP 地址，则仅检查地址格式的有效性。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> InetAddress <span class="title">getByName</span><span class="params">(String host)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostName</span><span class="params">()</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostAddress</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>Socket套接字: ip + 端口号</p>
+<pre><code>原理机制：
+    通信的两端都有Socket
+    网络通信其实就是Socket间的通信
+    数据在两个Socket间通过IO传输
+</code></pre></li>
+</ul>
+<ul>
+<li><p>使用udp协议，实现发送端</p>
+<pre><code>1 获取socket对象
+2 准备发送的数据，对数据打包
+3 利用socket对象发送打包好的数据
+4 释放资源
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的任何可用端口。</span></div><div class="line">    DatagramSocket() </div><div class="line"></div><div class="line">    <span class="comment">//构造数据报包，用来将长度为 length 的包发送到指定主机上的指定端口号</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length, InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket();</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,udp"</span>.getBytes();</div><div class="line">    InetAddress ip = InetAddress.getByName(<span class="string">"Shuai-Zhang"</span>);</div><div class="line">    DatagramPackete p = <span class="keyword">new</span> DatagramPacket(data,data.length,ip,<span class="number">10086</span>);</div><div class="line"></div><div class="line">    dSocket.send(p);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用udp协议，实现接收端</p>
+<pre><code>1 获取socket对象
+2 创建一个用来接收数据包的容器(其实也是一个DatagramPackete)
+3 将收到的数据包中的数据放到接收容器当中
+4 解析数据包，拿到数据
+5 释放资源
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的指定端口</span></div><div class="line">    DatagramSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//构造 DatagramPacket，用来接收长度为 length 的数据包</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length)</div><div class="line"></div><div class="line">实现接收端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket(<span class="number">10086</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    DatagramPacket p = <span class="keyword">new</span> DatagramPacket(data,data.length);</div><div class="line"></div><div class="line">    <span class="comment">//执行到这里，如果没有数据到来就会进入阻塞状态，一直等待数据的到来</span></div><div class="line">    dSocket.receive(p);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] ret =  p.getData();</div><div class="line">    <span class="keyword">int</span> length = p.getLength();</div><div class="line">    String s = <span class="keyword">new</span> String(ret,<span class="number">0</span>,length);</div><div class="line"></div><div class="line">    System.out.println(s);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用while实现一直接收、发送</p>
+</li>
+<li><p>对于键盘录入数据,我们需要自己定义结束标志</p>
+</li>
+<li><p>接收端不能多次启动</p>
+</li>
+<li><p>TCP不同于UDP的地方</p>
+<pre><code>1 TCP在通信之前需要建立连接
+2 直接通过socket中的流来发送数据
+3 适合大量的数据通信
+</code></pre></li>
+<li><p>发送端，即客户端</p>
+<pre><code>1 创建socket对象
+2 创建发送数据，获取输出流，利用该输出流来传输数据
+3 发送数据完成后，关闭流资源
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定 IP 地址的指定端口号</span></div><div class="line">    Socket(InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定主机上的指定端口号</span></div><div class="line">    Socket(String host, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    <span class="comment">//这一步一旦执行，就开始了三次握手，建立连接的过程</span></div><div class="line">    <span class="comment">//这里传递的ip和端口，是本socket将要连接的那个socket的ip和端口</span></div><div class="line">    Socket socket = <span class="keyword">new</span> Socket(<span class="string">"192.168.6.35"</span>,<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,tcp"</span>.getBytes();</div><div class="line">    OutputStream os = socket.getOutputStream();</div><div class="line">    os.write(data);</div><div class="line"></div><div class="line">    socket.close();</div></pre></td></tr></table></figure>
+</li>
+<li><p>TCP server端</p>
+<pre><code>1 获取socket对象
+2 创建连接
+3 从socket中获取输入流，读取发送端发送的数据，并显示
+4 释放资源
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/23/Java学习笔记12-Network/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LeetCode-Two-Sum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/23/LeetCode-Two-Sum/">[LeetCode] Two Sum</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/23/LeetCode-Two-Sum/" class="archive-article-date">
+  	<time datetime="2017-09-23T01:21:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p>Example:<br>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,<br>return [0, 1].</p>
+<ul>
+<li><p>暴力</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No two sum solution"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (map.containsKey(target - nums[i])) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, map.get(target - nums[i])&#125;;</div><div class="line">        &#125;</div><div class="line">        map.put(nums[i],i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No two sum solution"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LeetCode Array HashTable</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/23/LeetCode-Two-Sum/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java学习笔记11-IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -225,6 +489,77 @@
 </code></pre></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
+<ul>
+<li><p>字符流 = 字节流 + 编码表</p>
+</li>
+<li><p>编解码一致，才能规避乱码问题</p>
+</li>
+<li><p>默认情况下，即不指定字符集的情况下，java中采用默认的本地字符集来对字符进行编解码默认字符集，<br>  依赖于操作系统，因为我们使用的是简体中文，所以默认使用gbk编码</p>
+</li>
+<li><p>常见编码表</p>
+<pre><code>ASCII/Unicode 字符集
+ISO-8859-1   Latin-1
+GB2312/GBK/GB18030  简体字
+BIG5 繁体字
+UTF-8
+</code></pre></li>
+<li><p>OutputStreamWriter 是字符流通向字节流的桥梁,可使用指定的 charset 将要写入流中的字符编码成字节</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建使用默认字符编码的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建使用指定字符集的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out, String charsetName)</div><div class="line"></div><div class="line">写方法</div><div class="line">    <span class="comment">//写入单个字符。 </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> c)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组的某一部分。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串的某一部分</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>InputStreamReader 字符输入流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InputStreamReader</span><span class="params">(InputStream in)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">InputStreamReader</span><span class="params">(InputStream in,String charsetName)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">读方法</span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf，<span class="keyword">int</span> off ,<span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>字符流的简化写法 只能使用默认字符集</p>
+</li>
+<li><p>FileWriter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    FileWriter(File file)</div><div class="line">    FileWriter(File file, <span class="keyword">boolean</span> append)</div><div class="line">    FileWriter(String fileName)</div></pre></td></tr></table></figure>
+</li>
+<li><p>FileReader</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    FileReader(File file)</div><div class="line">    FileReader(String fileName)</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符缓冲流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个使用默认大小输出缓冲区的缓冲字符输出流。</span></div><div class="line">BufferedWriter(Writer out) </div><div class="line"></div><div class="line"><span class="comment">//创建一个使用给定大小输出缓冲区的新缓冲字符输出流。</span></div><div class="line">BufferedWriter(Writer out, <span class="keyword">int</span> sz)</div><div class="line"></div><div class="line"><span class="comment">//创建一个使用默认大小输入缓冲区的缓冲字符输入流</span></div><div class="line">BufferedReader(Reader in)</div><div class="line"></div><div class="line"><span class="comment">//创建一个使用指定大小输入缓冲区的缓冲字符输入流</span></div><div class="line">BufferedReader(Reader in, <span class="keyword">int</span> sz)</div></pre></td></tr></table></figure>
+</li>
+<li><p>新方法 <code>void newLine()</code>,<code>String readLine()</code></p>
+</li>
+<li><p>注意这里的读取到流末尾的判定条件，和之前的都不同,到流末尾返回的是null</p>
+</li>
+<li><p>打印流</p>
+<pre><code>字节流打印流     PrintStream
+字符打印流       PrintWriter
+</code></pre></li>
+<li><p>特点：</p>
+<pre><code>1.只能操作目的地，不能操作数据
+2.可以操作任意类型的数据
+3.如果启动了自动刷新(通过构造方法启用该功能)，能够自动刷新(调用指定方法才有效果)
+4.可以操作文件的流
+</code></pre></li>
+<li><p>PrintWriter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    PrintWriter(File file) </div><div class="line">    PrintWriter(String fileName)</div><div class="line">    PrintWriter(OutputStream out, <span class="keyword">boolean</span> autoFlush)</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果启用自动刷新，它只会在调用的println，printf，或format方法来完成</p>
+</li>
+<li><p>可以操作文件的流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FileInputStream(File, String)</div><div class="line">FileOutputStream(File,String)</div><div class="line">FileReader(String, File)</div><div class="line">FileWriter(String, File)</div><div class="line">PrintWriter</div><div class="line">PrintStream</div></pre></td></tr></table></figure>
+</li>
+<li><p>标准输入输出流</p>
+<pre><code>System.in 标准输入流其类型为InputStream,通常指键盘输入
+System.out 标准输出流控制台输出，其类型为PrintStream
+</code></pre></li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//scanner 利用原始的标准输入流，帮我们读取一行字符串</span></div><div class="line"><span class="comment">//那么我们是否可以自己完成这个功能呢？</span></div><div class="line"></div><div class="line"><span class="comment">//Scanner sc = new Scanner(System.in);</span></div><div class="line"><span class="comment">//String nextLine = sc.nextLine();</span></div><div class="line"></div><div class="line"><span class="comment">//想到了BufferedReader中的readLine()方法，来读取一行字符串</span></div><div class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">String readLine = br.readLine();</div><div class="line">System.out.println(<span class="string">"Buffered readLine: "</span> + readLine);</div></pre></td></tr></table></figure>
+</li>
+<li><p>序列化流 ObjectOutputStream</p>
+<pre><code>1.ObjectOutputStream 将 Java 对象的基本数据类型和引用数据类型所指向的对象写入OutputStream
+2.只有支持java.io.Serializable接口的对象才能写入流中
+3.每个 serializable 对象的类都被编码，编码内容包括类名和类签名、对象的字段值和数组值，以及从初始对象中引用的其他所有对象的闭包
+</code></pre></li>
+<li><p>反序列化流 ObjectInputStream</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建写入指定 OutputStream 的 ObjectOutputStream</span></div><div class="line">    ObjectOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建从指定 InputStream 读取的 ObjectInputStream</span></div><div class="line">    ObjectInputStream(InputStream in)</div></pre></td></tr></table></figure>
+<ul>
+<li>使用transient关键字声明不需要序列化的成员变量</li>
+</ul>
 
       
 
@@ -1168,267 +1503,6 @@ throw：
 
 
   
-    <article id="post-Java学习笔记03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/10/Java学习笔记03/">Java学习笔记03</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/10/Java学习笔记03/" class="archive-article-date">
-  	<time datetime="2017-09-10T10:05:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>内部类：定义在其他类的内部</p>
-</li>
-<li><p>内部类的访问：</p>
-<pre><code>1 可以直接访问所在外部类的成员，包括私有的
-2 所在外部类要访问内部类成员，必须创建对象
-</code></pre></li>
-</ul>
-<ul>
-<li><p>对于普通内部类来讲：</p>
-<pre><code>1.内部类对象一定是依赖于外部类对象而存在的，所以我们在创建普通内部类对象的时候，
-  需要先存在外部类对象，然后在外部类对象的基础上，创建内部类.
-2.无法定义静态成员
-3.对于内部类对象而言，任何一个内部类对象都有一个外部类对象的引用
-</code></pre></li>
-</ul>
-<ul>
-<li><p>对于static修饰的内部类来讲：</p>
-<pre><code>1.内部类可以对立与外部类对象而存在
-2.可以定义静态成员
-3.对于该种内部类而言，这样的引用不存在
-</code></pre></li>
-</ul>
-<ul>
-<li><p>Outer.this 这里的类名.this仅仅是为了区分this的层次,与静态没有关系</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num = <span class="number">20</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</div><div class="line">            System.out.println(num);</div><div class="line">            System.out.println(<span class="keyword">this</span>.num);</div><div class="line">            System.out.println(Outer.<span class="keyword">this</span>.num);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>当在局部内部类中访问局部变量时，该局部变量一定要用final修饰，原因如下：</p>
-<pre><code>对于局部内部类对象而言，其物理空间在java内存中的堆上,
-对于局部变量而言，其物理空间在其所在函数的栈帧中,
-栈中的变量(包括对象的引用变量)一旦出了作用域，就立马被当做垃圾回收，但是对象并非如此.
-</code></pre></li>
-<li><p>在定义匿名内部类之后，一定记得要调用,否则不会执行相应代码</p>
-</li>
-<li><p>匿名类的初始化：</p>
-<pre><code>1 抽象类 利用抽象类的构造方法来进行成员变量的初始化
-2 接口   使用初始化代码块
-</code></pre></li>
-<li><p>Object类：java中所有类的根类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">构造方法:<span class="function"><span class="keyword">public</span> <span class="title">Object</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">方法:</div><div class="line"><span class="comment">//返回该对象的哈希码值。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></div><div class="line"><span class="function">    常规协定:</span></div><div class="line"><span class="function">        1 在 Java 应用程序执行期间,在对同一对象多次调用 hashCode 方法时,</span></div><div class="line"><span class="function">          必须一致地返回相同的整数,前提是将对象进行 equals 比较时所用的信息没有被修改.</span></div><div class="line"><span class="function">          从某一应用程序的一次执行到同一应用程序的另一次执行,该整数无需保持一致. </span></div><div class="line"><span class="function">        2 如果根据 <span class="title">equals</span><span class="params">(Object)</span> 方法,两个对象是相等的,那么对这两个对象中的每个对象调用 </span></div><div class="line"><span class="function">          hashCode 方法都必须生成相同的整数结果. </span></div><div class="line"><span class="function">        3 如果根据 <span class="title">equals</span><span class="params">(java.lang.Object)</span> 方法,两个对象不相等,</span></div><div class="line"><span class="function">          那么对这两个对象中的任一对象上调用hashCode方法不要求一定生成不同的整数结果.</span></div><div class="line"><span class="function">          但是,程序员应该意识到,为不相等的对象生成不同整数结果可以提高哈希表的性能. </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回此 Object 的运行时类.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span></div><div class="line"><span class="function">    Class:jvm将字节码文件内容,封装成一个类,这个类就是Class</span></div><div class="line"><span class="function">        1.<span class="title">getName</span><span class="params">()</span>:以 String 的形式返回此 Class对象所表示的实体</span></div><div class="line"><span class="function">         （类、接口、数组类、基本类型或 <span class="keyword">void</span>）名称.</span></div><div class="line"><span class="function">          <span class="title">getName</span><span class="params">()</span>返回的是一个类的全类名</span></div><div class="line"><span class="function">        2.如果我们只想得到某个类的简单类名,那么就是用<span class="title">getSimpleName</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//返回该对象的字符串表示.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span></div><div class="line"><span class="function">    当我们用输出语句输出一个对象的时候,实际上,输出语句输出的是该对象的<span class="title">toSting</span><span class="params">()</span>方法的返回结果</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//指示其他某个对象是否与此对象“相等”.</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></div><div class="line"><span class="function">    满足自反,对称,传递,一致性</span></div><div class="line"><span class="function">    对于任何非空引用值 x,x.<span class="title">equals</span><span class="params">(<span class="keyword">null</span>)</span> 都应返回 <span class="keyword">false</span></span></div><div class="line"><span class="function">    equals方法的默认实现,比较的是对象地址<span class="params">(这个默认的equals方法无法完成比较对象内容的功能)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//创建并返回此对象的一个副本</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">//当垃圾回收器确定不存在对该对象的更多引用时,由对象的垃圾回收器调用此方法</span></span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span></span></div><div class="line"><span class="function">    对于jvm中的垃圾回收期,它所能回收的仅仅只是java语言范围类所申请的资源,</span></div><div class="line"><span class="function">    如果程序当中有调用c或c++或者其他语言,那这些语言,所占用的资源是jvm所无法管理和回收的,</span></div><div class="line"><span class="function">    finalize这个方法存在的意义,就是能够给我们开发者一个机会,在调用本地方法的java对象被回收时,</span></div><div class="line"><span class="function">    手动释放被其他语言所占用的资源</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>如果要使用clone方法，必须实现Cloneable接口，否则会报错</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/10/Java学习笔记03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java学习笔记02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/10/Java学习笔记02/">Java学习笔记02</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/10/Java学习笔记02/" class="archive-article-date">
-  	<time datetime="2017-09-10T08:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>运行时多态前提：</p>
-<pre><code>1 要有继承关系
-2 要有方法覆盖
-3 子类实例赋值给父类引用
-</code></pre></li>
-<li><p>只要满足这三个条件就一定能发生运行时多态吗？</p>
-<pre><code>1 private 
-2 静态方法没有运行时多态
-</code></pre></li>
-<li><p>在Java中有两种形式可以实现多态：继承和接口。</p>
-</li>
-<li><p>基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。</p>
-</li>
-<li><p>基于接口实现的多态</p>
-</li>
-<li><p>对于方法覆盖来讲，编译器所关心的与编译时多态不同，不仅仅方法签名，还有返回值类型<br>（返回值类型不一定完全相同，可以是父类返回值类型的子类）</p>
-</li>
-<li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
-</li>
-<li><p>方法覆盖的注意事项：</p>
-<pre><code>1 父类中被final修饰的方法，在子类中不允许覆盖
-2 父类被覆盖的方法的参数列表中，被声明为final的参数，
-  在子类覆盖方法中可以不必声明为final
-3 只有在子类类体中可以访问的父类或祖先类的方法才能被覆盖
-</code></pre></li>
-<li><p>父类引用指向子类对象：</p>
-<pre><code>成员变量：编译看左边，运行看左边
-成员方法：编译看左边，运行看右边
-</code></pre></li>
-<li><p>运行时多态的优点：</p>
-<pre><code>1 提高代码的可维护性
-2 提高代码的扩展性
-</code></pre></li>
-<li><p>运行时多态的弊端：</p>
-<pre><code>无法使用子类特有的功能
-</code></pre></li>
-<li><p>解决方案：</p>
-<pre><code>1 创建子类的实例，调用子类的方法
-  （打破了运行时多态发生的条件，因此无法使用运行时多态）
-2 把父类的引用强转换为子类的引用
-</code></pre></li>
-<li><p>强制类型转换，并非一定是正确的，即我们如果直接将父类的引用转化为子类类型的引用，<br>  我们是要承担风险的。强转之前我们可以通过instanceof关键字，<br>  来帮我们判断待强转的对象是否是目标类型的实例</p>
-</li>
-<li><p>转型：</p>
-<pre><code>1 向上转型：子类转换为父类类型
-2 向下转型：父类转换为子类
-</code></pre></li>
-</ul>
-<ul>
-<li><p>抽象类:</p>
-<pre><code>1 抽象类和抽象方法必须使用abstract声明
-2 抽象方法不能有方法体
-3 抽象类中不一定含有抽象方法，但含有抽象方法的类必须是抽象类
-4 抽象类本身不能实例化
-  （多态机制可以用子类实例化，其核心是将抽象方法变为非核心的）
-</code></pre></li>
-<li><p>抽象类可以有构造方法：</p>
-<pre><code>为了完成抽象类自身的初始化过程
-</code></pre></li>
-<li><p>接口：一个完全抽象的类，所有的方法都是抽象方法</p>
-</li>
-<li><p>接口的特点：</p>
-<pre><code>1 成员默认都是public的，不能指定其他的访问控制修饰符
-2 成员变量默认都是static final，必须显式初始化
-3 方法不能提供实现
-4 不同于普通类，本身可以多继承
-</code></pre></li>
-<li><p>空接口（标记接口）</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/10/Java学习笔记02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1519,6 +1593,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">LeetCode Array HashTable</a>
               </li>
             
             <div class="clearfix"></div>
