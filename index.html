@@ -136,6 +136,179 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java学习笔记13-reflect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/24/Java学习笔记13-reflect/">Java学习笔记13-reflect</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/24/Java学习笔记13-reflect/" class="archive-article-date">
+  	<time datetime="2017-09-24T03:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>类的加载</p>
+<pre><code>加载
+    就是指将class文件读入内存，并为之创建一个Class对象
+
+连接
+    验证 确保被加载类的正确性
+    准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间
+    解析 将类中的符号引用替换为直接引用
+
+初始化
+    就是我们以前讲过的初始化步骤
+</code></pre></li>
+<li><p>类加载时机</p>
+<pre><code>1 创建类的实例
+2 访问类的静态变量
+3 调用类的静态方法
+4 使用反射方式来强制创建某个类或接口对应的java.lang.Class对象
+5 初始化某个类的子类，子类父类都加载
+6 直接使用java.exe命令来运行某个主类
+</code></pre></li>
+<li><p>类加载器：负责将.class文件加载到内在中，并为之生成对应的Class对象</p>
+</li>
+<li><p>类加载器的组成</p>
+<pre><code>Bootstrap ClassLoader 根类加载器
+    也被称为引导类加载器，负责Java核心类的加载
+        比如System,String等。在JDK中JRE的lib目录下rt.jar文件中
+
+Extension ClassLoader 扩展类加载器
+    负责JRE的扩展目录中jar包的加载
+        在JDK中JRE的lib目录下ext目录
+
+Sysetm ClassLoader 系统类加载器（应用类加载器）
+    负责在JVM启动时加载来自java命令的class文件
+</code></pre></li>
+<li><p>反射</p>
+<pre><code>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；
+对于任意一个对象，都能够调用它的任意一个方法和属性；
+这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制
+</code></pre></li>
+<li><p>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类对象</p>
+</li>
+<li><p>获取Class类型的对象</p>
+<pre><code>方式一 对象.getClass()
+    Person p = new Person();
+    Class c = p.getClass();
+
+方式二 类名.class
+    Class c3 = Person.class;
+
+方式三 Class.forName(全类名)
+    Class c4 = Class.forName(&quot;com.cskaoyan.Person&quot;);
+</code></pre></li>
+<li><p>用哪种方式呢？</p>
+<pre><code>自己玩    第2种，因为方便
+开发中    第3种, 因为灵活（使用配置文件）
+</code></pre></li>
+<li><p>对于任意一个class文件，其中的内容，可以分为如下几类：</p>
+<pre><code>1.构造方法   Constructor
+2.成员变量(类变量) Field
+3.成员方法(静态方法) Method
+</code></pre></li>
+<li><p>通过反射获取构造方法并使用</p>
+<pre><code>获取构造方法
+    getConstructors
+    getDeclaredConstructors
+获取某个特定的构造方法
+    public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)
+    public Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
+
+创建对象
+    newInstance()
+</code></pre></li>
+<li><p>通过反射获取成员变量并使用</p>
+<pre><code>获取所有成员
+    getFields
+    getDeclaredFields
+获取单个成员
+    getField
+    getDeclaredField
+修改成员的值
+    set(Object obj,Object value)
+</code></pre></li>
+<li><p>通过反射获取成员方法并使用</p>
+<pre><code>获取所有方法
+    getMethods
+    getDeclaredMethods
+获取单个方法
+    getMethod
+    getDeclaredMethod
+使用
+    invoke(Object obj, Object... args) 
+调用静态方法
+    invoke(null)
+</code></pre></li>
+<li><p>暴力访问 <code>setAccessible(true)</code></p>
+</li>
+<li><p>Properties  属性列表中每个键及其对应值都是一个字符串</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/24/Java学习笔记13-reflect/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java学习笔记12-Network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -210,7 +383,7 @@ TCP：
     通过三次握手完成连接，是可靠的协议
     效率稍低(必须建立连接)
 </code></pre></li>
-<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类InetAddress 供我们使用。</p>
+<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">要掌握的功能</div><div class="line">    <span class="comment">//在给定主机名的情况下确定主机的 IP 地址</span></div><div class="line">    <span class="comment">//主机名可以是机器名（如 "java.sun.com"），也可以是其 IP 地址的文本表示形式。</span></div><div class="line">    <span class="comment">//如果提供字面值 IP 地址，则仅检查地址格式的有效性。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> InetAddress <span class="title">getByName</span><span class="params">(String host)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostName</span><span class="params">()</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostAddress</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
@@ -260,8 +433,15 @@ TCP：
 2 创建连接
 3 从socket中获取输入流，读取发送端发送的数据，并显示
 4 释放资源
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让该serversocket一直保持监听状态</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
 </li>
+<li><p>补充</p>
+</li>
+<li><p>IPC: inter-process communication  跨进程通信：</p>
+<pre><code>1 Socket通信
+2 共享存储
+3 
+</code></pre></li>
 </ul>
 
       
@@ -1397,83 +1577,6 @@ throw：
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/12/Java学习笔记05-Collection/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java学习笔记04-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/Java学习笔记04-String/">Java学习笔记04-String</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/11/Java学习笔记04-String/" class="archive-article-date">
-  	<time datetime="2017-09-11T12:44:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>String类:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.字符串是由多个字符组成的一串数据(字符序列)</div><div class="line"><span class="number">2</span>.字符串可以看成是字符数组</div><div class="line"></div><div class="line">构造方法:</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//length 表示从offset元素开始,将其后(包括该元素本身),的多少个元素拿来构造字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">byte</span>[] bytes,<span class="keyword">int</span> offset,<span class="keyword">int</span> length)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span>[] value)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span>[] value,<span class="keyword">int</span> offset,<span class="keyword">int</span> count)</span></span></div><div class="line"><span class="function">    </span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">String</span><span class="params">(String original)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">String类的判断功能:</span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">equalsIgnoreCase</span><span class="params">(String str)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当且仅当此字符串包含指定的char值序列时才返回true</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String str)</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">startsWith</span><span class="params">(String str)</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">endsWith</span><span class="params">(String str)</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">String类的获取功能:</span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回指定索引处的 char 值</span></span></div><div class="line"><span class="function">    <span class="keyword">char</span> <span class="title">charAt</span><span class="params">(<span class="keyword">int</span> index)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回指定字符在此字符串中第一次出现处的索引.</span></span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(<span class="keyword">int</span> ch)</span> </span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(String str)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回在此字符串中第一次出现指定字符处的索引，从指定的索引开始搜索</span></span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(<span class="keyword">int</span> ch,<span class="keyword">int</span> fromIndex)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//从fromIndex这个小标开始(包括fromIndex的这个下标)，在之后的字串中第一次出现str的位置</span></span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(String str,<span class="keyword">int</span> fromIndex)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回一个新的字符串，它是此字符串的一个子字符串.</span></span></div><div class="line"><span class="function">    <span class="comment">//该子字符串从指定索引处的字符开始，直到此字符串末尾。</span></span></div><div class="line"><span class="function">    String <span class="title">substring</span><span class="params">(<span class="keyword">int</span> start)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//直到索引 endIndex - 1 处的字符</span></span></div><div class="line"><span class="function">    String <span class="title">substring</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">String类的转换功能:</span></div><div class="line"><span class="function">    <span class="comment">//使用平台的默认字符集将此 String 编码为 byte 序列，并将结果存储到一个新的 byte 数组中</span></span></div><div class="line"><span class="function">    <span class="keyword">byte</span>[] <span class="title">getBytes</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">char</span>[] <span class="title">toCharArray</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回 char 数组参数的字符串表示形式.字符数组的内容已被复制，后续修改不会影响新创建的字符串.</span></span></div><div class="line"><span class="function">    <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">char</span>[] chs)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">toLowerCase</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">toUpperCase</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//将指定字符串连接到此字符串的结尾</span></span></div><div class="line"><span class="function">    String <span class="title">concat</span><span class="params">(String str)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">String类的其他功能:</span></div><div class="line"><span class="function">    替换功能:</span></div><div class="line"><span class="function">        <span class="comment">//返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的</span></span></div><div class="line"><span class="function">        String <span class="title">replace</span><span class="params">(<span class="keyword">char</span> old,<span class="keyword">char</span> new)</span></span></div><div class="line"><span class="function">        String <span class="title">replace</span><span class="params">(String old,String new)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    去除字符串两空格:</span></div><div class="line"><span class="function">        <span class="comment">//返回字符串的副本，忽略前导空白和尾部空白</span></span></div><div class="line"><span class="function">        String <span class="title">trim</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    按字典顺序比较两个字符串:</span></div><div class="line"><span class="function">        <span class="comment">//按字典顺序比较两个字符串</span></span></div><div class="line"><span class="function">        <span class="comment">//该比较基于字符串中各个字符的Unicode值。</span></span></div><div class="line"><span class="function">        <span class="comment">//按字典顺序将此String对象表示的字符序列与参数字符串所表示的字符序列进行比较。</span></span></div><div class="line"><span class="function">        <span class="comment">//如果按字典顺序此 String 对象位于参数字符串之前，则比较结果为一个负整数。</span></span></div><div class="line"><span class="function">        <span class="comment">//如果按字典顺序此 String 对象位于参数字符串之后，则比较结果为一个正整数。</span></span></div><div class="line"><span class="function">        <span class="comment">//如果这两个字符串相等，则结果为 0</span></span></div><div class="line"><span class="function">        <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(String str)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">        <span class="comment">//不考虑大小写</span></span></div><div class="line"><span class="function">        <span class="keyword">int</span> <span class="title">compareToIgnoreCase</span><span class="params">(String str)</span></span></div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/11/Java学习笔记04-String/">展开全文 >></a>
         </p>
       
 

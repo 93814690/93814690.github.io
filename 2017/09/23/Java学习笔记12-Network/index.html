@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="网络通信三要素： 1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址 A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数量级)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-23T12:17:50.373Z">
+<meta property="og:updated_time" content="2017-09-24T03:20:22.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记12-Network">
 <meta name="twitter:description" content="网络通信三要素： 1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址 A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数量级)">
@@ -213,7 +213,7 @@ TCP：
     通过三次握手完成连接，是可靠的协议
     效率稍低(必须建立连接)
 </code></pre></li>
-<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类InetAddress 供我们使用。</p>
+<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">要掌握的功能</div><div class="line">    <span class="comment">//在给定主机名的情况下确定主机的 IP 地址</span></div><div class="line">    <span class="comment">//主机名可以是机器名（如 "java.sun.com"），也可以是其 IP 地址的文本表示形式。</span></div><div class="line">    <span class="comment">//如果提供字面值 IP 地址，则仅检查地址格式的有效性。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> InetAddress <span class="title">getByName</span><span class="params">(String host)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostName</span><span class="params">()</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostAddress</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
@@ -263,8 +263,15 @@ TCP：
 2 创建连接
 3 从socket中获取输入流，读取发送端发送的数据，并显示
 4 释放资源
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让该serversocket一直保持监听状态</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
 </li>
+<li><p>补充</p>
+</li>
+<li><p>IPC: inter-process communication  跨进程通信：</p>
+<pre><code>1 Socket通信
+2 共享存储
+3 
+</code></pre></li>
 </ul>
 
       
@@ -369,6 +376,15 @@ TCP：
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/09/24/Java学习笔记13-reflect/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java学习笔记13-reflect
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/23/LeetCode-Two-Sum/" id="article-nav-older" class="article-nav-link-wrap">

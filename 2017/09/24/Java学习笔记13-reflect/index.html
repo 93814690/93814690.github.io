@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 云飞扬的博客</title>
+  <title>Java学习笔记13-reflect | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="云飞扬的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习笔记13-reflect">
+<meta property="og:url" content="http://yoursite.com/2017/09/24/Java学习笔记13-reflect/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
+<meta property="og:description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-24T15:29:32.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="云飞扬的博客">
+<meta name="twitter:title" content="Java学习笔记13-reflect">
+<meta name="twitter:description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -134,36 +139,155 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Java学习笔记13-reflect" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java学习笔记13-reflect
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/24/Java学习笔记13-reflect/" class="archive-article-date">
+
+        
+        <a href="/2017/09/24/Java学习笔记13-reflect/" class="archive-article-date">
   	<time datetime="2017-09-24T03:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/24/Java学习笔记13-reflect/">Java学习笔记13-reflect</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>类的加载</p>
+<pre><code>加载
+    就是指将class文件读入内存，并为之创建一个Class对象
 
-        <div class="article-info info-on-right">
-          
+连接
+    验证 确保被加载类的正确性
+    准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间
+    解析 将类中的符号引用替换为直接引用
+
+初始化
+    就是我们以前讲过的初始化步骤
+</code></pre></li>
+<li><p>类加载时机</p>
+<pre><code>1 创建类的实例
+2 访问类的静态变量
+3 调用类的静态方法
+4 使用反射方式来强制创建某个类或接口对应的java.lang.Class对象
+5 初始化某个类的子类，子类父类都加载
+6 直接使用java.exe命令来运行某个主类
+</code></pre></li>
+<li><p>类加载器：负责将.class文件加载到内在中，并为之生成对应的Class对象</p>
+</li>
+<li><p>类加载器的组成</p>
+<pre><code>Bootstrap ClassLoader 根类加载器
+    也被称为引导类加载器，负责Java核心类的加载
+        比如System,String等。在JDK中JRE的lib目录下rt.jar文件中
+
+Extension ClassLoader 扩展类加载器
+    负责JRE的扩展目录中jar包的加载
+        在JDK中JRE的lib目录下ext目录
+
+Sysetm ClassLoader 系统类加载器（应用类加载器）
+    负责在JVM启动时加载来自java命令的class文件
+</code></pre></li>
+<li><p>反射</p>
+<pre><code>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；
+对于任意一个对象，都能够调用它的任意一个方法和属性；
+这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制
+</code></pre></li>
+<li><p>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类对象</p>
+</li>
+<li><p>获取Class类型的对象</p>
+<pre><code>方式一 对象.getClass()
+    Person p = new Person();
+    Class c = p.getClass();
+
+方式二 类名.class
+    Class c3 = Person.class;
+
+方式三 Class.forName(全类名)
+    Class c4 = Class.forName(&quot;com.cskaoyan.Person&quot;);
+</code></pre></li>
+<li><p>用哪种方式呢？</p>
+<pre><code>自己玩    第2种，因为方便
+开发中    第3种, 因为灵活（使用配置文件）
+</code></pre></li>
+<li><p>对于任意一个class文件，其中的内容，可以分为如下几类：</p>
+<pre><code>1.构造方法   Constructor
+2.成员变量(类变量) Field
+3.成员方法(静态方法) Method
+</code></pre></li>
+<li><p>通过反射获取构造方法并使用</p>
+<pre><code>获取构造方法
+    getConstructors
+    getDeclaredConstructors
+获取某个特定的构造方法
+    public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)
+    public Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
+
+创建对象
+    newInstance()
+</code></pre></li>
+<li><p>通过反射获取成员变量并使用</p>
+<pre><code>获取所有成员
+    getFields
+    getDeclaredFields
+获取单个成员
+    getField
+    getDeclaredField
+修改成员的值
+    set(Object obj,Object value)
+</code></pre></li>
+<li><p>通过反射获取成员方法并使用</p>
+<pre><code>获取所有方法
+    getMethods
+    getDeclaredMethods
+获取单个方法
+    getMethod
+    getDeclaredMethod
+使用
+    invoke(Object obj, Object... args) 
+调用静态方法
+    invoke(null)
+</code></pre></li>
+<li><p>暴力访问 <code>setAccessible(true)</code></p>
+</li>
+<li><p>Properties  属性列表中每个键及其对应值都是一个字符串</p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -175,364 +299,121 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/24/Java学习笔记13-reflect/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/23/Java学习笔记12-Network/" class="archive-article-date">
-  	<time datetime="2017-09-23T01:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/23/Java学习笔记12-Network/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java学习笔记12-Network</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/23/Java学习笔记12-Network/">Java学习笔记12-Network</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/23/LeetCode-Two-Sum/" class="archive-article-date">
-  	<time datetime="2017-09-23T01:21:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/23/LeetCode-Two-Sum/">[LeetCode] Two Sum</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LeetCode Array HashTable</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/19/Java学习笔记11-IO/" class="archive-article-date">
-  	<time datetime="2017-09-19T11:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/19/Java学习笔记11-IO/">Java学习笔记11-IO</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/19/Java学习笔记10-File/" class="archive-article-date">
-  	<time datetime="2017-09-19T10:54:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/19/Java学习笔记10-File/">Java学习笔记10-File</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/16/Java学习笔记09-多线程/" class="archive-article-date">
-  	<time datetime="2017-09-16T11:02:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/16/Java学习笔记09-多线程/">Java学习笔记09-多线程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/15/Java学习笔记08-异常/" class="archive-article-date">
-  	<time datetime="2017-09-15T11:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/15/Java学习笔记08-异常/">Java学习笔记08-异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/13/Java学习笔记07-Set&Map/" class="archive-article-date">
-  	<time datetime="2017-09-13T02:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/13/Java学习笔记07-Set&Map/">Java学习笔记07-Set&amp;Map</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/Java学习笔记06-List/" class="archive-article-date">
-  	<time datetime="2017-09-12T12:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/Java学习笔记06-List/">Java学习笔记06-List</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/12/Java学习笔记05-Collection/" class="archive-article-date">
-  	<time datetime="2017-09-12T12:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/Java学习笔记05-Collection/">Java学习笔记05-Collection</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/09/24/Java学习笔记13-reflect/",
+  owner: '93814690',
+  repo: '93814690.github.io',
+  oauth: {
+    client_id: 'd43c3cbe16c82b44085e',
+    client_secret: 'b3a2a27ef223b6079e9bcde0d2189931036e9e75',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -556,8 +437,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
