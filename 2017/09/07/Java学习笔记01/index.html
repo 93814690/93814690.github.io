@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-16T11:05:54.044Z">
+<meta property="og:updated_time" content="2017-09-25T14:46:54.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记01">
 <meta name="twitter:description" content="记录一些知识点  java是跨平台的，jvm不是跨平台的。  byte, short, char参与运算会首先转换为int类型。  局部变量必须先赋值再使用，否则会出现编译错误。  当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。  四舍五入相关： Math.floor 向下取整     Math.floor(1.4)=1.0  Math.ceil  向上取整     Mat">
@@ -189,6 +189,8 @@ Math.round(11.5)=12     Math.round(-11.5)=11
 <li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
 </li>
 <li><p>类的初始化过程总结:</p>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
 <pre><code>1.加载Student.class文件进内存
 2.在栈内存为s开辟空间
@@ -196,9 +198,7 @@ Math.round(11.5)=12     Math.round(-11.5)=11
 4.对学生对象的成员变量进行默认初始化
 5.通过构造方法对学生对象的成员变量赋值
 6.学生对象初始化完毕，把对象地址赋值给s变量
-</code></pre></li>
-</ul>
-<ul>
+</code></pre><ul>
 <li><p>在静态方法中没有this关键字</p>
 </li>
 <li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
