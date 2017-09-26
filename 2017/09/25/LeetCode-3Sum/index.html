@@ -9,14 +9,14 @@
   <title>[LeetCode] 3Sum | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain dupl">
-<meta name="keywords" content="LeetCode,Array,Two Pointers">
+<meta name="keywords" content="LeetCode,Array,Two Pointers,Hash Table,BinarySearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[LeetCode] 3Sum">
 <meta property="og:url" content="http://yoursite.com/2017/09/25/LeetCode-3Sum/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain dupl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-25T15:06:30.905Z">
+<meta property="og:updated_time" content="2017-09-26T08:59:31.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[LeetCode] 3Sum">
 <meta name="twitter:description" content="Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain dupl">
@@ -48,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="" class="profilepic">
-			<img src="https://github.com/93814690/MarkdownPhotos/blob/master/Res/1.jpg" class="js-avatar">
+			<img src="https://raw.githubusercontent.com/93814690/MarkdownPhotos/master/Res/1.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="">云飞扬</a></h1>
@@ -96,7 +96,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://github.com/93814690/MarkdownPhotos/blob/master/Res/1.jpg" class="js-avatar">
+				<img src="https://raw.githubusercontent.com/93814690/MarkdownPhotos/master/Res/1.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">云飞扬</h1>
@@ -163,6 +163,16 @@
 <p>Note: The solution set must not contain duplicate triplets.</p>
 <p>For example, given array S = [-1, 0, 1, 2, -1, -4],</p>
 <p>A solution set is:<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+<ul>
+<li><p>Two Pointers</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Runtime: 93 ms</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">    List&lt;List&lt;Integer&gt;&gt; lists = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">    Arrays.sort(nums);</div><div class="line">    <span class="keyword">int</span> sum;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> start = i + <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (start &lt; end) &#123;</div><div class="line">            sum = nums[i] + nums[start] + nums[end];</div><div class="line">            <span class="keyword">if</span> (sum == <span class="number">0</span>) &#123;</div><div class="line">                List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">                list.add(nums[i]);</div><div class="line">                list.add(nums[start]);</div><div class="line">                list.add(nums[end]);</div><div class="line">                lists.add(list);</div><div class="line">                start++;</div><div class="line">                end--;</div><div class="line">                <span class="keyword">while</span> (start &lt; end &amp;&amp; nums[start] == nums[start - <span class="number">1</span>]) &#123;</div><div class="line">                    start++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">while</span> (start &lt; end &amp;&amp; nums[end] == nums[end + <span class="number">1</span>]) &#123;</div><div class="line">                    end--;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</div><div class="line">                end--;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                start++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> lists;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//Runtime: 197 ms</span></div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">     List&lt;List&lt;Integer&gt;&gt; lists = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">     HashMap hashMap = <span class="keyword">new</span> HashMap();</div><div class="line">     Arrays.sort(nums);</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">         hashMap.put(nums[i], i);</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">1</span>; j++) &#123;</div><div class="line">             <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</div><div class="line">                 <span class="keyword">continue</span>;</div><div class="line">             &#125;</div><div class="line">             <span class="keyword">int</span> target = -(nums[i] + nums[j]);</div><div class="line">             <span class="keyword">if</span> (hashMap.containsKey(target) &amp;&amp; (<span class="keyword">int</span>)hashMap.get(target) &gt; j) &#123;</div><div class="line">                 List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">                 list.add(nums[i]);</div><div class="line">                 list.add(nums[j]);</div><div class="line">                 list.add(target);</div><div class="line">                 lists.add(list);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> lists;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>binarySearch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Runtime: 223 ms</span></div><div class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">    List&lt;List&lt;Integer&gt;&gt; lists = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    Arrays.sort(nums);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">1</span>; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> k = binarySearch(-(nums[i] + nums[j]),nums, j + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span> (k &gt; j) &#123;</div><div class="line">                List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">                list.add(nums[i]);</div><div class="line">                list.add(nums[j]);</div><div class="line">                list.add(nums[k]);</div><div class="line">                lists.add(list);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> lists;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a, <span class="keyword">int</span> start)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> lo = start;</div><div class="line">    <span class="keyword">int</span> hi = a.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(lo &lt;= hi)&#123;</div><div class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(key &lt; a[mid])&#123;</div><div class="line">            hi = mid - <span class="number">1</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(key &gt; a[mid])&#123;</div><div class="line">            lo = mid + <span class="number">1</span>;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> mid;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
 
       
 
@@ -206,6 +216,14 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BinarySearch</a>
         		</li>
       		
 		</ul>
@@ -433,6 +451,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
               </li>
              
               <li class="article-tag-list-item">
