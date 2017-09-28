@@ -17,7 +17,7 @@
 <meta property="og:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/93814690/MarkdownPhotos/master/Res/%E5%AD%97%E7%AC%A6%E4%B8%B22.png">
-<meta property="og:updated_time" content="2017-09-22T11:35:56.674Z">
+<meta property="og:updated_time" content="2017-09-28T13:50:25.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java习题记录">
 <meta name="twitter:description" content="哪句是编译失败的呢？为什么呢？  1234567byte b1 = 3, b2  = 4, b;//编译失败，参与运算会首先转换为int类型b = b1 + b2;//可以，3和4都是常量，所以java在编译时期会检查该常量的和是否超出byte类型的范围，如果没有可以赋值。b = 3 + 4;  补齐程序，在控制分别输出：30，20，10 123456789101112class Outer &amp;">
@@ -194,9 +194,11 @@ Outer.this.num
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        System.out.println(<span class="string">"Runnable"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;) &#123;</div><div class="line">    <span class="comment">//已经覆盖掉了Thread中的run方法，因此不会再去调用Runnable的run方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Thread"</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;.start();</div></pre></td></tr></table></figure>
 </li>
 <li><p>flush和close有啥区别：</p>
+</li>
+</ul>
 <pre><code>1.flush只是将缓冲中的数据，刷入底层流进行传输，flush之后，流仍然可用
 2.close只是在关闭流之前，强制将缓冲中的数据刷入底层流，然后关闭该流，关闭之后，该流不可用
-</code></pre></li>
+</code></pre><ul>
 <li></li>
 </ul>
 
@@ -464,15 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

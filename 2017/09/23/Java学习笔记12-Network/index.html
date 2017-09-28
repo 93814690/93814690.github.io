@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记12-Network | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网络通信三要素： 1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址 A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数量级)">
+  <meta name="description" content="网络通信三要素：  1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址   A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记12-Network">
 <meta property="og:url" content="http://yoursite.com/2017/09/23/Java学习笔记12-Network/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="网络通信三要素： 1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址 A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数量级)">
+<meta property="og:description" content="网络通信三要素：  1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址   A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-24T03:20:22.884Z">
+<meta property="og:updated_time" content="2017-09-28T13:57:11.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记12-Network">
-<meta name="twitter:description" content="网络通信三要素： 1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址 A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数量级)">
+<meta name="twitter:description" content="网络通信三要素：  1.ip地址     标识网络中不同的pc 2.端口       标识进行通信的进程 3.传输协议    TCP，UDP 规定通信方式  IP：就是给每一个连接在Internet上的主机分配的一个32bit地址  点分十进制表示法  IP地址 = 网络号码 + 主机地址   A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码     2^24(数">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -160,16 +160,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>网络通信三要素：</p>
+<li>网络通信三要素：</li>
+</ul>
 <pre><code>1.ip地址     标识网络中不同的pc
 2.端口       标识进行通信的进程
 3.传输协议    TCP，UDP 规定通信方式
-</code></pre></li>
+</code></pre><ul>
 <li><p>IP：就是给每一个连接在Internet上的主机分配的一个32bit地址</p>
 </li>
 <li><p>点分十进制表示法</p>
 </li>
 <li><p>IP地址 = 网络号码 + 主机地址</p>
+</li>
+</ul>
 <pre><code>A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码
     2^24(数量级)的主机，非常大的机构，比如国家来持有
     1.0.0.1---127.255.255.254
@@ -192,15 +195,15 @@ C类IP地址：前三段号码为网络号码，剩下的一段号码为本地�
 保留地址：
     D类    224.0.0.1---239.255.255.254
     E类    240.0.0.1---247.255.255.254
-</code></pre></li>
+</code></pre><ul>
+<li>端口号：指的是逻辑端口(物理端口：网卡口)</li>
 </ul>
-<ul>
-<li><p>端口号：指的是逻辑端口(物理端口：网卡口)</p>
 <pre><code>1.每个网络程序都会至少有一个逻辑端口
 2.用于标识进程的逻辑地址，不同进程的标识
 3.有效端口：0~65535，其中0~1024系统使用或保留端口。(2字节)
-</code></pre></li>
-<li><p>协议</p>
+</code></pre><ul>
+<li>协议</li>
+</ul>
 <pre><code>UDP：
     将数据源地址和目的地址封装成数据包中，不需要建立连接；
     每个数据报的大小在限制在64k；
@@ -212,35 +215,35 @@ TCP：
     传输大量数据
     通过三次握手完成连接，是可靠的协议
     效率稍低(必须建立连接)
-</code></pre></li>
-<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</p>
-</li>
+</code></pre><ul>
+<li>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">要掌握的功能</div><div class="line">    <span class="comment">//在给定主机名的情况下确定主机的 IP 地址</span></div><div class="line">    <span class="comment">//主机名可以是机器名（如 "java.sun.com"），也可以是其 IP 地址的文本表示形式。</span></div><div class="line">    <span class="comment">//如果提供字面值 IP 地址，则仅检查地址格式的有效性。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> InetAddress <span class="title">getByName</span><span class="params">(String host)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostName</span><span class="params">()</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostAddress</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
 <ul>
-<li><p>Socket套接字: ip + 端口号</p>
+<li>Socket套接字: ip + 端口号</li>
+</ul>
 <pre><code>原理机制：
     通信的两端都有Socket
     网络通信其实就是Socket间的通信
     数据在两个Socket间通过IO传输
-</code></pre></li>
+</code></pre><ul>
+<li>使用udp协议，实现发送端</li>
 </ul>
-<ul>
-<li><p>使用udp协议，实现发送端</p>
 <pre><code>1 获取socket对象
 2 准备发送的数据，对数据打包
 3 利用socket对象发送打包好的数据
 4 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的任何可用端口。</span></div><div class="line">    DatagramSocket() </div><div class="line"></div><div class="line">    <span class="comment">//构造数据报包，用来将长度为 length 的包发送到指定主机上的指定端口号</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length, InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket();</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,udp"</span>.getBytes();</div><div class="line">    InetAddress ip = InetAddress.getByName(<span class="string">"Shuai-Zhang"</span>);</div><div class="line">    DatagramPackete p = <span class="keyword">new</span> DatagramPacket(data,data.length,ip,<span class="number">10086</span>);</div><div class="line"></div><div class="line">    dSocket.send(p);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用udp协议，实现接收端</p>
+<ul>
+<li>使用udp协议，实现接收端</li>
+</ul>
 <pre><code>1 获取socket对象
 2 创建一个用来接收数据包的容器(其实也是一个DatagramPackete)
 3 将收到的数据包中的数据放到接收容器当中
 4 解析数据包，拿到数据
 5 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的指定端口</span></div><div class="line">    DatagramSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//构造 DatagramPacket，用来接收长度为 length 的数据包</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length)</div><div class="line"></div><div class="line">实现接收端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket(<span class="number">10086</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    DatagramPacket p = <span class="keyword">new</span> DatagramPacket(data,data.length);</div><div class="line"></div><div class="line">    <span class="comment">//执行到这里，如果没有数据到来就会进入阻塞状态，一直等待数据的到来</span></div><div class="line">    dSocket.receive(p);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] ret =  p.getData();</div><div class="line">    <span class="keyword">int</span> length = p.getLength();</div><div class="line">    String s = <span class="keyword">new</span> String(ret,<span class="number">0</span>,length);</div><div class="line"></div><div class="line">    System.out.println(s);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>使用while实现一直接收、发送</p>
 </li>
 <li><p>对于键盘录入数据,我们需要自己定义结束标志</p>
@@ -248,32 +251,36 @@ TCP：
 <li><p>接收端不能多次启动</p>
 </li>
 <li><p>TCP不同于UDP的地方</p>
+</li>
+</ul>
 <pre><code>1 TCP在通信之前需要建立连接
 2 直接通过socket中的流来发送数据
 3 适合大量的数据通信
-</code></pre></li>
-<li><p>发送端，即客户端</p>
+</code></pre><ul>
+<li>发送端，即客户端</li>
+</ul>
 <pre><code>1 创建socket对象
 2 创建发送数据，获取输出流，利用该输出流来传输数据
 3 发送数据完成后，关闭流资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定 IP 地址的指定端口号</span></div><div class="line">    Socket(InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定主机上的指定端口号</span></div><div class="line">    Socket(String host, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    <span class="comment">//这一步一旦执行，就开始了三次握手，建立连接的过程</span></div><div class="line">    <span class="comment">//这里传递的ip和端口，是本socket将要连接的那个socket的ip和端口</span></div><div class="line">    Socket socket = <span class="keyword">new</span> Socket(<span class="string">"192.168.6.35"</span>,<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,tcp"</span>.getBytes();</div><div class="line">    OutputStream os = socket.getOutputStream();</div><div class="line">    os.write(data);</div><div class="line"></div><div class="line">    socket.close();</div></pre></td></tr></table></figure>
-</li>
-<li><p>TCP server端</p>
+<ul>
+<li>TCP server端</li>
+</ul>
 <pre><code>1 获取socket对象
 2 创建连接
 3 从socket中获取输入流，读取发送端发送的数据，并显示
 4 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让该serversocket一直保持监听状态</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>补充</p>
 </li>
 <li><p>IPC: inter-process communication  跨进程通信：</p>
+</li>
+</ul>
 <pre><code>1 Socket通信
 2 共享存储
 3 
-</code></pre></li>
-</ul>
-
+</code></pre>
       
 
       
@@ -538,15 +545,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

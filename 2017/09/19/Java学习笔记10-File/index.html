@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记10-File | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在win">
+  <meta name="description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式   1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题:">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记10-File">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/Java学习笔记10-File/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在win">
+<meta property="og:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式   1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-20T01:41:19.197Z">
+<meta property="og:updated_time" content="2017-09-28T13:55:54.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记10-File">
-<meta name="twitter:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式 1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题: 在win">
+<meta name="twitter:description" content="在操作系统中，任何数据都只能一种形式存在——文件  File：文件和目录路径名的抽象表达形式   1.File 既可以表示目录，也可以表示文件 2.File 只是一种抽象表达  构造方法: 123File(String pathname)File(String parent, String child)File(File parent, String child)  关于路径分隔符的问题:">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -163,16 +163,20 @@
 <li><p>在操作系统中，任何数据都只能一种形式存在——文件</p>
 </li>
 <li><p>File：文件和目录路径名的抽象表达形式</p>
+</li>
+</ul>
 <pre><code>1.File 既可以表示目录，也可以表示文件
 2.File 只是一种抽象表达
-</code></pre></li>
+</code></pre><ul>
 <li><p>构造方法:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File(String pathname)</div><div class="line">File(String parent, String child)</div><div class="line">File(File parent, String child)</div></pre></td></tr></table></figure>
 </li>
 <li><p>关于路径分隔符的问题:</p>
+</li>
+</ul>
 <pre><code>在windows中我们的文件分割符  \
 在linux系统下我们的文件分隔符是  /
-</code></pre></li>
+</code></pre><ul>
 <li><p>File类成员方法:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">创建功能</div><div class="line">    <span class="comment">//当调用createNew方法之后，会实际的去创建该文件</span></div><div class="line">    <span class="comment">//当该文件已经实际存在的时候，不会再次创建该文件</span></div><div class="line">    <span class="comment">//当要创建的文件其父路径不存在的时候，抛出异常</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNewFile</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当使用mkdir的时候如果父目录不存在，创建失败,没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdir</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当父目录不存在的时候，mkdirs会首先帮助我们创建不存在的父路径，然后在该路径下创建目标目录</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdirs</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">删除功能</span></div><div class="line"><span class="function">    <span class="comment">//当要删除的文件并不存在的时候，返回false，没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">重命名功能</span></div><div class="line"><span class="function">    <span class="comment">//如果传递的是不同路径的文件对象，则会做两步：</span></span></div><div class="line"><span class="function">    <span class="comment">//1.移动文件到rename参数所指定的路径下</span></span></div><div class="line"><span class="function">    <span class="comment">//2.重命名</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">renameTo</span><span class="params">(File dest)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">判断功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canRead</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canWrite</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHidden</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">基本获取功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> File <span class="title">getAbsoluteFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getPath</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lastModified</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">高级获取功能</span></div><div class="line"><span class="function">    <span class="comment">//返回一个字符串数组，这些字符串指定此抽象路径名表示的目录中的文件和目录</span></span></div><div class="line"><span class="function">    <span class="comment">//如果此抽象路径名不表示一个目录，那么此方法将返回 null</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String[] <span class="title">list</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> File[] <span class="title">listFiles</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
 </li>
@@ -444,15 +448,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

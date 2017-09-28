@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记05-Collection | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
+  <meta name="description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记05-Collection">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/Java学习笔记05-Collection/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
+<meta property="og:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-16T11:04:39.702Z">
+<meta property="og:updated_time" content="2017-09-28T13:52:51.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记05-Collection">
-<meta name="twitter:description" content="集合类和对象数组的区别: 1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类的">
+<meta name="twitter:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -160,30 +160,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>集合类和对象数组的区别:</p>
+<li>集合类和对象数组的区别:</li>
+</ul>
 <pre><code>1 对象数组长度固定，集合类长度不固定
 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象
 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)
-</code></pre></li>
+</code></pre><ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Collection a = <span class="keyword">new</span> ArrayList();</div><div class="line"><span class="keyword">int</span> i;</div><div class="line"><span class="comment">//其实存入集合类中的不是基本数据类型的i，而是Interger类的对象，其整数值为i</span></div><div class="line">a.add(i);</div></pre></td></tr></table></figure>
 </li>
 <li><p>Collection:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">针对集合中的单个元素的操作:</div><div class="line"></div><div class="line">    <span class="comment">//向集合中增加元素</span></div><div class="line">    <span class="comment">//返回值为boolean类型,表示collection在插入操作之后是否有变化</span></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//删除某元素</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//清空当前集合中的元素</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//在集合类中是否包含某元素</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//判断当前集合中是否有元素存在</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//返回当前集合中的实际元素个数</span></span></div><div class="line"><span class="function">    <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">对某集合整体进行操作:</span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//1.collection在加入集合元素时，首先保持了各元素在其集合中的插入顺序</span></span></div><div class="line"><span class="function">    <span class="comment">//2.对于a.addAll(b)直接把b中的元素，插入到a的末尾</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//这个删除，只会在a集合中删除，a和b中都存在的元素，</span></span></div><div class="line"><span class="function">    <span class="comment">//对于b集合中存在，而a集合中不存在的元素，没有影响</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//只有当b集合中的元素完全包含于a集合，才会返回true</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection c)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//求两集合之间的交集</span></span></div><div class="line"><span class="function">    <span class="comment">//该返回值的含义是：交集操作之后，该集合中的元素是否发生变化</span></span></div><div class="line"><span class="function">    <span class="comment">//变化的只是调用方法的那个集合，作为参数的那个集合并不发生任何变化</span></span></div><div class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection c)</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>Collection 元素的遍历:</p>
-<pre><code>1.转化为数组
-</code></pre></li>
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Object[] array = a.toArray();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">    System.out.print(array[i]);</div><div class="line">    <span class="comment">//安全起见，先判断，在强转</span></div><div class="line">    <span class="keyword">if</span>(array[i] <span class="keyword">instanceof</span> String) &#123;</div><div class="line">        <span class="comment">//在将元素放入集合中时，实际上首先进行了一次向上转型，丢失了自己的类型信息</span></div><div class="line">        <span class="comment">//当我们在此从集合中取出元素，并且需要使用元素所属真实类型的方法时，只能通过</span></div><div class="line">        <span class="comment">//强转，来恢复其类型信息</span></div><div class="line">        String s = (String)array[i];</div><div class="line">        System.out.println(<span class="string">"-- "</span> + s.length());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>1.转化为数组
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Object[] array = a.toArray();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">    System.out.print(array[i]);</div><div class="line">    <span class="comment">//安全起见，先判断，在强转</span></div><div class="line">    <span class="keyword">if</span>(array[i] <span class="keyword">instanceof</span> String) &#123;</div><div class="line">        <span class="comment">//在将元素放入集合中时，实际上首先进行了一次向上转型，丢失了自己的类型信息</span></div><div class="line">        <span class="comment">//当我们在此从集合中取出元素，并且需要使用元素所属真实类型的方法时，只能通过</span></div><div class="line">        <span class="comment">//强转，来恢复其类型信息</span></div><div class="line">        String s = (String)array[i];</div><div class="line">        System.out.println(<span class="string">"-- "</span> + s.length());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <pre><code>2.利用迭代器来遍历，这是集合特有的遍历方式
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Iterator是接口，这里返回的是子类实例</span></div><div class="line">Iterator it = a.iterator();</div><div class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">    System.out.println(it.next());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><p>Iterator接口概述:</p>
+<li>Iterator接口概述:</li>
+</ul>
 <pre><code>对 collection 进行迭代的迭代器
 依赖于集合而存在
-</code></pre></li>
-<li><p>Iterator接口成员方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span></div><div class="line"><span class="function">E <span class="title">next</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">remove</span><span class="params">()</span></span></div></pre></td></tr></table></figure></li>
+</code></pre><ul>
+<li>Iterator接口成员方法:<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span></div><div class="line"><span class="function">E <span class="title">next</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">remove</span><span class="params">()</span></span></div></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -450,15 +451,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

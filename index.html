@@ -421,17 +421,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>注解</p>
+<li>注解</li>
+</ul>
 <pre><code>一种Java语言用来在代码中添加额外信息的形式化方法，使得Java程序可以在编译
 或者运行之后的某个时刻很方便的去使用这些额外信息（数据）
-</code></pre></li>
-<li><p>注解初体验：</p>
+</code></pre><ul>
+<li>注解初体验：</li>
+</ul>
 <pre><code>1. @override
     检查子类确实是覆盖了父类的方法
 2. @Deprecated
     说明已经过时了
-</code></pre></li>
-<li><p>自定义注解</p>
+</code></pre><ul>
+<li>自定义注解</li>
+</ul>
 <pre><code>格式
     public @interface 注解名 { 
         定义体
@@ -451,13 +454,15 @@
 
 注：
     注解中的额外信息，都键值对的形式存在(key-vale , key额外信息的名称，value就是这个信息的值)
-</code></pre></li>
-<li><p>自定义注解使用</p>
+</code></pre><ul>
+<li>自定义注解使用</li>
+</ul>
 <pre><code>类之前
 方法之前
 成员之前
-</code></pre></li>
-<li><p>元注解：</p>
+</code></pre><ul>
+<li>元注解：</li>
+</ul>
 <pre><code>@Retention：改变自定义的注解的存活范围
 RetentionPolicy
     1.SOURCE:在源文件中有效（即源文件保留）
@@ -469,15 +474,17 @@ ElementType
     TYPE： 类上
     METHOD：表示该注解只能用在方法上
     FIELD： 表示该注解只能用在成员上
-</code></pre></li>
-<li><p>注解的应用场合</p>
+</code></pre><ul>
+<li>注解的应用场合</li>
+</ul>
 <pre><code>Junit
 Servlet
 Spring
 ...
 凡是有配置文件的初现的地方 
-</code></pre></li>
-<li><p>注解 vs 配置文件</p>
+</code></pre><ul>
+<li>注解 vs 配置文件</li>
+</ul>
 <pre><code>注解：
     优点：直观，开发效率高
     缺点：硬编码，修改之后需要重新编译运行
@@ -485,13 +492,12 @@ Spring
 配置文件：
     优点：可配置，不用改源码。
     缺点：不直观，开发效率低
-</code></pre></li>
-<li><p>注解使用注意事项</p>
+</code></pre><ul>
+<li>注解使用注意事项</li>
+</ul>
 <pre><code>1. 要用好注解，必须熟悉Java 的反射机制，从上面的例子可以看出，注解的解析完全依赖于反射
 2. 不要滥用注解。平常我们编程过程很少接触和使用注解，只有做设计，且不想让设计有过多的配置时，才需要考虑注解
-</code></pre></li>
-</ul>
-
+</code></pre>
       
 
       
@@ -568,7 +574,8 @@ Spring
 <li>JVM 体系结构<br><img src="images/一般JVM架构.png" alt="一般JVM架构"></li>
 </ul>
 <ul>
-<li><p>JVM运行时的数据区</p>
+<li>JVM运行时的数据区</li>
+</ul>
 <pre><code>1 程序计数器(线程私有)
     程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器
 
@@ -587,14 +594,14 @@ Spring
 5 方法区(线程共享)
     方法区（Method Area）与Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、
     即时编译器编译后的代码等数据。
-</code></pre></li>
-</ul>
-<ul>
+</code></pre><ul>
 <li><p>内存共享<br><img src="images/内存共享问题.png" alt="内存共享问题"></p>
 </li>
 <li><p>垃圾回收机制（GC ——Garbage Collection）</p>
 </li>
 <li><p>常见判断方法</p>
+</li>
+</ul>
 <pre><code>引用计数法
     给堆中的每一个对象增加一个引用计数器，当每一次创建一个对象并赋值给一个变量是，引用计数器就加1.当对象不再使用时
     （出了作用域），引用计数机减一。一但引用计数器为0，对象就满足了垃圾回收的条件
@@ -616,24 +623,24 @@ Spring
 
 标记清除算法
     JVM 和 Dalvik（Android 虚拟机）使用Mark Sweep算法实现垃圾回收（Android5.0之前的虚拟机 之后ART）
-</code></pre></li>
-</ul>
-<ul>
+</code></pre><ul>
 <li><p>Shallow size :就是对象本身占用的内存大小，也就是对象头加成员变量占用内存大小的总和</p>
 </li>
 <li><p>Retained size :是该对象自己的shallow size 加上仅可以从该对象访问（直接或者间接访问）的对象的shallow size之和</p>
 </li>
 <li><p>CG 触发的时机</p>
+</li>
+</ul>
 <pre><code>1.申请heap space失败后会触发CG回收
 2.系统进入idle后一段时间会进行回收
 3.主动调用GC进行回收
-</code></pre></li>
-<li><p>Out of Memory case</p>
+</code></pre><ul>
+<li>Out of Memory case</li>
+</ul>
 <pre><code>Heap    OOM       堆溢出  
 Stack Overflow    栈溢出 
-</code></pre></li>
-<li><p>内存泄露 VS 内存溢出 —— 内存泄露可能导致内存溢出，但不是必然导致内存溢出</p>
-</li>
+</code></pre><ul>
+<li>内存泄露 VS 内存溢出 —— 内存泄露可能导致内存溢出，但不是必然导致内存溢出</li>
 </ul>
 
       
@@ -812,7 +819,8 @@ Stack Overflow    栈溢出
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>类的加载</p>
+<li>类的加载</li>
+</ul>
 <pre><code>加载
     就是指将class文件读入内存，并为之创建一个Class对象
 
@@ -823,18 +831,21 @@ Stack Overflow    栈溢出
 
 初始化
     就是我们以前讲过的初始化步骤
-</code></pre></li>
-<li><p>类加载时机</p>
+</code></pre><ul>
+<li>类加载时机</li>
+</ul>
 <pre><code>1 创建类的实例
 2 访问类的静态变量
 3 调用类的静态方法
 4 使用反射方式来强制创建某个类或接口对应的java.lang.Class对象
 5 初始化某个类的子类，子类父类都加载
 6 直接使用java.exe命令来运行某个主类
-</code></pre></li>
+</code></pre><ul>
 <li><p>类加载器：负责将.class文件加载到内在中，并为之生成对应的Class对象</p>
 </li>
 <li><p>类加载器的组成</p>
+</li>
+</ul>
 <pre><code>Bootstrap ClassLoader 根类加载器
     也被称为引导类加载器，负责Java核心类的加载
         比如System,String等。在JDK中JRE的lib目录下rt.jar文件中
@@ -845,15 +856,18 @@ Extension ClassLoader 扩展类加载器
 
 Sysetm ClassLoader 系统类加载器（应用类加载器）
     负责在JVM启动时加载来自java命令的class文件
-</code></pre></li>
-<li><p>反射</p>
+</code></pre><ul>
+<li>反射</li>
+</ul>
 <pre><code>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；
 对于任意一个对象，都能够调用它的任意一个方法和属性；
 这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制
-</code></pre></li>
+</code></pre><ul>
 <li><p>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类对象</p>
 </li>
 <li><p>获取Class类型的对象</p>
+</li>
+</ul>
 <pre><code>方式一 对象.getClass()
     Person p = new Person();
     Class c = p.getClass();
@@ -863,17 +877,20 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
 
 方式三 Class.forName(全类名)
     Class c4 = Class.forName(&quot;com.cskaoyan.Person&quot;);
-</code></pre></li>
-<li><p>用哪种方式呢？</p>
+</code></pre><ul>
+<li>用哪种方式呢？</li>
+</ul>
 <pre><code>自己玩    第2种，因为方便
 开发中    第3种, 因为灵活（使用配置文件）
-</code></pre></li>
-<li><p>对于任意一个class文件，其中的内容，可以分为如下几类：</p>
+</code></pre><ul>
+<li>对于任意一个class文件，其中的内容，可以分为如下几类：</li>
+</ul>
 <pre><code>1.构造方法   Constructor
 2.成员变量(类变量) Field
 3.成员方法(静态方法) Method
-</code></pre></li>
-<li><p>通过反射获取构造方法并使用</p>
+</code></pre><ul>
+<li>通过反射获取构造方法并使用</li>
+</ul>
 <pre><code>获取构造方法
     getConstructors
     getDeclaredConstructors
@@ -883,8 +900,9 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
 
 创建对象
     newInstance()
-</code></pre></li>
-<li><p>通过反射获取成员变量并使用</p>
+</code></pre><ul>
+<li>通过反射获取成员变量并使用</li>
+</ul>
 <pre><code>获取所有成员
     getFields
     getDeclaredFields
@@ -893,8 +911,9 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
     getDeclaredField
 修改成员的值
     set(Object obj,Object value)
-</code></pre></li>
-<li><p>通过反射获取成员方法并使用</p>
+</code></pre><ul>
+<li>通过反射获取成员方法并使用</li>
+</ul>
 <pre><code>获取所有方法
     getMethods
     getDeclaredMethods
@@ -905,7 +924,7 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
     invoke(Object obj, Object... args) 
 调用静态方法
     invoke(null)
-</code></pre></li>
+</code></pre><ul>
 <li><p>暴力访问 <code>setAccessible(true)</code></p>
 </li>
 <li><p>Properties  属性列表中每个键及其对应值都是一个字符串</p>
@@ -985,16 +1004,19 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>网络通信三要素：</p>
+<li>网络通信三要素：</li>
+</ul>
 <pre><code>1.ip地址     标识网络中不同的pc
 2.端口       标识进行通信的进程
 3.传输协议    TCP，UDP 规定通信方式
-</code></pre></li>
+</code></pre><ul>
 <li><p>IP：就是给每一个连接在Internet上的主机分配的一个32bit地址</p>
 </li>
 <li><p>点分十进制表示法</p>
 </li>
 <li><p>IP地址 = 网络号码 + 主机地址</p>
+</li>
+</ul>
 <pre><code>A类IP地址：第一段号码为网络号码（前8个字节），剩下的三段号码为本地计算机号码
     2^24(数量级)的主机，非常大的机构，比如国家来持有
     1.0.0.1---127.255.255.254
@@ -1017,15 +1039,15 @@ C类IP地址：前三段号码为网络号码，剩下的一段号码为本地�
 保留地址：
     D类    224.0.0.1---239.255.255.254
     E类    240.0.0.1---247.255.255.254
-</code></pre></li>
+</code></pre><ul>
+<li>端口号：指的是逻辑端口(物理端口：网卡口)</li>
 </ul>
-<ul>
-<li><p>端口号：指的是逻辑端口(物理端口：网卡口)</p>
 <pre><code>1.每个网络程序都会至少有一个逻辑端口
 2.用于标识进程的逻辑地址，不同进程的标识
 3.有效端口：0~65535，其中0~1024系统使用或保留端口。(2字节)
-</code></pre></li>
-<li><p>协议</p>
+</code></pre><ul>
+<li>协议</li>
+</ul>
 <pre><code>UDP：
     将数据源地址和目的地址封装成数据包中，不需要建立连接；
     每个数据报的大小在限制在64k；
@@ -1037,35 +1059,35 @@ TCP：
     传输大量数据
     通过三次握手完成连接，是可靠的协议
     效率稍低(必须建立连接)
-</code></pre></li>
-<li><p>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</p>
-</li>
+</code></pre><ul>
+<li>为了方便我们对IP地址的获取和操作，java提供了一个类 InetAddress 供我们使用。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">要掌握的功能</div><div class="line">    <span class="comment">//在给定主机名的情况下确定主机的 IP 地址</span></div><div class="line">    <span class="comment">//主机名可以是机器名（如 "java.sun.com"），也可以是其 IP 地址的文本表示形式。</span></div><div class="line">    <span class="comment">//如果提供字面值 IP 地址，则仅检查地址格式的有效性。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> InetAddress <span class="title">getByName</span><span class="params">(String host)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostName</span><span class="params">()</span>  </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    String <span class="title">getHostAddress</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
 <ul>
-<li><p>Socket套接字: ip + 端口号</p>
+<li>Socket套接字: ip + 端口号</li>
+</ul>
 <pre><code>原理机制：
     通信的两端都有Socket
     网络通信其实就是Socket间的通信
     数据在两个Socket间通过IO传输
-</code></pre></li>
+</code></pre><ul>
+<li>使用udp协议，实现发送端</li>
 </ul>
-<ul>
-<li><p>使用udp协议，实现发送端</p>
 <pre><code>1 获取socket对象
 2 准备发送的数据，对数据打包
 3 利用socket对象发送打包好的数据
 4 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的任何可用端口。</span></div><div class="line">    DatagramSocket() </div><div class="line"></div><div class="line">    <span class="comment">//构造数据报包，用来将长度为 length 的包发送到指定主机上的指定端口号</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length, InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket();</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,udp"</span>.getBytes();</div><div class="line">    InetAddress ip = InetAddress.getByName(<span class="string">"Shuai-Zhang"</span>);</div><div class="line">    DatagramPackete p = <span class="keyword">new</span> DatagramPacket(data,data.length,ip,<span class="number">10086</span>);</div><div class="line"></div><div class="line">    dSocket.send(p);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用udp协议，实现接收端</p>
+<ul>
+<li>使用udp协议，实现接收端</li>
+</ul>
 <pre><code>1 获取socket对象
 2 创建一个用来接收数据包的容器(其实也是一个DatagramPackete)
 3 将收到的数据包中的数据放到接收容器当中
 4 解析数据包，拿到数据
 5 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//构造数据报套接字并将其绑定到本地主机上的指定端口</span></div><div class="line">    DatagramSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//构造 DatagramPacket，用来接收长度为 length 的数据包</span></div><div class="line">    DatagramPacket(<span class="keyword">byte</span>[] buf, <span class="keyword">int</span> length)</div><div class="line"></div><div class="line">实现接收端</div><div class="line">    DatagramSocket dSocket = <span class="keyword">new</span> DatagrasmSocket(<span class="number">10086</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    DatagramPacket p = <span class="keyword">new</span> DatagramPacket(data,data.length);</div><div class="line"></div><div class="line">    <span class="comment">//执行到这里，如果没有数据到来就会进入阻塞状态，一直等待数据的到来</span></div><div class="line">    dSocket.receive(p);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] ret =  p.getData();</div><div class="line">    <span class="keyword">int</span> length = p.getLength();</div><div class="line">    String s = <span class="keyword">new</span> String(ret,<span class="number">0</span>,length);</div><div class="line"></div><div class="line">    System.out.println(s);</div><div class="line"></div><div class="line">    dSocket.close();</div></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>使用while实现一直接收、发送</p>
 </li>
 <li><p>对于键盘录入数据,我们需要自己定义结束标志</p>
@@ -1073,32 +1095,36 @@ TCP：
 <li><p>接收端不能多次启动</p>
 </li>
 <li><p>TCP不同于UDP的地方</p>
+</li>
+</ul>
 <pre><code>1 TCP在通信之前需要建立连接
 2 直接通过socket中的流来发送数据
 3 适合大量的数据通信
-</code></pre></li>
-<li><p>发送端，即客户端</p>
+</code></pre><ul>
+<li>发送端，即客户端</li>
+</ul>
 <pre><code>1 创建socket对象
 2 创建发送数据，获取输出流，利用该输出流来传输数据
 3 发送数据完成后，关闭流资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定 IP 地址的指定端口号</span></div><div class="line">    Socket(InetAddress address, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个流套接字并将其连接到指定主机上的指定端口号</span></div><div class="line">    Socket(String host, <span class="keyword">int</span> port)</div><div class="line"></div><div class="line">实现发送端</div><div class="line">    <span class="comment">//这一步一旦执行，就开始了三次握手，建立连接的过程</span></div><div class="line">    <span class="comment">//这里传递的ip和端口，是本socket将要连接的那个socket的ip和端口</span></div><div class="line">    Socket socket = <span class="keyword">new</span> Socket(<span class="string">"192.168.6.35"</span>,<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="keyword">byte</span>[] data = <span class="string">"hello,tcp"</span>.getBytes();</div><div class="line">    OutputStream os = socket.getOutputStream();</div><div class="line">    os.write(data);</div><div class="line"></div><div class="line">    socket.close();</div></pre></td></tr></table></figure>
-</li>
-<li><p>TCP server端</p>
+<ul>
+<li>TCP server端</li>
+</ul>
 <pre><code>1 获取socket对象
 2 创建连接
 3 从socket中获取输入流，读取发送端发送的数据，并显示
 4 释放资源
 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建绑定到特定端口的服务器套接字</span></div><div class="line">    ServerSocket(<span class="keyword">int</span> port)</div><div class="line"></div><div class="line"></div><div class="line">server端</div><div class="line">    ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">12306</span>);</div><div class="line"></div><div class="line">    <span class="comment">//阻塞方法</span></div><div class="line">    <span class="comment">//就是让该serversocket一直保持监听状态</span></div><div class="line">    Socket accept = serverSocket.accept();</div><div class="line"></div><div class="line">    InputStream inputStream = accept.getInputStream();</div><div class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="comment">//也是阻塞方法</span></div><div class="line">    <span class="keyword">int</span> len = inputStream.read(buffer);</div><div class="line">    System.out.println(<span class="keyword">new</span> String(buffer,<span class="number">0</span>,len));</div><div class="line"></div><div class="line">    <span class="comment">//关闭Socket之后，其中的流也会被关闭</span></div><div class="line">    accept.close();</div></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>补充</p>
 </li>
 <li><p>IPC: inter-process communication  跨进程通信：</p>
+</li>
+</ul>
 <pre><code>1 Socket通信
 2 共享存储
 3 
-</code></pre></li>
-</ul>
-
+</code></pre>
       
 
       
@@ -1269,6 +1295,8 @@ TCP：
 <li><p>Java对数据的操作是通过流的方式</p>
 </li>
 <li><p>流的分类：</p>
+</li>
+</ul>
 <pre><code>1.按照数据流向来分
     输入流：将设备中的数据读入内存
     输出流：将内存中的数据写入外部设备
@@ -1279,11 +1307,12 @@ TCP：
 
     字符流  输入: Reader            
             输出：Writer
-</code></pre></li>
-<li><p>什么情况下使用哪种流呢?</p>
+</code></pre><ul>
+<li>什么情况下使用哪种流呢?</li>
+</ul>
 <pre><code>如果数据所在的文件通过windows自带的记事本打开并能读懂里面的内容，就用字符流。其他用字节流。
 如果你什么都不知道，就用字节流
-</code></pre></li>
+</code></pre><ul>
 <li><p>字节流的抽象基类：InputStream ，OutputStream。</p>
 </li>
 <li><p>字符流的抽象基类：Reader ， Writer。</p>
@@ -1299,6 +1328,8 @@ TCP：
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>数据的换行和追加：</p>
+</li>
+</ul>
 <pre><code>1.换行
     换行符与操作系统相关：
         1.windows  \r\n
@@ -1308,7 +1339,7 @@ TCP：
 2.数据追加的问题
     1.文件输出流默认的数据追加方式，是从文件的开头开始写入（会覆盖掉之前已有的文件内容）
     2.如果要在文件末尾实现内容的追加,则需要使用`public FileOutputStream(File file,boolean append)`
-</code></pre></li>
+</code></pre><ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注意接口的使用</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeQiuetly</span><span class="params">(Closeable fos)</span> </span>&#123;</div><div class="line">    <span class="comment">//流对象使用完毕后，释放流资源，及系统资源</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != fos) &#123;</div><div class="line">            fos.close();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>FileInputStream的构造方法</p>
@@ -1318,20 +1349,22 @@ TCP：
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//从输入流中读取数据的下一个字节。返回 0 到 255范围内的 int 字节值。</span></div><div class="line"><span class="comment">//如果因为已经到达流末尾而没有可用的字节，则返回值 -1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span> </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>字节缓冲流：</p>
+</li>
+</ul>
 <pre><code>字节缓冲输出流
     BufferedOutputStream
 字节缓冲输入流
     BufferedInputStream
-</code></pre></li>
+</code></pre><ul>
 <li><p>BufferedOutputStream</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将具有指定缓冲区大小的数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out, <span class="keyword">int</span> size)</div></pre></td></tr></table></figure>
 </li>
 <li><p>分工:</p>
+</li>
+</ul>
 <pre><code>BufferedOutputStream对象中的outputStream，就是负责实际的流中数据的传输
 而BufferedOutputStream本身，决定何时将缓冲区中的数据写入流中传输
-</code></pre></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
 <ul>
 <li><p>字符流 = 字节流 + 编码表</p>
 </li>
@@ -1340,12 +1373,14 @@ TCP：
 <li><p>默认情况下，即不指定字符集的情况下，java中采用默认的本地字符集来对字符进行编解码默认字符集，<br>  依赖于操作系统，因为我们使用的是简体中文，所以默认使用gbk编码</p>
 </li>
 <li><p>常见编码表</p>
+</li>
+</ul>
 <pre><code>ASCII/Unicode 字符集
 ISO-8859-1   Latin-1
 GB2312/GBK/GB18030  简体字
 BIG5 繁体字
 UTF-8
-</code></pre></li>
+</code></pre><ul>
 <li><p>OutputStreamWriter 是字符流通向字节流的桥梁,可使用指定的 charset 将要写入流中的字符编码成字节</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建使用默认字符编码的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建使用指定字符集的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out, String charsetName)</div><div class="line"></div><div class="line">写方法</div><div class="line">    <span class="comment">//写入单个字符。 </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> c)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组的某一部分。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串的某一部分</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
@@ -1368,15 +1403,18 @@ UTF-8
 <li><p>注意这里的读取到流末尾的判定条件，和之前的都不同,到流末尾返回的是null</p>
 </li>
 <li><p>打印流</p>
+</li>
+</ul>
 <pre><code>字节流打印流     PrintStream
 字符打印流       PrintWriter
-</code></pre></li>
-<li><p>特点：</p>
+</code></pre><ul>
+<li>特点：</li>
+</ul>
 <pre><code>1.只能操作目的地，不能操作数据
 2.可以操作任意类型的数据
 3.如果启动了自动刷新(通过构造方法启用该功能)，能够自动刷新(调用指定方法才有效果)
 4.可以操作文件的流
-</code></pre></li>
+</code></pre><ul>
 <li><p>PrintWriter</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    PrintWriter(File file) </div><div class="line">    PrintWriter(String fileName)</div><div class="line">    PrintWriter(OutputStream out, <span class="keyword">boolean</span> autoFlush)</div></pre></td></tr></table></figure>
 </li>
@@ -1386,18 +1424,21 @@ UTF-8
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FileInputStream(File, String)</div><div class="line">FileOutputStream(File,String)</div><div class="line">FileReader(String, File)</div><div class="line">FileWriter(String, File)</div><div class="line">PrintWriter</div><div class="line">PrintStream</div></pre></td></tr></table></figure>
 </li>
 <li><p>标准输入输出流</p>
+</li>
+</ul>
 <pre><code>System.in 标准输入流其类型为InputStream,通常指键盘输入
 System.out 标准输出流控制台输出，其类型为PrintStream
-</code></pre></li>
+</code></pre><ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//scanner 利用原始的标准输入流，帮我们读取一行字符串</span></div><div class="line"><span class="comment">//那么我们是否可以自己完成这个功能呢？</span></div><div class="line"></div><div class="line"><span class="comment">//Scanner sc = new Scanner(System.in);</span></div><div class="line"><span class="comment">//String nextLine = sc.nextLine();</span></div><div class="line"></div><div class="line"><span class="comment">//想到了BufferedReader中的readLine()方法，来读取一行字符串</span></div><div class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">String readLine = br.readLine();</div><div class="line">System.out.println(<span class="string">"Buffered readLine: "</span> + readLine);</div></pre></td></tr></table></figure>
 </li>
 <li><p>序列化流 ObjectOutputStream</p>
+</li>
+</ul>
 <pre><code>1.ObjectOutputStream 将 Java 对象的基本数据类型和引用数据类型所指向的对象写入OutputStream
 2.只有支持java.io.Serializable接口的对象才能写入流中
 3.每个 serializable 对象的类都被编码，编码内容包括类名和类签名、对象的字段值和数组值，以及从初始对象中引用的其他所有对象的闭包
-</code></pre></li>
-<li><p>反序列化流 ObjectInputStream</p>
-</li>
+</code></pre><ul>
+<li>反序列化流 ObjectInputStream</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建写入指定 OutputStream 的 ObjectOutputStream</span></div><div class="line">    ObjectOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建从指定 InputStream 读取的 ObjectInputStream</span></div><div class="line">    ObjectInputStream(InputStream in)</div></pre></td></tr></table></figure>
 <ul>
@@ -1561,15 +1602,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

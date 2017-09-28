@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记13-reflect | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
+  <meta name="description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记13-reflect">
 <meta property="og:url" content="http://yoursite.com/2017/09/24/Java学习笔记13-reflect/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
+<meta property="og:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-24T15:29:32.861Z">
+<meta property="og:updated_time" content="2017-09-28T13:57:36.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记13-reflect">
-<meta name="twitter:description" content="类的加载 加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机 1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方式来">
+<meta name="twitter:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -160,7 +160,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>类的加载</p>
+<li>类的加载</li>
+</ul>
 <pre><code>加载
     就是指将class文件读入内存，并为之创建一个Class对象
 
@@ -171,18 +172,21 @@
 
 初始化
     就是我们以前讲过的初始化步骤
-</code></pre></li>
-<li><p>类加载时机</p>
+</code></pre><ul>
+<li>类加载时机</li>
+</ul>
 <pre><code>1 创建类的实例
 2 访问类的静态变量
 3 调用类的静态方法
 4 使用反射方式来强制创建某个类或接口对应的java.lang.Class对象
 5 初始化某个类的子类，子类父类都加载
 6 直接使用java.exe命令来运行某个主类
-</code></pre></li>
+</code></pre><ul>
 <li><p>类加载器：负责将.class文件加载到内在中，并为之生成对应的Class对象</p>
 </li>
 <li><p>类加载器的组成</p>
+</li>
+</ul>
 <pre><code>Bootstrap ClassLoader 根类加载器
     也被称为引导类加载器，负责Java核心类的加载
         比如System,String等。在JDK中JRE的lib目录下rt.jar文件中
@@ -193,15 +197,18 @@ Extension ClassLoader 扩展类加载器
 
 Sysetm ClassLoader 系统类加载器（应用类加载器）
     负责在JVM启动时加载来自java命令的class文件
-</code></pre></li>
-<li><p>反射</p>
+</code></pre><ul>
+<li>反射</li>
+</ul>
 <pre><code>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；
 对于任意一个对象，都能够调用它的任意一个方法和属性；
 这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制
-</code></pre></li>
+</code></pre><ul>
 <li><p>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类对象</p>
 </li>
 <li><p>获取Class类型的对象</p>
+</li>
+</ul>
 <pre><code>方式一 对象.getClass()
     Person p = new Person();
     Class c = p.getClass();
@@ -211,17 +218,20 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
 
 方式三 Class.forName(全类名)
     Class c4 = Class.forName(&quot;com.cskaoyan.Person&quot;);
-</code></pre></li>
-<li><p>用哪种方式呢？</p>
+</code></pre><ul>
+<li>用哪种方式呢？</li>
+</ul>
 <pre><code>自己玩    第2种，因为方便
 开发中    第3种, 因为灵活（使用配置文件）
-</code></pre></li>
-<li><p>对于任意一个class文件，其中的内容，可以分为如下几类：</p>
+</code></pre><ul>
+<li>对于任意一个class文件，其中的内容，可以分为如下几类：</li>
+</ul>
 <pre><code>1.构造方法   Constructor
 2.成员变量(类变量) Field
 3.成员方法(静态方法) Method
-</code></pre></li>
-<li><p>通过反射获取构造方法并使用</p>
+</code></pre><ul>
+<li>通过反射获取构造方法并使用</li>
+</ul>
 <pre><code>获取构造方法
     getConstructors
     getDeclaredConstructors
@@ -231,8 +241,9 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
 
 创建对象
     newInstance()
-</code></pre></li>
-<li><p>通过反射获取成员变量并使用</p>
+</code></pre><ul>
+<li>通过反射获取成员变量并使用</li>
+</ul>
 <pre><code>获取所有成员
     getFields
     getDeclaredFields
@@ -241,8 +252,9 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
     getDeclaredField
 修改成员的值
     set(Object obj,Object value)
-</code></pre></li>
-<li><p>通过反射获取成员方法并使用</p>
+</code></pre><ul>
+<li>通过反射获取成员方法并使用</li>
+</ul>
 <pre><code>获取所有方法
     getMethods
     getDeclaredMethods
@@ -253,7 +265,7 @@ Sysetm ClassLoader 系统类加载器（应用类加载器）
     invoke(Object obj, Object... args) 
 调用静态方法
     invoke(null)
-</code></pre></li>
+</code></pre><ul>
 <li><p>暴力访问 <code>setAccessible(true)</code></p>
 </li>
 <li><p>Properties  属性列表中每个键及其对应值都是一个字符串</p>
@@ -524,15 +536,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

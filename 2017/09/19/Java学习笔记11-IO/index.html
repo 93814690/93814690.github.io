@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记11-IO | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类： 1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
+  <meta name="description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类：   1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记11-IO">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/Java学习笔记11-IO/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类： 1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
+<meta property="og:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类：   1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-25T01:33:21.657Z">
+<meta property="og:updated_time" content="2017-09-28T13:56:38.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记11-IO">
-<meta name="twitter:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类： 1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
+<meta name="twitter:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式  流的分类：   1.按照数据流向来分     输入流：将设备中的数据读入内存     输出流：将内存中的数据写入外部设备  2.按照数据流的内容来分：     字节流  输入: InputStream                    输出: OutputStream      字符流  输入: Reader">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -165,6 +165,8 @@
 <li><p>Java对数据的操作是通过流的方式</p>
 </li>
 <li><p>流的分类：</p>
+</li>
+</ul>
 <pre><code>1.按照数据流向来分
     输入流：将设备中的数据读入内存
     输出流：将内存中的数据写入外部设备
@@ -175,11 +177,12 @@
 
     字符流  输入: Reader            
             输出：Writer
-</code></pre></li>
-<li><p>什么情况下使用哪种流呢?</p>
+</code></pre><ul>
+<li>什么情况下使用哪种流呢?</li>
+</ul>
 <pre><code>如果数据所在的文件通过windows自带的记事本打开并能读懂里面的内容，就用字符流。其他用字节流。
 如果你什么都不知道，就用字节流
-</code></pre></li>
+</code></pre><ul>
 <li><p>字节流的抽象基类：InputStream ，OutputStream。</p>
 </li>
 <li><p>字符流的抽象基类：Reader ， Writer。</p>
@@ -195,6 +198,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>数据的换行和追加：</p>
+</li>
+</ul>
 <pre><code>1.换行
     换行符与操作系统相关：
         1.windows  \r\n
@@ -204,7 +209,7 @@
 2.数据追加的问题
     1.文件输出流默认的数据追加方式，是从文件的开头开始写入（会覆盖掉之前已有的文件内容）
     2.如果要在文件末尾实现内容的追加,则需要使用`public FileOutputStream(File file,boolean append)`
-</code></pre></li>
+</code></pre><ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注意接口的使用</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeQiuetly</span><span class="params">(Closeable fos)</span> </span>&#123;</div><div class="line">    <span class="comment">//流对象使用完毕后，释放流资源，及系统资源</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != fos) &#123;</div><div class="line">            fos.close();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>FileInputStream的构造方法</p>
@@ -214,20 +219,22 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//从输入流中读取数据的下一个字节。返回 0 到 255范围内的 int 字节值。</span></div><div class="line"><span class="comment">//如果因为已经到达流末尾而没有可用的字节，则返回值 -1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span> </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>字节缓冲流：</p>
+</li>
+</ul>
 <pre><code>字节缓冲输出流
     BufferedOutputStream
 字节缓冲输入流
     BufferedInputStream
-</code></pre></li>
+</code></pre><ul>
 <li><p>BufferedOutputStream</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将具有指定缓冲区大小的数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out, <span class="keyword">int</span> size)</div></pre></td></tr></table></figure>
 </li>
 <li><p>分工:</p>
+</li>
+</ul>
 <pre><code>BufferedOutputStream对象中的outputStream，就是负责实际的流中数据的传输
 而BufferedOutputStream本身，决定何时将缓冲区中的数据写入流中传输
-</code></pre></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
 <ul>
 <li><p>字符流 = 字节流 + 编码表</p>
 </li>
@@ -236,12 +243,14 @@
 <li><p>默认情况下，即不指定字符集的情况下，java中采用默认的本地字符集来对字符进行编解码默认字符集，<br>  依赖于操作系统，因为我们使用的是简体中文，所以默认使用gbk编码</p>
 </li>
 <li><p>常见编码表</p>
+</li>
+</ul>
 <pre><code>ASCII/Unicode 字符集
 ISO-8859-1   Latin-1
 GB2312/GBK/GB18030  简体字
 BIG5 繁体字
 UTF-8
-</code></pre></li>
+</code></pre><ul>
 <li><p>OutputStreamWriter 是字符流通向字节流的桥梁,可使用指定的 charset 将要写入流中的字符编码成字节</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建使用默认字符编码的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建使用指定字符集的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out, String charsetName)</div><div class="line"></div><div class="line">写方法</div><div class="line">    <span class="comment">//写入单个字符。 </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> c)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组的某一部分。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串的某一部分</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
 </li>
@@ -264,15 +273,18 @@ UTF-8
 <li><p>注意这里的读取到流末尾的判定条件，和之前的都不同,到流末尾返回的是null</p>
 </li>
 <li><p>打印流</p>
+</li>
+</ul>
 <pre><code>字节流打印流     PrintStream
 字符打印流       PrintWriter
-</code></pre></li>
-<li><p>特点：</p>
+</code></pre><ul>
+<li>特点：</li>
+</ul>
 <pre><code>1.只能操作目的地，不能操作数据
 2.可以操作任意类型的数据
 3.如果启动了自动刷新(通过构造方法启用该功能)，能够自动刷新(调用指定方法才有效果)
 4.可以操作文件的流
-</code></pre></li>
+</code></pre><ul>
 <li><p>PrintWriter</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    PrintWriter(File file) </div><div class="line">    PrintWriter(String fileName)</div><div class="line">    PrintWriter(OutputStream out, <span class="keyword">boolean</span> autoFlush)</div></pre></td></tr></table></figure>
 </li>
@@ -282,18 +294,21 @@ UTF-8
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FileInputStream(File, String)</div><div class="line">FileOutputStream(File,String)</div><div class="line">FileReader(String, File)</div><div class="line">FileWriter(String, File)</div><div class="line">PrintWriter</div><div class="line">PrintStream</div></pre></td></tr></table></figure>
 </li>
 <li><p>标准输入输出流</p>
+</li>
+</ul>
 <pre><code>System.in 标准输入流其类型为InputStream,通常指键盘输入
 System.out 标准输出流控制台输出，其类型为PrintStream
-</code></pre></li>
+</code></pre><ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//scanner 利用原始的标准输入流，帮我们读取一行字符串</span></div><div class="line"><span class="comment">//那么我们是否可以自己完成这个功能呢？</span></div><div class="line"></div><div class="line"><span class="comment">//Scanner sc = new Scanner(System.in);</span></div><div class="line"><span class="comment">//String nextLine = sc.nextLine();</span></div><div class="line"></div><div class="line"><span class="comment">//想到了BufferedReader中的readLine()方法，来读取一行字符串</span></div><div class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">String readLine = br.readLine();</div><div class="line">System.out.println(<span class="string">"Buffered readLine: "</span> + readLine);</div></pre></td></tr></table></figure>
 </li>
 <li><p>序列化流 ObjectOutputStream</p>
+</li>
+</ul>
 <pre><code>1.ObjectOutputStream 将 Java 对象的基本数据类型和引用数据类型所指向的对象写入OutputStream
 2.只有支持java.io.Serializable接口的对象才能写入流中
 3.每个 serializable 对象的类都被编码，编码内容包括类名和类签名、对象的字段值和数组值，以及从初始对象中引用的其他所有对象的闭包
-</code></pre></li>
-<li><p>反序列化流 ObjectInputStream</p>
-</li>
+</code></pre><ul>
+<li>反序列化流 ObjectInputStream</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建写入指定 OutputStream 的 ObjectOutputStream</span></div><div class="line">    ObjectOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建从指定 InputStream 读取的 ObjectInputStream</span></div><div class="line">    ObjectInputStream(InputStream in)</div></pre></td></tr></table></figure>
 <ul>
@@ -564,15 +579,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

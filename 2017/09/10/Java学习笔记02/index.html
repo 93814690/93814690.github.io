@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记02 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+  <meta name="description" content="运行时多态前提：  1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？  1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记02">
 <meta property="og:url" content="http://yoursite.com/2017/09/10/Java学习笔记02/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+<meta property="og:description" content="运行时多态前提：  1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？  1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-16T11:05:39.315Z">
+<meta property="og:updated_time" content="2017-09-28T13:51:37.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记02">
-<meta name="twitter:description" content="运行时多态前提： 1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？ 1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现的多">
+<meta name="twitter:description" content="运行时多态前提：  1 要有继承关系 2 要有方法覆盖 3 子类实例赋值给父类引用  只要满足这三个条件就一定能发生运行时多态吗？  1 private  2 静态方法没有运行时多态  在Java中有两种形式可以实现多态：继承和接口。  基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。  基于接口实现">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -160,15 +160,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>运行时多态前提：</p>
+<li>运行时多态前提：</li>
+</ul>
 <pre><code>1 要有继承关系
 2 要有方法覆盖
 3 子类实例赋值给父类引用
-</code></pre></li>
-<li><p>只要满足这三个条件就一定能发生运行时多态吗？</p>
+</code></pre><ul>
+<li>只要满足这三个条件就一定能发生运行时多态吗？</li>
+</ul>
 <pre><code>1 private 
 2 静态方法没有运行时多态
-</code></pre></li>
+</code></pre><ul>
 <li><p>在Java中有两种形式可以实现多态：继承和接口。</p>
 </li>
 <li><p>基于继承实现的多态：基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为。</p>
@@ -180,55 +182,64 @@
 <li><p>关于修改子类覆盖方法的修饰符问题：可大，可不变，但不能减小</p>
 </li>
 <li><p>方法覆盖的注意事项：</p>
+</li>
+</ul>
 <pre><code>1 父类中被final修饰的方法，在子类中不允许覆盖
 2 父类被覆盖的方法的参数列表中，被声明为final的参数，
   在子类覆盖方法中可以不必声明为final
 3 只有在子类类体中可以访问的父类或祖先类的方法才能被覆盖
-</code></pre></li>
-<li><p>父类引用指向子类对象：</p>
+</code></pre><ul>
+<li>父类引用指向子类对象：</li>
+</ul>
 <pre><code>成员变量：编译看左边，运行看左边
 成员方法：编译看左边，运行看右边
-</code></pre></li>
-<li><p>运行时多态的优点：</p>
+</code></pre><ul>
+<li>运行时多态的优点：</li>
+</ul>
 <pre><code>1 提高代码的可维护性
 2 提高代码的扩展性
-</code></pre></li>
-<li><p>运行时多态的弊端：</p>
+</code></pre><ul>
+<li>运行时多态的弊端：</li>
+</ul>
 <pre><code>无法使用子类特有的功能
-</code></pre></li>
-<li><p>解决方案：</p>
+</code></pre><ul>
+<li>解决方案：</li>
+</ul>
 <pre><code>1 创建子类的实例，调用子类的方法
   （打破了运行时多态发生的条件，因此无法使用运行时多态）
 2 把父类的引用强转换为子类的引用
-</code></pre></li>
+</code></pre><ul>
 <li><p>强制类型转换，并非一定是正确的，即我们如果直接将父类的引用转化为子类类型的引用，<br>  我们是要承担风险的。强转之前我们可以通过instanceof关键字，<br>  来帮我们判断待强转的对象是否是目标类型的实例</p>
 </li>
 <li><p>转型：</p>
+</li>
+</ul>
 <pre><code>1 向上转型：子类转换为父类类型
 2 向下转型：父类转换为子类
-</code></pre></li>
+</code></pre><ul>
+<li>抽象类:</li>
 </ul>
-<ul>
-<li><p>抽象类:</p>
 <pre><code>1 抽象类和抽象方法必须使用abstract声明
 2 抽象方法不能有方法体
 3 抽象类中不一定含有抽象方法，但含有抽象方法的类必须是抽象类
 4 抽象类本身不能实例化
   （多态机制可以用子类实例化，其核心是将抽象方法变为非核心的）
-</code></pre></li>
-<li><p>抽象类可以有构造方法：</p>
+</code></pre><ul>
+<li>抽象类可以有构造方法：</li>
+</ul>
 <pre><code>为了完成抽象类自身的初始化过程
-</code></pre></li>
+</code></pre><ul>
 <li><p>接口：一个完全抽象的类，所有的方法都是抽象方法</p>
 </li>
 <li><p>接口的特点：</p>
+</li>
+</ul>
 <pre><code>1 成员默认都是public的，不能指定其他的访问控制修饰符
 2 成员变量默认都是static final，必须显式初始化
 3 方法不能提供实现
 4 不同于普通类，本身可以多继承
-</code></pre></li>
-<li><p>空接口（标记接口）</p>
-</li>
+</code></pre><ul>
+<li>空接口（标记接口）</li>
 </ul>
 
       
@@ -495,15 +506,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>
