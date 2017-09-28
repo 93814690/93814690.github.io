@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记05-Collection | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
+  <meta name="description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记05-Collection">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/Java学习笔记05-Collection/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
+<meta property="og:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-28T13:52:51.802Z">
+<meta property="og:updated_time" content="2017-09-28T14:26:05.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记05-Collection">
-<meta name="twitter:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)  1234Collection a = new ArrayList();int i;//其实存入集合类中的不是基本数据类型的i，而是Interger类">
+<meta name="twitter:description" content="集合类和对象数组的区别:  1 对象数组长度固定，集合类长度不固定 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -165,7 +165,8 @@
 <pre><code>1 对象数组长度固定，集合类长度不固定
 2 对象数组中除了可以存储对象，和可以存储基本类型的数据，但是集合中只能存储对象
 3 集合可以存储不同类型的对象(对象数组也可以做到，但是只有Object类型的对象数组可以做到)
-</code></pre><ul>
+</code></pre><a id="more"></a>
+<ul>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Collection a = <span class="keyword">new</span> ArrayList();</div><div class="line"><span class="keyword">int</span> i;</div><div class="line"><span class="comment">//其实存入集合类中的不是基本数据类型的i，而是Interger类的对象，其整数值为i</span></div><div class="line">a.add(i);</div></pre></td></tr></table></figure>
 </li>
 <li><p>Collection:</p>

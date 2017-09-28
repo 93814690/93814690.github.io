@@ -17,7 +17,7 @@
 <meta property="og:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因：   1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/线程状态转换图.png">
-<meta property="og:updated_time" content="2017-09-28T13:55:07.477Z">
+<meta property="og:updated_time" content="2017-09-28T14:26:48.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记09-多线程">
 <meta name="twitter:description" content="引入多进程机制，使得cpu的利用率大大的提高了。  线程引入的原因：   1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程">
@@ -170,7 +170,8 @@
 <pre><code>1.进程之间的切换（比如上下文的切换是需要消耗额外的资源），而且似乎还不小。
 2.一个进程如果只有一条执行路径，可能会产生频繁的进程切换，而进程切花需要消耗额外资源
 3.于是，我们可以在一个进程中引入多条执行路径，当某进程中的一条执行路径，不使用cpu的时候，可以切换到该进程的另外一条进行路径，继续执行该进程，而无需做进程的切换
-</code></pre><ul>
+</code></pre><a id="more"></a>
+<ul>
 <li>进程和线程的区别：</li>
 </ul>
 <pre><code>进程是资源分配的基本单位，线程是程序执行的基本单位

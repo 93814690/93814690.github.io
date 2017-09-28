@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记13-reflect | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
+  <meta name="description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记13-reflect">
 <meta property="og:url" content="http://yoursite.com/2017/09/24/Java学习笔记13-reflect/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
+<meta property="og:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-28T13:57:36.421Z">
+<meta property="og:updated_time" content="2017-09-28T14:27:33.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记13-reflect">
-<meta name="twitter:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤  类加载时机  1 创建类的实例 2 访问类的静态变量 3 调用类的静态方法 4 使用反射方">
+<meta name="twitter:description" content="类的加载  加载     就是指将class文件读入内存，并为之创建一个Class对象  连接     验证 确保被加载类的正确性     准备 负责为类的静态成员分配内存，并设置默认初始化值。给给对象分配空间     解析 将类中的符号引用替换为直接引用  初始化     就是我们以前讲过的初始化步骤">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -172,7 +172,8 @@
 
 初始化
     就是我们以前讲过的初始化步骤
-</code></pre><ul>
+</code></pre><a id="more"></a>
+<ul>
 <li>类加载时机</li>
 </ul>
 <pre><code>1 创建类的实例

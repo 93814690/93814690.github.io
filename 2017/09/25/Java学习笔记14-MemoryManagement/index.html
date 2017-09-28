@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记14-MemoryManagement | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM 体系结构   JVM运行时的数据区  1 程序计数器(线程私有)     程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器  2 Java虚拟机栈(线程私有)     它描述的是Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame ）用于存储局部变量表、">
+  <meta name="description" content="JVM 体系结构">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记14-MemoryManagement">
 <meta property="og:url" content="http://yoursite.com/2017/09/25/Java学习笔记14-MemoryManagement/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="JVM 体系结构   JVM运行时的数据区  1 程序计数器(线程私有)     程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器  2 Java虚拟机栈(线程私有)     它描述的是Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame ）用于存储局部变量表、">
+<meta property="og:description" content="JVM 体系结构">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2017/09/25/Java学习笔记14-MemoryManagement/images/一般JVM架构.png">
 <meta property="og:image" content="http://yoursite.com/2017/09/25/Java学习笔记14-MemoryManagement/images/内存共享问题.png">
-<meta property="og:updated_time" content="2017-09-28T13:50:41.275Z">
+<meta property="og:updated_time" content="2017-09-28T14:27:45.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记14-MemoryManagement">
-<meta name="twitter:description" content="JVM 体系结构   JVM运行时的数据区  1 程序计数器(线程私有)     程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器  2 Java虚拟机栈(线程私有)     它描述的是Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame ）用于存储局部变量表、">
+<meta name="twitter:description" content="JVM 体系结构">
 <meta name="twitter:image" content="http://yoursite.com/2017/09/25/Java学习笔记14-MemoryManagement/images/一般JVM架构.png">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
@@ -165,6 +165,7 @@
         <ul>
 <li>JVM 体系结构<br><img src="images/一般JVM架构.png" alt="一般JVM架构"></li>
 </ul>
+<a id="more"></a>
 <ul>
 <li>JVM运行时的数据区</li>
 </ul>
