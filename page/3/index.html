@@ -136,6 +136,161 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java学习笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/Java学习笔记01/">Java学习笔记01</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/Java学习笔记01/" class="archive-article-date">
+  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一些知识点</p>
+<ul>
+<li><p>java是跨平台的，jvm不是跨平台的。</p>
+</li>
+<li><p>byte, short, char参与运算会首先转换为int类型。</p>
+</li>
+<li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
+</li>
+<li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
+</li>
+<li><p>四舍五入相关：</p>
+<pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
+Math.ceil  向上取整     Math.ceil(1.4)=2.0
+Math.round 四舍五入,
+算法为Math.floor(x+0.5) 
+Math.round(11.5)=12     Math.round(-11.5)=11
+</code></pre></li>
+<li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
+</li>
+<li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>
+</li>
+<li><p>break利用标签跳出外层循环。</p>
+</li>
+<li><p>方法不能嵌套定义。</p>
+</li>
+<li><p>类体中不能声明签名完全相同的两个方法。</p>
+</li>
+<li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
+</li>
+<li><p>类的初始化过程总结:</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
+<pre><code>1.加载Student.class文件进内存
+2.在栈内存为s开辟空间
+3.在堆内存为学生对象开辟空间
+4.对学生对象的成员变量进行默认初始化
+5.通过构造方法对学生对象的成员变量赋值
+6.学生对象初始化完毕，把对象地址赋值给s变量
+</code></pre><ul>
+<li><p>在静态方法中没有this关键字</p>
+</li>
+<li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
+</li>
+<li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
+</li>
+<li><p>区分引用传递和值传递:</p>
+<pre><code>如果数据类型是一个类的名字，就是引用变量
+如果数据类型是一个基本数据类型，就是值传递
+</code></pre></li>
+<li><p>对于包含静态代码块，初始化代码块和构造方法的子类，其初始化顺序为：</p>
+<pre><code>（B是A的子类）
+A static block
+B static block
+A init block
+A initialized
+B init block
+B initialized
+</code></pre></li>
+<li><p>当父类没有提供默认构造函数时，必须在子类构造函数的第一条语句通过super(…)<br>  完成父类对象成员的初始化工作。</p>
+</li>
+<li><p>父类当中用private修饰的成员，子类继承了，但是不可见</p>
+</li>
+<li><p>使用final修饰类和方法：</p>
+<pre><code>可以提高安全性
+可以加快某些类型检查过程
+</code></pre></li>
+<li><p>对于final所修饰的常量来讲，其初始化时机有：</p>
+<pre><code>1. 声明该常量时初始化
+2. 在构造方法中给常量赋值（每个构造方法都要）
+</code></pre></li>
+<li><p>package用途：</p>
+<pre><code>1 将相关的类和接口分组，包名通常表示包中各个类和接口的用途
+2 包创建不同的命名空间，解决了命名冲突问题
+3 提供了对应程序内部实现机制的保护域
+  （实际的保护还要和访问权限修饰符结合）
+</code></pre></li>
+<li><p>静态导入局限性：</p>
+<pre><code>1 静态导入的单位只能是一个类
+2 导入的成员与本类成员相同时，将被隐藏
+</code></pre></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/Java学习笔记01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -312,15 +467,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>

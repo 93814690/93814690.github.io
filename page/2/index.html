@@ -136,6 +136,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java学习笔记10-File" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/19/Java学习笔记10-File/">Java学习笔记10-File</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/19/Java学习笔记10-File/" class="archive-article-date">
+  	<time datetime="2017-09-19T10:54:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>在操作系统中，任何数据都只能一种形式存在——文件</p>
+</li>
+<li><p>File：文件和目录路径名的抽象表达形式</p>
+<pre><code>1.File 既可以表示目录，也可以表示文件
+2.File 只是一种抽象表达
+</code></pre></li>
+<li><p>构造方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File(String pathname)</div><div class="line">File(String parent, String child)</div><div class="line">File(File parent, String child)</div></pre></td></tr></table></figure>
+</li>
+<li><p>关于路径分隔符的问题:</p>
+<pre><code>在windows中我们的文件分割符  \
+在linux系统下我们的文件分隔符是  /
+</code></pre></li>
+<li><p>File类成员方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">创建功能</div><div class="line">    <span class="comment">//当调用createNew方法之后，会实际的去创建该文件</span></div><div class="line">    <span class="comment">//当该文件已经实际存在的时候，不会再次创建该文件</span></div><div class="line">    <span class="comment">//当要创建的文件其父路径不存在的时候，抛出异常</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNewFile</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当使用mkdir的时候如果父目录不存在，创建失败,没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdir</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//当父目录不存在的时候，mkdirs会首先帮助我们创建不存在的父路径，然后在该路径下创建目标目录</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdirs</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">删除功能</span></div><div class="line"><span class="function">    <span class="comment">//当要删除的文件并不存在的时候，返回false，没有抛出异常</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">重命名功能</span></div><div class="line"><span class="function">    <span class="comment">//如果传递的是不同路径的文件对象，则会做两步：</span></span></div><div class="line"><span class="function">    <span class="comment">//1.移动文件到rename参数所指定的路径下</span></span></div><div class="line"><span class="function">    <span class="comment">//2.重命名</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">renameTo</span><span class="params">(File dest)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">判断功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canRead</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canWrite</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHidden</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">基本获取功能</span></div><div class="line"><span class="function">    <span class="keyword">public</span> File <span class="title">getAbsoluteFile</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getPath</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lastModified</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">高级获取功能</span></div><div class="line"><span class="function">    <span class="comment">//返回一个字符串数组，这些字符串指定此抽象路径名表示的目录中的文件和目录</span></span></div><div class="line"><span class="function">    <span class="comment">//如果此抽象路径名不表示一个目录，那么此方法将返回 null</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> String[] <span class="title">list</span><span class="params">()</span></span></div><div class="line"><span class="function">    <span class="keyword">public</span> File[] <span class="title">listFiles</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>文件过滤器:更快速的查找文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">        <span class="keyword">public</span> String[] list(FilenameFilter filter)</div><div class="line">        <span class="keyword">public</span> File[] listFiles(FilenameFilter filter)</div><div class="line"></div><div class="line">        FIle file = <span class="keyword">new</span> File(<span class="string">"d:\\filetest"</span>);</div><div class="line">                </div><div class="line">        <span class="comment">//我们自己过滤</span></div><div class="line"><span class="comment">//      String[] list = file.list();</span></div><div class="line"><span class="comment">//      for(int i = 0; i &lt; list.length; i++) &#123;</span></div><div class="line"><span class="comment">//			if(list[i].endsWith(".txt")) &#123;</span></div><div class="line"><span class="comment">//				System.out.println(list[i]);</span></div><div class="line"><span class="comment">//			&#125;</span></div><div class="line"><span class="comment">//		&#125;</span></div><div class="line">    </div><div class="line">    <span class="comment">//我们利用文件过滤器,根据我们的需求，过滤文件，最终我们得到的结果是满足我们要求的文件名称的集合</span></div><div class="line"></div><div class="line">        File[] names = file.listFiles(<span class="keyword">new</span> FilenameFilter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</div><div class="line">                <span class="comment">// System.out.println("filter: "+dir.getName() + name);</span></div><div class="line">                File file = <span class="keyword">new</span> File(dir, name);</div><div class="line">                <span class="keyword">return</span> file.getName().endsWith(<span class="string">".txt"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; names.length; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"our own: "</span> + names[i].getName());</div><div class="line">        &#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/19/Java学习笔记10-File/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java学习笔记09-多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1305,161 +1398,6 @@ Outer.this.num
 
 
   
-    <article id="post-Java学习笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/Java学习笔记01/">Java学习笔记01</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/07/Java学习笔记01/" class="archive-article-date">
-  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录一些知识点</p>
-<ul>
-<li><p>java是跨平台的，jvm不是跨平台的。</p>
-</li>
-<li><p>byte, short, char参与运算会首先转换为int类型。</p>
-</li>
-<li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
-</li>
-<li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
-</li>
-<li><p>四舍五入相关：</p>
-<pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
-Math.ceil  向上取整     Math.ceil(1.4)=2.0
-Math.round 四舍五入,
-算法为Math.floor(x+0.5) 
-Math.round(11.5)=12     Math.round(-11.5)=11
-</code></pre></li>
-<li><p>取模运算结果的符号取决于被取模的数，与模的符号没有关系。</p>
-</li>
-<li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>
-</li>
-<li><p>break利用标签跳出外层循环。</p>
-</li>
-<li><p>方法不能嵌套定义。</p>
-</li>
-<li><p>类体中不能声明签名完全相同的两个方法。</p>
-</li>
-<li><p>局部变量与成员变量名字相同时，成员变量将被隐藏。</p>
-</li>
-<li><p>类的初始化过程总结:</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Student s = <span class="keyword">new</span> Student();</div></pre></td></tr></table></figure>
-<pre><code>1.加载Student.class文件进内存
-2.在栈内存为s开辟空间
-3.在堆内存为学生对象开辟空间
-4.对学生对象的成员变量进行默认初始化
-5.通过构造方法对学生对象的成员变量赋值
-6.学生对象初始化完毕，把对象地址赋值给s变量
-</code></pre><ul>
-<li><p>在静态方法中没有this关键字</p>
-</li>
-<li><p>静态方法只能访问静态的成员变量和静态的成员方法</p>
-</li>
-<li><p>static变量如果没有赋初值，则系统默认初始化为0</p>
-</li>
-<li><p>区分引用传递和值传递:</p>
-<pre><code>如果数据类型是一个类的名字，就是引用变量
-如果数据类型是一个基本数据类型，就是值传递
-</code></pre></li>
-<li><p>对于包含静态代码块，初始化代码块和构造方法的子类，其初始化顺序为：</p>
-<pre><code>（B是A的子类）
-A static block
-B static block
-A init block
-A initialized
-B init block
-B initialized
-</code></pre></li>
-<li><p>当父类没有提供默认构造函数时，必须在子类构造函数的第一条语句通过super(…)<br>  完成父类对象成员的初始化工作。</p>
-</li>
-<li><p>父类当中用private修饰的成员，子类继承了，但是不可见</p>
-</li>
-<li><p>使用final修饰类和方法：</p>
-<pre><code>可以提高安全性
-可以加快某些类型检查过程
-</code></pre></li>
-<li><p>对于final所修饰的常量来讲，其初始化时机有：</p>
-<pre><code>1. 声明该常量时初始化
-2. 在构造方法中给常量赋值（每个构造方法都要）
-</code></pre></li>
-<li><p>package用途：</p>
-<pre><code>1 将相关的类和接口分组，包名通常表示包中各个类和接口的用途
-2 包创建不同的命名空间，解决了命名冲突问题
-3 提供了对应程序内部实现机制的保护域
-  （实际的保护还要和访问权限修饰符结合）
-</code></pre></li>
-<li><p>静态导入局限性：</p>
-<pre><code>1 静态导入的单位只能是一个类
-2 导入的成员与本类成员相同时，将被隐藏
-</code></pre></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/07/Java学习笔记01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1565,15 +1503,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
               </li>
             
             <div class="clearfix"></div>
