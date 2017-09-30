@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="云飞扬的博客">
 <meta property="og:description" content="记录一些知识点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-28T14:20:16.454Z">
+<meta property="og:updated_time" content="2017-09-29T01:21:39.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java学习笔记01">
 <meta name="twitter:description" content="记录一些知识点">
@@ -173,13 +173,15 @@
 </li>
 <li><p>局部变量必须先赋值再使用，否则会出现编译错误。</p>
 </li>
-<li><p>当+对应的两个操作数中至少有一个为字符串时，+所做的是字符串拼接操作。</p>
+<li><p>当<code>+</code>对应的两个操作数中至少有一个为字符串时，<code>+</code>所做的是字符串拼接操作。</p>
 </li>
 <li><p>四舍五入相关：</p>
 </li>
 </ul>
 <pre><code>Math.floor 向下取整     Math.floor(1.4)=1.0 
+
 Math.ceil  向上取整     Math.ceil(1.4)=2.0
+
 Math.round 四舍五入,
 算法为Math.floor(x+0.5) 
 Math.round(11.5)=12     Math.round(-11.5)=11
@@ -189,6 +191,7 @@ Math.round(11.5)=12     Math.round(-11.5)=11
 <li><p>复合赋值，会包含一个隐式的类型转换（允许大转小）。</p>
 </li>
 <li><p>break利用标签跳出外层循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">outer:</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</div><div class="line">        <span class="keyword">if</span>(j==<span class="number">5</span>)</div><div class="line">            <span class="keyword">break</span> outer;</div><div class="line">        System.out.print(<span class="string">"*"</span>);</div><div class="line">    &#125;</div><div class="line">    System.out.print(<span class="string">"\r\n"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>方法不能嵌套定义。</p>
 </li>
@@ -532,7 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HashTable</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
             
             <div class="clearfix"></div>

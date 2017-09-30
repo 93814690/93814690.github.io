@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java学习笔记11-IO | 云飞扬的博客</title>
+  <title>JavaWeb02-CSS | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式">
-<meta name="keywords" content="Java">
+  <meta name="description" content="CSS （Cascading Style Sheet）是层叠样式表.作用来定义网页的显示效果">
+<meta name="keywords" content="Java,JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记11-IO">
-<meta property="og:url" content="http://yoursite.com/2017/09/19/Java学习笔记11-IO/index.html">
+<meta property="og:title" content="JavaWeb02-CSS">
+<meta property="og:url" content="http://yoursite.com/2017/09/30/JavaWeb/JavaWeb02-CSS/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
-<meta property="og:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式">
+<meta property="og:description" content="CSS （Cascading Style Sheet）是层叠样式表.作用来定义网页的显示效果">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-28T14:27:13.737Z">
+<meta property="og:updated_time" content="2017-09-30T13:50:20.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记11-IO">
-<meta name="twitter:description" content="IO流用来处理设备之间的数据传输  Java对数据的操作是通过流的方式">
+<meta name="twitter:title" content="JavaWeb02-CSS">
+<meta name="twitter:description" content="CSS （Cascading Style Sheet）是层叠样式表.作用来定义网页的显示效果">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -145,20 +145,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java学习笔记11-IO" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JavaWeb/JavaWeb02-CSS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java学习笔记11-IO
+      JavaWeb02-CSS
     </h1>
   
 
         
-        <a href="/2017/09/19/Java学习笔记11-IO/" class="archive-article-date">
-  	<time datetime="2017-09-19T11:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+        <a href="/2017/09/30/JavaWeb/JavaWeb02-CSS/" class="archive-article-date">
+  	<time datetime="2017-09-30T02:27:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
 </a>
         
       </header>
@@ -166,163 +166,134 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>IO流用来处理设备之间的数据传输</p>
-</li>
-<li><p>Java对数据的操作是通过流的方式</p>
-</li>
+<li>CSS （Cascading Style Sheet）是层叠样式表.作用来定义网页的显示效果</li>
 </ul>
 <a id="more"></a>
 <ul>
-<li>流的分类：</li>
+<li>CSS和HTML结合的方式</li>
 </ul>
-<pre><code>1.按照数据流向来分
-    输入流：将设备中的数据读入内存
-    输出流：将内存中的数据写入外部设备
+<pre><code>1 sytle属性方式(行内样式)
+    写在标签的属性位置
+        &lt;p style=&quot;font-size: 2cm&quot;&gt;hello&lt;/p&gt;
+    一般的样式除了出现在已知的html标签内，更多的是出现在 div 或者span
+    该方式比较灵活，但是对于多个相同标签的同一样式定义比较麻烦，适合局部修改。
 
-2.按照数据流的内容来分：
-    字节流  输入: InputStream       
-            输出: OutputStream
+2 style标签方式(内嵌样式)
+    内嵌在html文档的头部
+        &lt;style type=&quot;text/css&quot;&gt;
+        div{
+            font-size: 2cm ;
+            color: #FF00FF
+        }
+        &lt;/style&gt;
+    该方式可以对单个页面的样式进行统一设置，但对于局部不够灵活
 
-    字符流  输入: Reader            
-            输出：Writer
-</code></pre><ul>
-<li>什么情况下使用哪种流呢?</li>
-</ul>
-<pre><code>如果数据所在的文件通过windows自带的记事本打开并能读懂里面的内容，就用字符流。其他用字节流。
-如果你什么都不知道，就用字节流
-</code></pre><ul>
-<li><p>字节流的抽象基类：InputStream ，OutputStream。</p>
-</li>
-<li><p>字符流的抽象基类：Reader ， Writer。</p>
-</li>
-<li><p>注：由这四个类派生出来的子类名称都是以其父类名作为子类名的后缀。</p>
-</li>
-<li><p>FileOutputStream的构造方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FileOutputStream(File file)</div><div class="line">FileOutputStream(String name)</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">//当所指向的文件不存在的时候，输出流会为我们首先创建该文件</span></div><div class="line">    <span class="comment">//一旦创建好流对象，那么该对象就已经和实际的文件关联起来了</span></div><div class="line">    OutputStream a = <span class="keyword">new</span> FileOutputStream(<span class="string">"fos.txt"</span>);<span class="comment">//相对路径       windows中 d:\</span></div><div class="line">                                                     <span class="comment">//              unix /</span></div><div class="line">    </div><div class="line">    <span class="comment">//通过输出流的write方法将数据写入外设的文件中</span></div><div class="line">    a.write(<span class="string">"helloworld"</span>.getBytes());</div><div class="line">    </div><div class="line">    <span class="comment">//操作系统中有一个核心功能是：I/O设备管理</span></div><div class="line">    <span class="comment">//因此我们的程序，在底层实现的时候，实际上是借助了操作系统的核心功能</span></div><div class="line">    <span class="comment">//所以我们势必会使用一些操作系统中的资源，而这些资源是操作系统和心态所需要使用的，我们jvm是管理不了的</span></div><div class="line">    <span class="comment">//所以我们需要手动调用close方法，一方面释放我们在jvm中的流资源，当更重要的一方面，是释放系统资源</span></div><div class="line">    a.close();</div><div class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>字节流写数据的方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>数据的换行和追加：</p>
-</li>
-</ul>
-<pre><code>1.换行
-    换行符与操作系统相关：
-        1.windows  \r\n
-        2.unix     \n
-        3.mac      \r
+3.1  导入方式
+    &lt;style type=&quot;text/css&quot;&gt;
+        @import &quot;01.css&quot;;
+    &lt;/style&gt;
 
-2.数据追加的问题
-    1.文件输出流默认的数据追加方式，是从文件的开头开始写入（会覆盖掉之前已有的文件内容）
-    2.如果要在文件末尾实现内容的追加,则需要使用`public FileOutputStream(File file,boolean append)`
+3.2  链接方式
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;01.css&quot; &gt;
 </code></pre><ul>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注意接口的使用</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeQiuetly</span><span class="params">(Closeable fos)</span> </span>&#123;</div><div class="line">    <span class="comment">//流对象使用完毕后，释放流资源，及系统资源</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != fos) &#123;</div><div class="line">            fos.close();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>FileInputStream的构造方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FileInputStream(File file)</div><div class="line">FileInputStream(String name)</div></pre></td></tr></table></figure>
-</li>
-<li><p>读方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//从输入流中读取数据的下一个字节。返回 0 到 255范围内的 int 字节值。</span></div><div class="line"><span class="comment">//如果因为已经到达流末尾而没有可用的字节，则返回值 -1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span> </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>字节缓冲流：</p>
-</li>
+<li>CSS样式优先级和代码规范</li>
 </ul>
-<pre><code>字节缓冲输出流
-    BufferedOutputStream
-字节缓冲输入流
-    BufferedInputStream
-</code></pre><ul>
-<li><p>BufferedOutputStream</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建一个新的缓冲输出流，以将具有指定缓冲区大小的数据写入指定的底层输出流。 </span></div><div class="line">    BufferedOutputStream(OutputStream out, <span class="keyword">int</span> size)</div></pre></td></tr></table></figure>
-</li>
-<li><p>分工:</p>
-</li>
-</ul>
-<pre><code>BufferedOutputStream对象中的outputStream，就是负责实际的流中数据的传输
-而BufferedOutputStream本身，决定何时将缓冲区中的数据写入流中传输
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取流对象</span></div><div class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"bos2.txt"</span>);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</div><div class="line"><span class="keyword">byte</span>[] b = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</div><div class="line">bos.write(b, <span class="number">0</span>, b.length);</div><div class="line">bos.close();</div></pre></td></tr></table></figure>
-<ul>
-<li><p>字符流 = 字节流 + 编码表</p>
-</li>
-<li><p>编解码一致，才能规避乱码问题</p>
-</li>
-<li><p>默认情况下，即不指定字符集的情况下，java中采用默认的本地字符集来对字符进行编解码默认字符集，<br>  依赖于操作系统，因为我们使用的是简体中文，所以默认使用gbk编码</p>
-</li>
-<li><p>常见编码表</p>
-</li>
-</ul>
-<pre><code>ASCII/Unicode 字符集
-ISO-8859-1   Latin-1
-GB2312/GBK/GB18030  简体字
-BIG5 繁体字
-UTF-8
-</code></pre><ul>
-<li><p>OutputStreamWriter 是字符流通向字节流的桥梁,可使用指定的 charset 将要写入流中的字符编码成字节</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建使用默认字符编码的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建使用指定字符集的 OutputStreamWriter</span></div><div class="line">    OutputStreamWriter(OutputStream out, String charsetName)</div><div class="line"></div><div class="line">写方法</div><div class="line">    <span class="comment">//写入单个字符。 </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> c)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符数组的某一部分。 </span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str)</span> </span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="comment">//写入字符串的某一部分</span></span></div><div class="line"><span class="function">    <span class="keyword">void</span> <span class="title">write</span><span class="params">(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>InputStreamReader 字符输入流</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InputStreamReader</span><span class="params">(InputStream in)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="title">InputStreamReader</span><span class="params">(InputStream in,String charsetName)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">读方法</span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf，<span class="keyword">int</span> off ,<span class="keyword">int</span> len)</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>字符流的简化写法 只能使用默认字符集</p>
-</li>
-<li><p>FileWriter</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    FileWriter(File file)</div><div class="line">    FileWriter(File file, <span class="keyword">boolean</span> append)</div><div class="line">    FileWriter(String fileName)</div></pre></td></tr></table></figure>
-</li>
-<li><p>FileReader</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    FileReader(File file)</div><div class="line">    FileReader(String fileName)</div></pre></td></tr></table></figure>
-</li>
-<li><p>字符缓冲流</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个使用默认大小输出缓冲区的缓冲字符输出流。</span></div><div class="line">BufferedWriter(Writer out) </div><div class="line"></div><div class="line"><span class="comment">//创建一个使用给定大小输出缓冲区的新缓冲字符输出流。</span></div><div class="line">BufferedWriter(Writer out, <span class="keyword">int</span> sz)</div><div class="line"></div><div class="line"><span class="comment">//创建一个使用默认大小输入缓冲区的缓冲字符输入流</span></div><div class="line">BufferedReader(Reader in)</div><div class="line"></div><div class="line"><span class="comment">//创建一个使用指定大小输入缓冲区的缓冲字符输入流</span></div><div class="line">BufferedReader(Reader in, <span class="keyword">int</span> sz)</div></pre></td></tr></table></figure>
-</li>
-<li><p>新方法 <code>void newLine()</code>,<code>String readLine()</code></p>
-</li>
-<li><p>注意这里的读取到流末尾的判定条件，和之前的都不同,到流末尾返回的是null</p>
-</li>
-<li><p>打印流</p>
-</li>
-</ul>
-<pre><code>字节流打印流     PrintStream
-字符打印流       PrintWriter
-</code></pre><ul>
-<li>特点：</li>
-</ul>
-<pre><code>1.只能操作目的地，不能操作数据
-2.可以操作任意类型的数据
-3.如果启动了自动刷新(通过构造方法启用该功能)，能够自动刷新(调用指定方法才有效果)
-4.可以操作文件的流
-</code></pre><ul>
-<li><p>PrintWriter</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    PrintWriter(File file) </div><div class="line">    PrintWriter(String fileName)</div><div class="line">    PrintWriter(OutputStream out, <span class="keyword">boolean</span> autoFlush)</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果启用自动刷新，它只会在调用的println，printf，或format方法来完成</p>
-</li>
-<li><p>可以操作文件的流</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FileInputStream(File, String)</div><div class="line">FileOutputStream(File,String)</div><div class="line">FileReader(String, File)</div><div class="line">FileWriter(String, File)</div><div class="line">PrintWriter</div><div class="line">PrintStream</div></pre></td></tr></table></figure>
-</li>
-<li><p>标准输入输出流</p>
-</li>
-</ul>
-<pre><code>System.in 标准输入流其类型为InputStream,通常指键盘输入
-System.out 标准输出流控制台输出，其类型为PrintStream
-</code></pre><ul>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//scanner 利用原始的标准输入流，帮我们读取一行字符串</span></div><div class="line"><span class="comment">//那么我们是否可以自己完成这个功能呢？</span></div><div class="line"></div><div class="line"><span class="comment">//Scanner sc = new Scanner(System.in);</span></div><div class="line"><span class="comment">//String nextLine = sc.nextLine();</span></div><div class="line"></div><div class="line"><span class="comment">//想到了BufferedReader中的readLine()方法，来读取一行字符串</span></div><div class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">String readLine = br.readLine();</div><div class="line">System.out.println(<span class="string">"Buffered readLine: "</span> + readLine);</div></pre></td></tr></table></figure>
-</li>
-<li><p>序列化流 ObjectOutputStream</p>
-</li>
-</ul>
-<pre><code>1.ObjectOutputStream 将 Java 对象的基本数据类型和引用数据类型所指向的对象写入OutputStream
-2.只有支持java.io.Serializable接口的对象才能写入流中
-3.每个 serializable 对象的类都被编码，编码内容包括类名和类签名、对象的字段值和数组值，以及从初始对象中引用的其他所有对象的闭包
-</code></pre><ul>
-<li>反序列化流 ObjectInputStream</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">构造方法</div><div class="line">    <span class="comment">//创建写入指定 OutputStream 的 ObjectOutputStream</span></div><div class="line">    ObjectOutputStream(OutputStream out)</div><div class="line"></div><div class="line">    <span class="comment">//创建从指定 InputStream 读取的 ObjectInputStream</span></div><div class="line">    ObjectInputStream(InputStream in)</div></pre></td></tr></table></figure>
-<ul>
-<li>使用transient关键字声明不需要序列化的成员变量</li>
-</ul>
+<pre><code>样式优先级
+    由上到下,由外到内:优先级由低到高
+    就近原则
 
+代码规范
+    选择器名称 { 属性名：属性值；属性名：属性值；…….}
+        属性与属性之间用 分号 隔开
+        属性与属性值直接按用 冒号 连接
+        如果一个属性有多个值的话，那么多个值用 空格 隔开
+</code></pre><ul>
+<li><p>CSS选择器:就是指定CSS要作用的标签，那个标签的名称就是选择器</p>
+</li>
+<li><p>CSS选择器的类型</p>
+</li>
+</ul>
+<pre><code>1 html标签名选择器:使用的就是html的标签名
+    h1{
+        color: darkgreen;
+    }
+
+2 class选择器：其实使用的标签中的class属性
+    .class01{
+        font-size: 2cm;
+    }
+
+3 id选择器：其实使用的是标签的中的id属性
+    #welcome{
+        font-size: 3cm;
+        color: chartreuse;
+    }
+</code></pre><ul>
+<li>CSS扩展选择器</li>
+</ul>
+<pre><code>关联选择器
+    &lt;!-- 仅仅让出现在p标签里的b标签才使用该样式 --&gt;
+    p b{
+        color: red;
+    }
+
+组合选择器
+    span, div{
+
+        color: #998866;
+        font-size: 2cm;
+    }            
+
+伪元素选择器:其实就在html中预先定义好的一些选择器
+    a:link  超链接未点击状态。
+    a:visited 被访问后的状态。
+    a:hover 光标移到超链接上的状态（未点击）
+    a:active 点击超链接时的状态。
+        a:link{
+            color: red;
+            font-size: 2cm;
+        }
+
+属性选择器
+    [att*=val]属性选择器
+        如果元素用att表示的属性的值中包含用val指定的字符，那么该元素使用这个样式
+        [id*=&quot;1&quot;]{
+            width: 100px;
+            height: 100px;
+        }         
+    [att^=val]属性选择器
+        如果用att表示的属性的属性值的开头字符为用val指定的字符的话，那么该元素使用这个值
+    [att$=val]属性选择器
+        如果元素用att表示的属性的属性值的结尾字符为用val指定的字符，那么该元素使用这个样式
+</code></pre><ul>
+<li><p>CSS盒子模型</p>
+</li>
+<li><p>CSS布局样式</p>
+</li>
+</ul>
+<pre><code>第一种绝对布局
+    #div1{
+        position: absolute;
+        top: 50px;
+        left: 100px;
+    }
+
+第二种相对布局
+    #div1{
+        position: relative;
+        top: 50px;
+        left: 100px;
+        z-index: 5;
+    }
+</code></pre><ul>
+<li>CSS的常见属性</li>
+</ul>
+<pre><code>字体设置
+文本设置
+背景设置
+列表设置
+鼠标样式设置(cursor)
+</code></pre>
       
 
       
@@ -357,6 +328,10 @@ System.out 标准输出流控制台输出，其类型为PrintStream
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
         		</li>
       		
 		</ul>
@@ -412,7 +387,7 @@ System.out 标准输出流控制台输出，其类型为PrintStream
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/Java学习笔记11-IO/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/30/JavaWeb/JavaWeb02-CSS/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -426,18 +401,18 @@ System.out 标准输出流控制台输出，其类型为PrintStream
   
 <nav id="article-nav">
   
-    <a href="/2017/09/23/LeetCode-Two-Sum/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/30/LeetCode-Plus-One/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          [LeetCode] Two Sum
+          [LeetCode] Plus One
         
       </div>
     </a>
   
   
-    <a href="/2017/09/19/Java学习笔记10-File/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java学习笔记10-File</div>
+    <a href="/2017/09/30/LeetCode-Search-Insert-Position/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[LeetCode] Search Insert Position</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -476,7 +451,7 @@ System.out 标准输出流控制台输出，其类型为PrintStream
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/09/19/Java学习笔记11-IO/",
+  id: "http://yoursite.com/2017/09/30/JavaWeb/JavaWeb02-CSS/",
   owner: '93814690',
   repo: '93814690.github.io',
   oauth: {
