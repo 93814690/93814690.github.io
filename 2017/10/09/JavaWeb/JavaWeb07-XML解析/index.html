@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Java | 云飞扬的博客</title>
+  <title>JavaWeb07 XML解析 | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="云飞扬的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Java/page/3/index.html">
+  <meta name="description" content="XML解析 XML解析方式分为两种：DOM方式和SAX方式  DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。 SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。  XML解析开发包  JAXP：是SUN公司推出的解析标准实现。 Dom4J：是开源组织推出的解">
+<meta name="keywords" content="JavaWeb,XML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb07 XML解析">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/JavaWeb/JavaWeb07-XML解析/index.html">
 <meta property="og:site_name" content="云飞扬的博客">
+<meta property="og:description" content="XML解析 XML解析方式分为两种：DOM方式和SAX方式  DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。 SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。  XML解析开发包  JAXP：是SUN公司推出的解析标准实现。 Dom4J：是开源组织推出的解">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-11T15:03:36.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="云飞扬的博客">
+<meta name="twitter:title" content="JavaWeb07 XML解析">
+<meta name="twitter:description" content="XML解析 XML解析方式分为两种：DOM方式和SAX方式  DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。 SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。  XML解析开发包  JAXP：是SUN公司推出的解析标准实现。 Dom4J：是开源组织推出的解">
   
     <link rel="alternative" href="/atom.xml" title="云飞扬的博客" type="application/atom+xml">
   
@@ -55,7 +60,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/Java/">Java</a></li>
+				<li><a href="/tags/Java/">Java基础</a></li>
+	        
+				<li><a href="/tags/JavaWeb/">JavaWeb</a></li>
 	        
 				<li><a href="/tags/LeetCode/">LeetCode</a></li>
 	        
@@ -107,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -121,11 +130,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/Java/">Java</a></li>
+					<li style="width: 25%"><a href="/tags/Java/">Java基础</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/LeetCode/">LeetCode</a></li>
+					<li style="width: 25%"><a href="/tags/JavaWeb/">JavaWeb</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/LeetCode/">LeetCode</a></li>
 		        
 				</ul>
 			</nav>
@@ -140,101 +151,302 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JavaWeb/JavaWeb07-XML解析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java习题记录/" class="archive-article-date">
-  	<time datetime="2017-09-07T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java习题记录/">Java习题记录</a>
+    <h1 class="article-title" itemprop="name">
+      JavaWeb07 XML解析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/09/JavaWeb/JavaWeb07-XML解析/" class="archive-article-date">
+  	<time datetime="2017-10-09T12:19:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="XML解析"><a href="#XML解析" class="headerlink" title="XML解析"></a>XML解析</h4><ul>
+<li>XML解析方式分为两种：DOM方式和SAX方式</li>
+</ul>
+<pre><code>DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。
+SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。
+</code></pre><ul>
+<li>XML解析开发包</li>
+</ul>
+<pre><code>JAXP：是SUN公司推出的解析标准实现。
+Dom4J：是开源组织推出的解析开发包。 
+JDom：是开源组织推出的解析开发包。
+</code></pre><ul>
+<li>JAXP:(Java API for XML Processing)开发包是JavaSE的一部分，它由以下几个包及其子包组成：</li>
+</ul>
+<pre><code>org.w3c.dom:提供DOM方式解析XML的标准接口
+org.xml.sax:提供SAX方式解析XML的标准接口
+javax.xml:提供了解析XML文档的类
+</code></pre><h6 id="JAXP-DOM解析"><a href="#JAXP-DOM解析" class="headerlink" title="JAXP DOM解析"></a>JAXP DOM解析</h6><ul>
+<li><p>javax.xml.parsers包中，定义了几个工厂类。我们可以通过调用这些工厂类，得到对XML文档进行解析的DOM和SAX解析器对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DocumentBuilderFactory</div><div class="line">SAXParserFactory</div></pre></td></tr></table></figure>
+</li>
+<li><p>获得JAXP中的DOM解析器</p>
+</li>
+</ul>
+<pre><code>调用 DocumentBuilderFactory.newInstance() 方法得到创建 DOM 解析器的工厂。
+
+调用工厂对象的 newDocumentBuilder方法得到 DOM 解析器对象。
+
+调用 DOM 解析器对象的 parse() 方法解析 XML 文档，得到代表整个文档的 Document 对象，进行可以利用DOM特性对整个XML文档进行操作了。
+</code></pre><ul>
+<li>更新XML文档<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TransformerFactory tsf =TransformerFactory.newInstance();</div><div class="line">Transformer tsTransformer = tsf.newTransformer();</div><div class="line">tsTransformer.transform( <span class="keyword">new</span> DOMSource(document), <span class="keyword">new</span> StreamResult(<span class="string">"src/books.xml"</span>));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="JAXP-SAX解析"><a href="#JAXP-SAX解析" class="headerlink" title="JAXP SAX解析"></a>JAXP SAX解析</h6><ul>
+<li><p>在使用 DOM 解析 XML 文档时，需要读取整个 XML 文档，在内存中构架代表整个 DOM 树的Doucment对象，从而再对XML文档进行操作。此种情况下，如果 XML 文档特别大，就会消耗计算机的大量内存，并且容易导致内存溢出。</p>
+</li>
+<li><p>SAX解析允许在读取文档的时候，即对文档进行处理，而不必等到整个文档装载完才会文档进行操作。</p>
+</li>
+<li><p>SAX采用事件处理的方式解析XML文件，利用 SAX 解析 XML 文档，涉及两个部分：解析器和事件处理器</p>
+</li>
+<li><p>解析器可以使用JAXP的API创建，创建出SAX解析器后，就可以指定解析器去解析某个XML文档</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用SAXParserFactory创建SAX解析工厂</span></div><div class="line">SAXParserFactory  spf = SAXParserFactory.newInstance();</div><div class="line"><span class="comment">// 通过SAX解析工厂得到解析器对象		</span></div><div class="line">SAXParser sp = spf.newSAXParser();</div><div class="line"><span class="comment">// 通过解析器对象得到一个XML的读取器</span></div><div class="line">XMLReader xmlReader = sp.getXMLReader();</div><div class="line"><span class="comment">// 设置读取器的事件处理器		</span></div><div class="line">xmlReader.setContentHandler(<span class="keyword">new</span> BookParserHandler());</div><div class="line"><span class="comment">// 解析xml文件	</span></div><div class="line">xmlReader.parse(<span class="string">"book.xml"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>解析器采用SAX方式在解析某个XML文档时，它只要解析到XML文档的一个组成部分，都会去调用<strong>事件处理器的一个方法，解析器在调用事件处理器的方法时，会把当前解析到的xml文件内容作为方法的参数传递给事件处理器</strong></p>
+</li>
+</ul>
+<h6 id="Dom4J-解析"><a href="#Dom4J-解析" class="headerlink" title="Dom4J 解析"></a>Dom4J 解析</h6><ul>
+<li><p>Dom4j是一个非常优秀的Java XML API，<strong>具有性能优异、功能强大和极易使用的特点</strong></p>
+</li>
+<li><p>使用Dom4j开发，需下载dom4j相应的jar文件</p>
+</li>
+</ul>
+<p>######## 普通方式</p>
+<ul>
+<li><p>读取需要解析的xml文件,产生一个dom树。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SAXReader reader = <span class="keyword">new</span> SAXReader();</div><div class="line"></div><div class="line"><span class="comment">//需要注意的是，此处接收的document 需要导入的是 org.dom4j.Document; 而非w3c的document</span></div><div class="line">Document document = reader.read(<span class="string">"book.xml"</span>);</div><div class="line"></div><div class="line">Element rootElement = document.getRootElement();</div></pre></td></tr></table></figure>
+</li>
+<li><p>得到某个具体的节点内容 得到第一本书的售价</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">List elements = rootElement.elements();</div><div class="line">System.out.println(<span class="string">"DOM4JDemo.main()"</span>+elements.size());</div><div class="line">Element firstbook = (Element) elements.get(<span class="number">0</span>);  <span class="comment">//第一本书</span></div><div class="line"></div><div class="line">Element priceelement = (Element) firstbook.elements().get(<span class="number">2</span>);<span class="comment">//售价节点</span></div><div class="line">String text = priceelement.getText();</div><div class="line">System.out.println(<span class="string">"DOM4JDemo.main()"</span>+text);</div></pre></td></tr></table></figure>
+</li>
+<li><p>打印某节点的所有元素节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;firstbook.elements().size();i++)&#123;</div><div class="line">     Element child = (Element) firstbook.elements().get(i);    </div><div class="line">     System.out.println(<span class="string">"DOM4JDemo.main()"</span>+child.getName());          </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改某个元素节点的主体内容 （修改第一本书的售价）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">priceelement.setText(<span class="string">"25"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>向指定元素节点中增加子元素节点 (给第二本书增加一个<code>&lt;isbn&gt;123&lt;/isbn&gt;)</code>   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Element secondbook = (Element) elements.get(<span class="number">1</span>); <span class="comment">//拿到第二本书        </span></div><div class="line">Element isbnElement = secondbook.addElement(<span class="string">"isbn"</span>);        </div><div class="line">isbnElement.addText(<span class="string">"123"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>向指定元素节点上增加同级元素节点(增加一本书)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Element cloneElement = firstbook.createCopy();</div><div class="line">rootElement.add(cloneElement);</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除指定元素节点(把第二本书删掉)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rootElement.remove(secondbook);</div></pre></td></tr></table></figure>
+</li>
+<li><p>操作XML文件属性  第二本书的售价节点 增加一个属性 type=”RMB”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Element secondPrice= (Element) secondbook.elements().get(<span class="number">2</span>);<span class="comment">//售价节点</span></div><div class="line"></div><div class="line">secondPrice.addAttribute(<span class="string">"type"</span>, <span class="string">"RMB"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>把内存中的dom树写回到xml文件里的标准做法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">XMLWriter writer = <span class="keyword">new</span> XMLWriter(<span class="keyword">new</span>  OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">"output.xml"</span>),<span class="string">"UTF-8"</span>));  </div><div class="line">writer.write(document);</div><div class="line">writer.close();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>######## XPATH</p>
+<ul>
+<li><p>读取需要解析的xml文件,产生一个dom树。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SAXReader reader = <span class="keyword">new</span> SAXReader();</div><div class="line"></div><div class="line"><span class="comment">//需要注意的是，此处接收的document 需要导入的是 org.dom4j.Document; 而非w3c的document</span></div><div class="line">Document document = reader.read(<span class="string">"book.xml"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>得到某个具体的节点内容 得到第一本书的售价</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List selectNodes = document.selectNodes(<span class="string">"/书架/书/售价[1]"</span>);</div><div class="line">Element firstbookprice = (Element) selectNodes.get(<span class="number">0</span>);</div><div class="line">String text = firstbookprice.getText();</div><div class="line"></div><div class="line">System.out.println(<span class="string">"DOM4JDemo.main()"</span>+text);</div></pre></td></tr></table></figure>
+</li>
+<li><p>打印某节点的所有元素节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">List selectNodes2 = document.selectNodes(<span class="string">"/书架/书[2]/*"</span>);</div><div class="line"><span class="keyword">for</span> (Object object2 : selectNodes2) &#123;</div><div class="line">    </div><div class="line">    Element element =(Element) object2;</div><div class="line">    System.out.println(<span class="string">"DOM4JDemo2.main()"</span>+element.getName());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改某个元素节点的主体内容 （修改第一本书的售价）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">((Element)document.selectNodes(<span class="string">"/书架/书/售价[1]"</span>).get(<span class="number">0</span>)).setText(<span class="string">"25"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>向指定元素节点中增加子元素节点 (给第二本书增加一个<code>&lt;isbn&gt;123&lt;/isbn&gt;)</code>   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Element secondbook = (Element) document.selectNodes(<span class="string">"/书架/书 [2]"</span>).get(<span class="number">0</span>); <span class="comment">//拿到第二本书        </span></div><div class="line">Element isbnElement = secondbook.addElement(<span class="string">"isbn"</span>);        </div><div class="line">isbnElement.addText(<span class="string">"123"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>向指定元素节点上增加同级元素节点(增加一本书)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List selectNodes3 = document.selectNodes(<span class="string">"/书架/书[1]"</span>);</div><div class="line">Element firstbook = (Element) selectNodes3.get(<span class="number">0</span>);</div><div class="line"></div><div class="line">Element cloneElement = firstbook.createCopy();</div><div class="line">rootElement.add(cloneElement);</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除指定元素节点(把第二本书删掉)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Element shujia = (Element) document.selectNodes(<span class="string">"/书架"</span>).get(<span class="number">0</span>);</div><div class="line">shujia.remove(secondbook);</div></pre></td></tr></table></figure>
+</li>
+<li><p>操作XML文件属性  第二本书的售价节点 增加一个属性 type=”RMB”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Element secondPrice= (Element) secondbook.elements().get(<span class="number">2</span>);<span class="comment">//售价节点</span></div><div class="line">secondPrice.addAttribute(<span class="string">"type"</span>, <span class="string">"RMB"</span>);</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/07/Java基础/Java学习笔记01/" class="archive-article-date">
-  	<time datetime="2017-09-07T10:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/Java基础/Java学习笔记01/">Java学习笔记01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">XML</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/JavaWeb/JavaWeb07-XML解析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/10/10/JavaWeb/JavaWeb08-Server-HTTP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaWeb08 Server&amp;HTTP
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/10/08/JavaWeb/JavaWeb06-XML/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaWeb06 XML</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Java/page/2/">&laquo; Prev</a><a class="page-number" href="/tags/Java/">1</a><a class="page-number" href="/tags/Java/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/10/09/JavaWeb/JavaWeb07-XML解析/",
+  owner: '93814690',
+  repo: '93814690.github.io',
+  oauth: {
+    client_id: 'd43c3cbe16c82b44085e',
+    client_secret: 'b3a2a27ef223b6079e9bcde0d2189931036e9e75',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -258,9 +470,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -332,6 +544,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -348,15 +568,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Arrary</a>
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -365,6 +581,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Arrary</a>
               </li>
             
             <div class="clearfix"></div>

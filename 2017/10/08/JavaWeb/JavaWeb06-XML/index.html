@@ -9,7 +9,7 @@
   <title>JavaWeb06 XML | 云飞扬的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="XML概述 XML是指可扩展标记语言(eXtensible Markup Language)，它是一种标记语言，很类似HTML。它被设计的宗旨是传输数据，而非显示数据。  目前遵循的是W3C组织于2000年发布的XML1.0规范">
-<meta name="keywords" content="Java,JavaWeb,XML">
+<meta name="keywords" content="JavaWeb,XML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb06 XML">
 <meta property="og:url" content="http://yoursite.com/2017/10/08/JavaWeb/JavaWeb06-XML/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="XML概述 XML是指可扩展标记语言(eXtensible Markup Language)，它是一种标记语言，很类似HTML。它被设计的宗旨是传输数据，而非显示数据。  目前遵循的是W3C组织于2000年发布的XML1.0规范">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/特殊字符.png">
-<meta property="og:updated_time" content="2017-10-08T11:48:18.223Z">
+<meta property="og:updated_time" content="2017-10-11T15:03:50.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb06 XML">
 <meta name="twitter:description" content="XML概述 XML是指可扩展标记语言(eXtensible Markup Language)，它是一种标记语言，很类似HTML。它被设计的宗旨是传输数据，而非显示数据。  目前遵循的是W3C组织于2000年发布的XML1.0规范">
@@ -62,7 +62,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/Java/">Java</a></li>
+				<li><a href="/tags/Java/">Java基础</a></li>
+	        
+				<li><a href="/tags/JavaWeb/">JavaWeb</a></li>
 	        
 				<li><a href="/tags/LeetCode/">LeetCode</a></li>
 	        
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -128,11 +132,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/Java/">Java</a></li>
+					<li style="width: 25%"><a href="/tags/Java/">Java基础</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/LeetCode/">LeetCode</a></li>
+					<li style="width: 25%"><a href="/tags/JavaWeb/">JavaWeb</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/LeetCode/">LeetCode</a></li>
 		        
 				</ul>
 			</nav>
@@ -220,10 +226,10 @@ CDATA区
 </li>
 </ul>
 <pre><code>严格区分大小写；&lt;P&gt; &lt;/p&gt;
-只能以字母或下划线开头；abc  _abc  
+只能以字母或下划线开头；abc  _abc
 不能以xml(或XML、Xml等)开头----W3C保留日后使用；
 名称字符之间不能有空格或制表符；
-名称字符之间不能使用冒号； (有特殊用途) 
+名称字符之间不能使用冒号； (有特殊用途)
 </code></pre><ul>
 <li><p>一个元素可以有多个属性，每个属性都有它自己的名称和取值</p>
 </li>
@@ -280,7 +286,7 @@ XML Schema
 </code></pre><h6 id="DTD-Document-Type-Definition-：文档类型定义"><a href="#DTD-Document-Type-Definition-：文档类型定义" class="headerlink" title="DTD(Document Type Definition)：文档类型定义"></a>DTD(Document Type Definition)：文档类型定义</h6><ul>
 <li><p>如何根据DTD中定义的内容来验证XML书写是否正确呢？需要软件程序，即解析器</p>
 </li>
-<li><p>DTD约束文档可以在XML文档中直接定义，也可以作为单独的文档进行编写(<strong>单独的文档必须以UTF-8编码进行保存</strong>) </p>
+<li><p>DTD约束文档可以在XML文档中直接定义，也可以作为单独的文档进行编写(<strong>单独的文档必须以UTF-8编码进行保存</strong>)</p>
 </li>
 <li><p>在XML文档中编写DTD示例</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE 书架 [</span></div><div class="line"><span class="meta">	&lt;!ELEMENT 书架 (书+)&gt;</span></div><div class="line"><span class="meta">	&lt;!ELEMENT 书 (书名,作者,售价)&gt;</span></div><div class="line"><span class="meta">	&lt;!ELEMENT 书名 (#PCDATA)&gt;</span></div><div class="line"><span class="meta">	&lt;!ELEMENT 作者 (#PCDATA)&gt;</span></div><div class="line"><span class="meta">	&lt;!ELEMENT 售价 (#PCDATA)&gt;</span></div><div class="line"><span class="meta">]&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">书架</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">书</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">书名</span>&gt;</span>浪潮之巅<span class="tag">&lt;/<span class="name">书名</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">作者</span>&gt;</span>吴军<span class="tag">&lt;/<span class="name">作者</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">售价</span>&gt;</span>39.00元<span class="tag">&lt;/<span class="name">售价</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">书</span>&gt;</span></div><div class="line">	...</div><div class="line"><span class="tag">&lt;/<span class="name">书架</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -330,7 +336,7 @@ ID:表示 属性的取值不能重复
 #IMPLIED：表示该属性可有可无
 #FIXED:表示属性的取值为一个固定值。语法：#FIXED &quot;固定值&quot;
 直接值：表示属性的取值为该默认值
-</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!ATTLIST</span> 页面作者 </span></div><div class="line"><span class="tag">	     姓名 <span class="attr">CDATA</span> #<span class="attr">IMPLIED</span> </span></div><div class="line"><span class="tag">	     年龄 <span class="attr">CDATA</span> #<span class="attr">IMPLIED</span> </span></div><div class="line"><span class="tag">	     联系信息 <span class="attr">CDATA</span> #<span class="attr">REQUIRED</span> </span></div><div class="line"><span class="tag">	     网站职务 <span class="attr">CDATA</span> #<span class="attr">FIXED</span> "页面作者" </span></div><div class="line"><span class="tag">	     个人爱好 <span class="attr">CDATA</span> "上网"</span></div><div class="line"><span class="tag">       &gt;</span></div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!ATTLIST</span> 页面作者</span></div><div class="line"><span class="tag">	     姓名 <span class="attr">CDATA</span> #<span class="attr">IMPLIED</span></span></div><div class="line"><span class="tag">	     年龄 <span class="attr">CDATA</span> #<span class="attr">IMPLIED</span></span></div><div class="line"><span class="tag">	     联系信息 <span class="attr">CDATA</span> #<span class="attr">REQUIRED</span></span></div><div class="line"><span class="tag">	     网站职务 <span class="attr">CDATA</span> #<span class="attr">FIXED</span> "页面作者"</span></div><div class="line"><span class="tag">	     个人爱好 <span class="attr">CDATA</span> "上网"</span></div><div class="line"><span class="tag">       &gt;</span></div></pre></td></tr></table></figure>
 <ul>
 <li><p>定义实体就是为一段内容指定一个名称，使用时通过这个名称就可以引用其所代表的内容</p>
 </li>
@@ -346,36 +352,40 @@ ID:表示 属性的取值不能重复
 <li><p>引用方式（注意是在DTD中使用）：%实体名称;</p>
 </li>
 </ul>
-<h6 id="Schema-约束"><a href="#Schema-约束" class="headerlink" title="Schema 约束"></a>Schema 约束</h6><h4 id="XML解析"><a href="#XML解析" class="headerlink" title="XML解析"></a>XML解析</h4><ul>
-<li>XML解析方式分为两种：DOM方式和SAX方式</li>
-</ul>
-<pre><code>DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。
-SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。
-</code></pre><ul>
-<li>XML解析开发包</li>
-</ul>
-<pre><code>JAXP：是SUN公司推出的解析标准实现。
-Dom4J：是开源组织推出的解析开发包。 
-JDom：是开源组织推出的解析开发包。
-</code></pre><ul>
-<li>JAXP:(Java API for XML Processing)开发包是JavaSE的一部分，它由以下几个包及其子包组成：</li>
-</ul>
-<pre><code>org.w3c.dom:提供DOM方式解析XML的标准接口
-org.xml.sax:提供SAX方式解析XML的标准接口
-javax.xml:提供了解析XML文档的类
-</code></pre><ul>
-<li><p>javax.xml.parsers包中，定义了几个工厂类。我们可以通过调用这些工厂类，得到对XML文档进行解析的DOM和SAX解析器对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DocumentBuilderFactory</div><div class="line">SAXParserFactory</div></pre></td></tr></table></figure>
+<h6 id="Schema-约束"><a href="#Schema-约束" class="headerlink" title="Schema 约束"></a>Schema 约束</h6><ul>
+<li><p>XML Schema 也是一种用于定义和描述 XML 文档结构与内容的模式语言，<strong>其出现是为了克服 DTD 的局限性</strong></p>
 </li>
-<li><p>获得JAXP中的DOM解析器</p>
+<li><p>XML Schema VS DTD</p>
 </li>
 </ul>
-<pre><code>调用 DocumentBuilderFactory.newInstance() 方法得到创建 DOM 解析器的工厂。
+<pre><code>XML Schema符合XML语法结构。
+DOM、SAX等XML API很容易解析出XML Schema文档中的内容。
+XML Schema对名称空间支持得非常好。
+XML Schema比XML DTD支持更多的数据类型，并支持用户自定义新的数据类型。
+XML Schema定义约束的能力非常强大，可以对XML实例文档作出细致的语义限制。
+XML Schema不能像DTD一样定义实体，比DTD更复杂，但Xml Schema现在已是w3c组织的标准，它正逐步取代DTD。
+</code></pre><ul>
+<li><p>XML Schema 文件自身就是一个XML文件，但它的扩展名通常为.xsd</p>
+</li>
+<li><p>一个XML Schema文档通常称之为模式文档(<strong>约束文档</strong>)，遵循这个文档书写的xml文件称之为<strong>实例文档</strong></p>
+</li>
+<li><p><strong>和XML文件一样，一个XML Schema文档也必须有一个根结点，但这个根结点的名称为schema</strong></p>
+</li>
+<li><p>编写了一个XML Schema约束文档后，通常需要把这个文件中声明的元素绑定到一个ＵＲＩ地址上，在XML Schema技术中有一个专业术语来描述这个过程，即把XML Schema文档声明的元素绑定到一个<strong>名称空间</strong>上，以后XML文件就可以通过这个URI（即名称空间）来告诉解析引擎，xml文档中编写的元素来自哪里，被谁约束</p>
+</li>
+<li><p>Schema入门案例（约束文档）</p>
+<figure class="highlight xsd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt; </div><div class="line"><span class="tag">&lt;<span class="name">xs:schema</span> </span></div><div class="line"><span class="tag">                            <span class="attr">xmlns:xs</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span> //标准的名称空间</span></div><div class="line"><span class="tag">                    <span class="attr">targetNamespace</span>=<span class="string">"http://www.cskaoyan.com"</span> //将该<span class="attr">schema</span>文档绑定到<span class="attr">http:</span>//<span class="attr">www.cskaoyan.com</span>名称空间</span></div><div class="line"><span class="tag">                    <span class="attr">elementFormDefault</span>=<span class="string">"qualified"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">'书架'</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">xs:complexType</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">xs:sequence</span> <span class="attr">maxOccurs</span>=<span class="string">'unbounded'</span> &gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">'书'</span> &gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">xs:complexType</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">'书名'</span> <span class="attr">type</span>=<span class="string">'xs:string'</span> /&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">'作者'</span> <span class="attr">type</span>=<span class="string">'xs:string'</span> /&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">'售价'</span> <span class="attr">type</span>=<span class="string">'xs:string'</span> /&gt;</span></div><div class="line">                        <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">xs:element</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">xs:element</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xs:schema</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Schema入门案例（实例文档）</p>
+<figure class="highlight xsd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">cskaoyan:书架</span></span></div><div class="line"><span class="tag">        <span class="attr">xmlns:cskaoyan</span>=<span class="string">"http://www.cskaoyan.com"</span></span></div><div class="line"><span class="tag">                <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></div><div class="line"><span class="tag">                <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.cskaoyan.com book.xsd"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">cskaoyan:书</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">cskaoyan:书名</span>&gt;</span>做最好的自己<span class="tag">&lt;/<span class="name">cskaoyan:书名</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">cskaoyan:作者</span>&gt;</span>李开复<span class="tag">&lt;/<span class="name">cskaoyan:作者</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">cskaoyan:售价</span>&gt;</span>28.00元<span class="tag">&lt;/<span class="name">cskaoyan:售价</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">cskaoyan:书</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">cskaoyan:书架</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>名称空间的概念 :在XML Schema中，每个约束模式文档都可以被赋以一个唯一的名称空间，名称空间用一个唯一的URI（Uniform Resource Identifier，统一资源标识符）表示。 在Xml文件中书写标签时，可以通过名称空间声明（xmlns），来声明当前编写的标签来自哪个Schema约束文档</p>
+</li>
+<li><p>使用默认名称空间 <code>xmlns=&quot;URI&quot;</code></p>
+</li>
+<li></li>
+</ul>
 
-调用工厂对象的 newDocumentBuilder方法得到 DOM 解析器对象。
-
-调用 DOM 解析器对象的 parse() 方法解析 XML 文档，得到代表整个文档的 Document 对象，进行可以利用DOM特性对整个XML文档进行操作了。
-</code></pre>
       
 
       
@@ -408,10 +418,6 @@ javax.xml:提供了解析XML文档的类
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
         		</li>
@@ -486,6 +492,15 @@ javax.xml:提供了解析XML文档的类
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/10/09/JavaWeb/JavaWeb07-XML解析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaWeb07 XML解析
+        
+      </div>
+    </a>
   
   
     <a href="/2017/10/03/leetcode/LeetCode-Search-for-a-Range/" id="article-nav-older" class="article-nav-link-wrap">
@@ -635,6 +650,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -651,15 +674,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Arrary</a>
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,6 +687,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Arrary</a>
               </li>
             
             <div class="clearfix"></div>
