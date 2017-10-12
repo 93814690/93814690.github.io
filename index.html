@@ -148,6 +148,176 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaWeb/JavaWeb09-servlet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/12/JavaWeb/JavaWeb09-servlet/">JavaWeb09 servlet</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/12/JavaWeb/JavaWeb09-servlet/" class="archive-article-date">
+  	<time datetime="2017-10-12T12:10:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><h1 id="Servlet简介"><a href="#Servlet简介" class="headerlink" title="Servlet简介 "></a>Servlet简介 </h1><h2 id="我们的理解"><a href="#我们的理解" class="headerlink" title="我们的理解"></a>我们的理解</h2><p>服务端的小程序</p>
+<p>也就是指我们自己写的程序。</p>
+<p>我们自己写的程序需要放在tomcat（JAVAEE容器）里运行——通过servlet</p>
+<p>Servlet 规范。（接口）</p>
+<h2 id="官方的说明"><a href="#官方的说明" class="headerlink" title="官方的说明"></a>官方的说明</h2><ul>
+<li><p>Servlet是sun公司提供的一门用于开发动态web资源的技术。</p>
+</li>
+<li><p>动态web技术？</p>
+</li>
+<li><p>A servlet is a small Java program that runs within a Web server.</p>
+</li>
+<li><p>Servlets receive and respond to requests from Web clients, usually across<br>HTTP, the HyperText Transfer Protocol.</p>
+</li>
+<li><p>Servlet本身可以去接收来自客户端的请求。</p>
+</li>
+<li><p>并且响应这个请求。</p>
+</li>
+</ul>
+<h1 id="Servlet-编写"><a href="#Servlet-编写" class="headerlink" title="Servlet 编写 "></a>Servlet 编写 </h1><h2 id="手动实现servlet"><a href="#手动实现servlet" class="headerlink" title="手动实现servlet"></a>手动实现servlet</h2><ul>
+<li><p><strong>编写一个Java类，实现servlet接口。</strong></p>
+</li>
+<li><p><strong>把开发好的Java类部署到web服务器中。（映射）</strong></p>
+</li>
+</ul>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>快速入门，用servlet向浏览器输出“hello servlet”</p>
+<ul>
+<li><p>阅读Servlet API，解决两个问题：</p>
+</li>
+<li><p>输出hello servlet的java代码应该写在servlet的哪个方法内？</p>
+</li>
+<li><p>如何向IE浏览器输出数据？</p>
+</li>
+</ul>
+<p>如何实现serlvet接口？</p>
+<p>To implement this interface,</p>
+<p>you can write a generic servlet that extends javax.servlet.GenericServlet</p>
+<p>or an HTTP servlet that extends javax.servlet.http.HttpServlet.</p>
+<p>Servlet接口</p>
+<p><img src="/images/servlet/6fd5a3c944380b562a4053f33b8617da.png" alt=""></p>
+<h3 id="放法一继承于GenericServlet"><a href="#放法一继承于GenericServlet" class="headerlink" title="放法一继承于GenericServlet"></a>放法一继承于GenericServlet</h3><h4 id="第一步-实现Servlet接口"><a href="#第一步-实现Servlet接口" class="headerlink" title="第一步 实现Servlet接口"></a>第一步 实现Servlet接口</h4><p>GenericServlet</p>
+<p>public abstract class <strong>GenericServlet</strong> implements<br><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\servlet-api.chm::/jsdk23/javax/servlet/Servlet.html" target="_blank" rel="external">Servlet</a>,</p>
+<p>只有一个抽象方法需要我们去实现</p>
+<p><img src="/images/servlet/f1b435f376ed41484e248bc6c3ee149b.png" alt=""></p>
+<p>那我们去写一个serlvet</p>
+<p><img src="/images/servlet/8cb8508cfd58761bc7b40ab54515f4d9.png" alt=""></p>
+<p>编译：</p>
+<p><img src="/images/servlet/6dbad2928a6410c72515d77700ff0090.png" alt=""></p>
+<p>原因是没有Javaee的包。</p>
+<p>如何导包：在命令行下</p>
+<p><img src="/images/servlet/46bb2770d3eb861354b6cc4c59026ff9.png" alt=""></p>
+<p><img src="/images/servlet/a2ee673c6c15b8f98de7dce695983044.png" alt=""></p>
+<p>修改一下</p>
+<p><img src="/images/servlet/cd307e621e36842ff94885869dff96f2.png" alt=""></p>
+<h4 id="如何部署这个serlvet？"><a href="#如何部署这个serlvet？" class="headerlink" title="如何部署这个serlvet？"></a>如何部署这个serlvet？</h4><p>部署成功的话，是需要它去执行的。怎么去执行？</p>
+<p>这个程序应该是通过用户请求去访问的。</p>
+<p>如何去把一个用户请求跟这个程序<strong>对应起来</strong>。</p>
+<p><a href="http://localhost/myapp/01.html" target="_blank" rel="external">http://localhost/myapp/01.html</a> 访问01.html</p>
+<p><a href="http://localhost/myapp/myfirstserlvet" target="_blank" rel="external">http://localhost/myapp/myfirstserlvet</a></p>
+<p>配置：</p>
+<p><img src="/images/servlet/08d20d9c9c0903272fbc5342f1b1a15f.png" alt=""></p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p><img src="/images/servlet/6794a3eeeaeb1bfa9d0d8a5acbf5d419.png" alt=""></p>
+<p><img src="/images/servlet/4ae6f59577552c96aeb5cdc1d5c1d47a.png" alt=""></p>
+<p><img src="/images/servlet/d1345a218e43cf10775f229fcf614e2d.png" alt=""></p>
+<p>修改代码：</p>
+<p><img src="/images/servlet/f31441fb419936bd219d26fb62733e1d.png" alt=""></p>
+<h2 id="IDE去开发JAVAEE（MyEclipse去实现serlvet）"><a href="#IDE去开发JAVAEE（MyEclipse去实现serlvet）" class="headerlink" title="IDE去开发JAVAEE（MyEclipse去实现serlvet）"></a>IDE去开发JAVAEE（MyEclipse去实现serlvet）</h2><h3 id="安装myeclipse"><a href="#安装myeclipse" class="headerlink" title="安装myeclipse"></a>安装myeclipse</h3><h3 id="新建一个Web-project"><a href="#新建一个Web-project" class="headerlink" title="新建一个Web project"></a>新建一个Web project</h3><h3 id="新建servlet"><a href="#新建servlet" class="headerlink" title="新建servlet"></a>新建servlet</h3><p><img src="/images/servlet/90f9f259c2165497b77e28ce4d0e020c.png" alt=""></p>
+<p><img src="/images/servlet/c9cb0b07b12d54be02184df35caf1f1a.png" alt=""></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="自动部署的原理"><a href="#自动部署的原理" class="headerlink" title="自动部署的原理"></a>自动部署的原理</h4><p><img src="/images/servlet/d110ace8e9efb76bbd6841452f762dc8.png" alt=""></p>
+<p>WebRoot表示web项目</p>
+<p>Myeclipse可以一键帮你自动部署到指定的服务器上。</p>
+<p>部署的原理是：</p>
+<p>首先把你写的serlve等java源码编译成字节码文件，放在</p>
+<p><img src="/images/servlet/98f812737bd08f7ff92473e920dc8370.png" alt=""></p>
+<p>里的classes目录</p>
+<p>可以去开发目录验证：</p>
+<p><img src="/images/servlet/f2c2d1ee3d5b49315f062653d0b96f73.png" alt=""></p>
+<p>第二步：myeclipse在一键部署的时候，</p>
+<p>会以你的项目名为文件夹名称，去webapps下建立一个文件夹</p>
+<p>然后把Web-Root里的所有资源放进去。</p>
+<h4 id="去新增web-xml-放在"><a href="#去新增web-xml-放在" class="headerlink" title="去新增web.xml 放在"></a>去新增web.xml 放在</h4><p><img src="/images/servlet/403213ef168db34ed4b572adb1069070.png" alt=""></p>
+<p>里面怎么写</p>
+<p><img src="/images/servlet/119187e6cd9539014f18d0138cba5f6d.png" alt=""></p>
+<h3 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h3><p>先告诉它部署到哪个服务器</p>
+<p>配置服务器</p>
+<p><img src="/images/servlet/9627f0fcd42f1da072bd0ed4061e020e.png" alt=""></p>
+<p>配置完成之后可以去启动服务器</p>
+<p><img src="/images/servlet/2f25550d88dc65c9cb10b29dc7561be6.png" alt=""></p>
+<p>启动成功 console：</p>
+<p><img src="/images/servlet/72a22478ec82ea62817947e802798553.png" alt=""></p>
+<p>一键部署：</p>
+<p><img src="/images/servlet/d0d124ea44574a638b61a8f2ea93f4f9.png" alt=""></p>
+<p><img src="/images/servlet/e82a930793d429e5edf1f93802031fd2.png" alt=""></p>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p><img src="/images/servlet/7d89527aa8ed6118562b1751e26af338.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/12/JavaWeb/JavaWeb09-servlet/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JavaWeb/IDEA启动Tomcat后，却无法访问Tomcat首页？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -705,7 +875,7 @@ javax.xml:提供了解析XML文档的类
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Arrary</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		
 		</ul>
@@ -1012,7 +1182,7 @@ BOM Location
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Arrary</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		
 		</ul>
@@ -1091,7 +1261,7 @@ BOM Location
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Arrary</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		
 		</ul>
@@ -1131,96 +1301,9 @@ BOM Location
 
 
   
-    <article id="post-leetcode/LeetCode-4Sum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/01/leetcode/LeetCode-4Sum/">[LeetCode] 4Sum</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/01/leetcode/LeetCode-4Sum/" class="archive-article-date">
-  	<time datetime="2017-10-01T08:33:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target?<br>Find all unique quadruplets in the array which gives the sum of target.</p>
-<p>Note: The solution set must not contain duplicate quadruplets.</p>
-<p>For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.</p>
-<p>A solution set is:<br>[<br>  [-1,  0, 0, 1],<br>  [-2, -1, 1, 2],<br>  [-2,  0, 0, 2]<br>]</p>
-        
-          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-4Sum/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Arrary</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-4Sum/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1307,15 +1390,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1327,11 +1418,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1356,10 +1443,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Arrary</a>
               </li>
             
             <div class="clearfix"></div>
