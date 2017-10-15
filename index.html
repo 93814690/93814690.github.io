@@ -148,6 +148,764 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaWeb/JavaWeb11-Servlet-Response" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/15/JavaWeb/JavaWeb11-Servlet-Response/">JavaWeb11 Servlet Response</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/15/JavaWeb/JavaWeb11-Servlet-Response/" class="archive-article-date">
+  	<time datetime="2017-10-15T09:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><h1 id="Reponse的引入"><a href="#Reponse的引入" class="headerlink" title="Reponse的引入"></a>Reponse的引入</h1><h1 id="Response的基本使用"><a href="#Response的基本使用" class="headerlink" title="Response的基本使用"></a>Response的基本使用</h1><h2 id="输出数据"><a href="#输出数据" class="headerlink" title="输出数据"></a>输出数据</h2><h3 id="输出字符数据"><a href="#输出字符数据" class="headerlink" title="输出字符数据"></a>输出字符数据</h3><p>使用字符流</p>
+<p>To send character data, use the PrintWriter object returned by <em>getWriter()</em>.</p>
+<p>PrintWriter pw =Response.getWriter(); //<strong>字符打印流</strong></p>
+<p>按照打印流的格式输出。</p>
+<p>我们关心的是输出的乱码问题</p>
+<p><img src="/images/servletresponse/6f47d33569a0f638d0d7654957a8b108.png" alt=""></p>
+<p><img src="/images/servletresponse/023aa8fdbb1143a336bf603896600f25.png" alt=""></p>
+<p>编解码不一致。</p>
+<p>编码是？ 服务器</p>
+<p>响应正文的编码，If no charset is specified, <strong>ISO-8859-1</strong> will be used.</p>
+<p>默认情况下，无法输出中文。所以需要先去给服务器制定输出的正文的编码格式。</p>
+<h4 id="如何解决乱码"><a href="#如何解决乱码" class="headerlink" title="如何解决乱码"></a>如何解决乱码</h4><p>方法1：</p>
+<p>The charset for the MIME body response can be specified with<br><em>setContentType(java.lang.String)</em>. For example, “text/html; charset=Shift_JIS”.</p>
+<p>-–》正文的编码可以通过这个api去修改。</p>
+<p><img src="/images/servletresponse/aa8304cc45a1bc63bc4f5dfee1e242d3.png" alt=""></p>
+<p>以上的api有两个作用</p>
+<ol>
+<li>告诉tomcat 的字符流使用什么编码输出这段字符</li>
+</ol>
+<p>2 通过在响应报文的响应头增加 这个头信息</p>
+<p><img src="/images/servletresponse/972c88d9c8647531821790bb96033019.png" alt=""></p>
+<p>告诉浏览器采用什么编码格式去解码。</p>
+<p>解码是？浏览器</p>
+<p>方法2：</p>
+<p>控制浏览器解码的方式 还有</p>
+<p><img src="/images/servletresponse/7c9484dcad1440bbc8256f03c1363e44.png" alt=""></p>
+<p>浏览器可以控制。如果浏览器也是utf-8</p>
+<p>就不会存在乱码问题了。</p>
+<p>方法3：</p>
+<p><img src="/images/servletresponse/d1ff06f6bcbca60392109e5f202a0327.png" alt=""></p>
+<h3 id="输出字节数据"><a href="#输出字节数据" class="headerlink" title="输出字节数据"></a>输出字节数据</h3><p>To send binary data in a MIME body response, use the <em>ServletOutputStream</em><br>returned by <em>getOutputStream()</em>.</p>
+<p><em>getOutputStream()</em>.</p>
+<h4 id="如何解决乱码-1"><a href="#如何解决乱码-1" class="headerlink" title="如何解决乱码"></a>如何解决乱码</h4><p>使用字节流输出中文也会有乱码问题</p>
+<p>需要知道，字节流的时候，使用的编码格式是 字节流里的字节数组本身的编码。</p>
+<p>需要做的就是，告诉浏览器是使用正确的对应的编码去解码。</p>
+<p><img src="/images/servletresponse/5e3fccd533c3b752eb822b29d16bdc0e.png" alt=""></p>
+<p>或者</p>
+<p><img src="/images/servletresponse/5b73fc866cadb3ee64638eba9b452b95.png" alt=""></p>
+<p>方法3：</p>
+<p><img src="/images/servletresponse/c516ae1ea2480099f3786cc9cf69cf61.png" alt=""></p>
+<p>效果如下：</p>
+<p><img src="/images/servletresponse/2f93faed15f743b39d9a415181680370.png" alt=""></p>
+<h2 id="Response的其他案例"><a href="#Response的其他案例" class="headerlink" title="Response的其他案例"></a>Response的其他案例</h2><h3 id="发送http头，控制浏览器定时刷新网页"><a href="#发送http头，控制浏览器定时刷新网页" class="headerlink" title="发送http头，控制浏览器定时刷新网页"></a>发送http头，控制浏览器定时刷新网页</h3><p>案例1：</p>
+<p><img src="/images/servletresponse/90e2da8bf23d9fd7265eab34e13b700d.png" alt=""></p>
+<p>具体实现：</p>
+<p><img src="/images/servletresponse/1a29560cfa573f73f794c098e956c71b.png" alt=""></p>
+<p>改进写法2：</p>
+<p><img src="/images/servletresponse/02f46c9dbb60756f1ac050ebeadd1f74.png" alt=""></p>
+<p>改进写法3：</p>
+<p><img src="/images/servletresponse/85ac98ab6746bd27a8da745fafe65b71.png" alt=""></p>
+<p>同表单的写法。</p>
+<p>为什么？</p>
+<p>都是浏览器通过当前的页面去发的新请求。</p>
+<p>看看这个路径是写给谁最终去使用的！</p>
+<p>案例：</p>
+<p>利用Refresh刷新到其他组件。模拟注册页面，注册处理交由一个Servlet，在Servlet处理完成后，显示注册成功并转向主页</p>
+<h3 id="设置一个页面浏览器的缓存时间"><a href="#设置一个页面浏览器的缓存时间" class="headerlink" title="设置一个页面浏览器的缓存时间"></a>设置一个页面浏览器的缓存时间</h3><p><img src="/images/servletresponse/f3c9f878c56b3929715748162a36e32f.png" alt=""></p>
+<p><img src="/images/servletresponse/716588a2fee7f854a0954d7ecee17051.png" alt=""></p>
+<h3 id="通过response实现请求重定向。"><a href="#通过response实现请求重定向。" class="headerlink" title="通过response实现请求重定向。"></a>通过response实现请求重定向。</h3><h4 id="如何实现重定向"><a href="#如何实现重定向" class="headerlink" title="如何实现重定向"></a>如何实现重定向</h4><p><img src="/images/servletresponse/2059134d2c2e8f718c8e6facd294473b.png" alt=""></p>
+<p>| void | <a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/http/HttpServletResponse.html#sendRedirect(java.lang.String" target="_blank" rel="external">sendRedirect</a>)(java.lang.String location)                                                                                             |<br>|      | Sends a temporary redirect response to the client using the specified redirect location URL.                                                                                                                                                                                                                  |<br>|——|—————————————————————————————————————————————————————————————————————————————————————————————————————|</p>
+<p><img src="/images/servletresponse/857da586d6568c488f7f27c2be8cd131.png" alt=""></p>
+<h4 id="重定向-vs-请求转发"><a href="#重定向-vs-请求转发" class="headerlink" title="重定向 vs 请求转发"></a>重定向 vs 请求转发</h4><p>相同点：都可以实现转到另一个页面去显示</p>
+<p>不同点：</p>
+<p>请求转发：浏览器仅仅发送了一个请求，转发是在tomcat内部完成的，浏览器不知道。</p>
+<p>转发的源组件 和目标组件 ：共用一个请求。所以可以使用request域传递数据。</p>
+<p>转发浏览器的地址栏不会发生任何变化。</p>
+<p>转发只能转发给当前服务器内部资源。</p>
+<p>重定向：浏览器发送了两个请求。重定向是通过浏览器去完成的。</p>
+<p>源组件和目标组件：并不是公用一个请求，而且不同的两个请求。不能使用request域传递数据。</p>
+<p>重定向浏览器的地址栏会变化，从原组件的地址变化到目标组件的地址。</p>
+<p>重定向可以重定向到任意的其他网站。</p>
+<h4 id="重定向里的细节补充"><a href="#重定向里的细节补充" class="headerlink" title="重定向里的细节补充"></a>重定向里的细节补充</h4><p>如果源组件在进行重定向之前，已经提交了响应结果，会抛出IllegalStateException。</p>
+<p><img src="/images/servletresponse/1dc8cdcf2c04f128da2d18480b4ef35d.png" alt=""></p>
+<p><img src="/images/servletresponse/08402d657a773b9ef4480e91f2856a3a.png" alt=""></p>
+<h2 id="response细节"><a href="#response细节" class="headerlink" title="response细节"></a>response细节</h2><ul>
+<li>getOutputStream和getWriter这两个方法互相排斥，调用了其中的任何一个方法后，就不能再调用另一方法。<br>会抛异常。</li>
+</ul>
+<p><img src="/images/servletresponse/b6b23741a61b70a336146b720a8a71ac.png" alt=""></p>
+<ul>
+<li><p>Servlet程序向ServletOutputStream或PrintWriter对象中写入的数据将被Servlet引擎从response里面获取，Servlet引擎将这些数据当作响应消息的正文，然后再与响应状态行和各响应头组合后输出到客户端。</p>
+</li>
+<li><p>Serlvet的service方法结束后，Servlet引擎将检查getWriter或getOutputStream方法返回的输出流对象是否已经调用过close方法，如果没有，Servlet引擎将调用close方法关闭该输出流对象。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/15/JavaWeb/JavaWeb11-Servlet-Response/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaWeb/JavaWeb10-Servlet-Request" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/15/JavaWeb/JavaWeb10-Servlet-Request/">JavaWeb10 Servlet Request</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/15/JavaWeb/JavaWeb10-Servlet-Request/" class="archive-article-date">
+  	<time datetime="2017-10-15T09:04:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ServletRequest"><a href="#ServletRequest" class="headerlink" title="ServletRequest"></a>ServletRequest</h1><h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><h2 id="什么是servletrequest？"><a href="#什么是servletrequest？" class="headerlink" title="什么是servletrequest？"></a>什么是servletrequest？</h2><p>Web服务器收到客户端的http请求，会针对<strong>每一次</strong>请求，分别创建一个用于代表请求的request对象。这个对象就是ServletRequest的实例。</p>
+<h2 id="修改servlet模板"><a href="#修改servlet模板" class="headerlink" title="修改servlet模板"></a>修改servlet模板</h2><p><img src="/images/servletrequest/cdba788a6c1c1a4a5bc177105012e296.png" alt=""></p>
+<p><img src="/images/servletrequest/70b998cf7e461b18a3841731e3d14a9b.png" alt=""></p>
+<p><img src="/images/servletrequest/17ae098196f23c00a9f0c11e2a813aa0.png" alt=""></p>
+<p><img src="/images/servletrequest/92759c0051b669ea3446dbd0082c8a0b.png" alt=""></p>
+<p>把jar包copy出去，然后通过压缩文件打开，修改并更新这个文件。</p>
+<p>最后把更新后的jarcopy回去替换原有的jar包即可。</p>
+<h1 id="ServletRequest的常见API的使用"><a href="#ServletRequest的常见API的使用" class="headerlink" title="ServletRequest的常见API的使用"></a>ServletRequest的常见API的使用</h1><h2 id="获取请求信息"><a href="#获取请求信息" class="headerlink" title="获取请求信息"></a>获取请求信息</h2><h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><table>
+<thead>
+<tr>
+<th>java.lang.String</th>
+<th><strong>getMethod</strong>()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Returns the name of the HTTP method with which this request was made, for example, GET, POST, or PUT</td>
+</tr>
+<tr>
+<td>java.lang.String</td>
+<td><strong>getRequestURI</strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td>Returns the part of this request’s URL from the protocol name up to the query string in the first line of the HTTP request.</td>
+</tr>
+<tr>
+<td>java.lang.StringBuffer</td>
+<td><strong>getRequestURL</strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td>Reconstructs the URL the client used to make the request.</td>
+</tr>
+</tbody>
+</table>
+<p>URI：请求的资源名称</p>
+<p>/Day11ServletRequestDemo1/servlet/ServletRequestDemo1</p>
+<p>URL：</p>
+<p>//<a href="http://localhost/Day11ServletRequestDemo1/servlet/ServletRequestDemo1" target="_blank" rel="external">http://localhost/Day11ServletRequestDemo1/servlet/ServletRequestDemo1</a></p>
+<p>地址栏里请求的完整的url</p>
+<table>
+<thead>
+<tr>
+<th>java.lang.String</th>
+<th><strong>getProtocol</strong>()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Returns the name and version of the protocol the request uses in the form <em>protocol/majorVersion.minorVersion</em>, for example, HTTP/1.1.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="获取请求头的字段信息"><a href="#获取请求头的字段信息" class="headerlink" title="获取请求头的字段信息"></a>获取请求头的字段信息</h3><table>
+<thead>
+<tr>
+<th>java.lang.String</th>
+<th><strong>getCharacterEncoding</strong>()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Returns the name of the character encoding used in the body of this request.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>getContentLength</strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td>Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not known.</td>
+</tr>
+<tr>
+<td>java.lang.String</td>
+<td><strong>getContentType</strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td>Returns the MIME type of the body of the request, or null if the type is not known.</td>
+</tr>
+<tr>
+<td>java.lang.String</td>
+<td><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/http/HttpServletRequest.html#getHeader(java.lang.String" target="_blank" rel="external">getHeader</a>)(java.lang.String name)</td>
+</tr>
+<tr>
+<td></td>
+<td>Returns the value of the specified request header as a String.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/servletrequest/e38af218e30dd9f55747ae54ac9c0f9c.png" alt=""></p>
+<h2 id="获取请求参数"><a href="#获取请求参数" class="headerlink" title="获取请求参数"></a>获取请求参数</h2><p>回到我们html讲的前端跟后端交互的form</p>
+<p><img src="/images/servletrequest/4d350baab45ed5ca3c8139c1dc57ec19.png" alt=""></p>
+<p>请求数据</p>
+<p><img src="/images/servletrequest/051bba53c2c3c49e66883674642add3c.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>java.lang.String</th>
+<th><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/ServletRequest.html#getParameter(java.lang.String" target="_blank" rel="external">getParameter</a>)(java.lang.String name)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Returns the value of a request parameter as a String, or null if the parameter does not exist.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/servletrequest/c99393727c2394e455129767dcd7fbc5.png" alt=""></p>
+<h3 id="请求参数的乱码问题"><a href="#请求参数的乱码问题" class="headerlink" title="请求参数的乱码问题"></a>请求参数的乱码问题</h3><p>编解码一致 就不会乱码。</p>
+<p>乱码的原因编解码不一致。</p>
+<h4 id="POST提交数据的乱码问题"><a href="#POST提交数据的乱码问题" class="headerlink" title="POST提交数据的乱码问题"></a>POST提交数据的乱码问题</h4><p><strong>从浏览器提交到服务器的中文 ：编码是什么编码？utf-8</strong></p>
+<p>username=%E5%BC%A0%E4%B8%89</p>
+<p><img src="/images/servletrequest/2b387c2e2c57c070d0fce6182e995cdb.png" alt=""></p>
+<p>张三 跟网页使用的编码保持一致。</p>
+<p><img src="/images/servletrequest/17a8ed64fa1e6b2e16293eff90dd1111.png" alt=""></p>
+<p>网页使用的是UTF-8编码。</p>
+<p>浏览器默认使用什么编码去解码？</p>
+<p>解码并不是用的utf-8.解码用的是什么呢？</p>
+<p>对于POST请求，请求的数据的是在请求正文里。</p>
+<p><strong>服务器对于请求正文中的数据，默认的解码方式是iso-8859-1</strong></p>
+<p>那么tomcat解码应该设定为utf-8；</p>
+<p><img src="/images/servletrequest/08bd82388c9a123856cb75816b768314.png" alt=""></p>
+<h4 id="GET请求提交数据的乱码问题（Tomcat8）"><a href="#GET请求提交数据的乱码问题（Tomcat8）" class="headerlink" title="GET请求提交数据的乱码问题（Tomcat8）"></a>GET请求提交数据的乱码问题（Tomcat8）</h4><p>浏览器提交数据的编码方式：仍然是更网页的编码保持一致。</p>
+<p><img src="/images/servletrequest/d1462a492ee0e96039f6b5974f8a78a1.png" alt=""></p>
+<p>这个api没有效果。因为数据并不在请求正文里。</p>
+<p>Get请求的数据，默认的解码方式是？utf-8</p>
+<p>如果希望更改：</p>
+<p><img src="/images/servletrequest/0ea7963b416e1a632dd644a9b16e5b79.png" alt=""></p>
+<h3 id="表单数据提交的案例"><a href="#表单数据提交的案例" class="headerlink" title="表单数据提交的案例"></a>表单数据提交的案例</h3><p><img src="/images/servletrequest/1c09e4b1f0ed40752c077c064ba8a509.png" alt=""></p>
+<p>获取多选框的值</p>
+<p><img src="/images/servletrequest/d466e2e65c912ecbd3ec425dd3ee404f.png" alt=""></p>
+<p><img src="/images/servletrequest/968b9adaec9cbd5567cff97081ca77ef.png" alt=""></p>
+<p><img src="/images/servletrequest/241ba1da1074081e3cc411c4ba3b4e4a.png" alt=""></p>
+<h3 id="使用apache的beanutils库来自动封装请求参数"><a href="#使用apache的beanutils库来自动封装请求参数" class="headerlink" title="使用apache的beanutils库来自动封装请求参数"></a>使用apache的beanutils库来自动封装请求参数</h3><p>前提是：</p>
+<p>表单里提交的数据的name字段应该跟bean里的成员变量保持一致。</p>
+<p>同时bean应该由eclipse去生成getter 和setter</p>
+<p>如何使用。</p>
+<p>第一步导入apache的包</p>
+<p>Web项目的导报非常简单：</p>
+<p><img src="/images/servletrequest/77e35997b9ac8eb07c725ee14fa80a2d.png" alt=""></p>
+<p>第二步：使用它的populate来封装请求数据</p>
+<p><img src="/images/servletrequest/55c66febc49b755bf88fc93ca72f9415.png" alt=""></p>
+<h3 id="表单里的action地址的写法"><a href="#表单里的action地址的写法" class="headerlink" title="表单里的action地址的写法"></a>表单里的action地址的写法</h3><p>写法1：写某个servlet的全地址</p>
+<p><img src="/images/servletrequest/8fe2377e8debfed12528b198281a46b3.png" alt=""></p>
+<p>注意：localhost这个主机表示当前的电脑（当前浏览器所在的电脑）</p>
+<p>写法2：写相对地址</p>
+<p>相对地址1：不以“/”开始的</p>
+<p>写相对地址—》这个地址代表</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/servlet/RegisterServlet" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/servlet/RegisterServlet</a></p>
+<p>一定要明确相对于谁去写这个地址。</p>
+<p>表单里的地址相对的（参考的）是当前页面的地址。</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/register.html" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/register.html</a></p>
+<p><img src="/images/servletrequest/06443836151af665dbbc21ddceb48d84.png" alt=""></p>
+<p><strong>比较麻烦的情况</strong>：</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/page/register.html" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/page/register.html</a></p>
+<p>相对地址的写法，总是以参考文件的资源名之前的部分作为参考路径。</p>
+<p>参考路径变成：</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/page/" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/page/</a></p>
+<p>servlet/RegisterServlet</p>
+<p>组合成的路径=</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/page/" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/page/</a> servlet/RegisterServlet</p>
+<p>相对路径怎么写？才能变成如下正确的路径？</p>
+<p><img src="/images/servletrequest/d27526d3250091fda2b01ea056bdc213.png" alt=""></p>
+<p>通过.. 把page/这一级路径去掉了。</p>
+<p><a href="http://192.168.6.9/Day11ServletRequestDemo1/servlet/RegisterServlet" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/servlet/RegisterServlet</a></p>
+<p>相对地址2：以“/” 开始的地址—》推荐使用这种写法</p>
+<p><img src="/images/servletrequest/98f42efaad318d4df4d8017b2a504928.png" alt=""></p>
+<p>它参考的不是当前的路径。</p>
+<p>参考的是<a href="http://192.168.6.9/Day11ServletRequestDemo1/" target="_blank" rel="external">http://192.168.6.9/Day11ServletRequestDemo1/</a></p>
+<p>所以这种写法，以不变应万变。</p>
+<h2 id="请求的转发和包含"><a href="#请求的转发和包含" class="headerlink" title="请求的转发和包含"></a>请求的转发和包含</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>请求转发指一个web资源（就是servlet）收到客户端请求后，通知服务器去调用另外一个web资源（通常是servlet，也可以是其他的静态页面）进行处理。</p>
+<p>用户登录成功之后，才去显示index.html</p>
+<p>如何实现？</p>
+<p>通过请求转发来实现的。</p>
+<p><img src="/images/servletrequest/de952114bb32793dbc403ae0f6d9a20e.png" alt=""></p>
+<p>细节：</p>
+<h3 id="如何写转发的路径："><a href="#如何写转发的路径：" class="headerlink" title="如何写转发的路径："></a>如何写转发的路径：</h3><p>以“/”写</p>
+<p><img src="/images/servletrequest/8ec734c0ddb71569f02f2342e082f375.png" alt=""></p>
+<p>不以“/”开始，不以/开始的路径写法，相对路径 相对于当前servlet的路径</p>
+<p><img src="/images/servletrequest/9d1be71a5100d1af497f19b44d702a41.png" alt=""></p>
+<p><img src="/images/servletrequest/e8ff6b4b1c24d04db3e2634001212605.png" alt=""></p>
+<h2 id="Request域"><a href="#Request域" class="headerlink" title="Request域"></a>Request域</h2><p>在我们的javaweb里 有四大域。</p>
+<p>Context域：</p>
+<ul>
+<li><p>setAttribute方法</p>
+</li>
+<li><p>getAttribute方法</p>
+</li>
+<li><p>removeAttribute方法</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>java.lang.Object</th>
+<th>[getAttribute])<strong>(java.lang.String name)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong>Returns the servlet container attribute with the given name, or null if there is no attribute by that name.</strong></td>
+</tr>
+<tr>
+<td>void</td>
+<td>[removeAttribute]</td>
+</tr>
+<tr>
+<td></td>
+<td>Removes the attribute with the given name from the servlet context.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/ServletContext.html#setAttribute(java.lang.String, java.lang.Object" target="_blank" rel="external">setAttribute</a>)(java.lang.String name, java.lang.Object object)</td>
+</tr>
+<tr>
+<td></td>
+<td>Binds an object to a given attribute name in this servlet context.</td>
+</tr>
+</tbody>
+</table>
+<p>作用是：在应用的全局范围内共享数据。</p>
+<p>request对象同时也是一个域对象</p>
+<p>Request.</p>
+<table>
+<thead>
+<tr>
+<th>java.lang.Object</th>
+<th>getAttribute(java.lang.String name)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Returns the value of the named attribute as an Object, or null if no attribute of the given name exists.</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setAttribute(java.lang.String name, java.lang.Object o)**</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Stores an attribute in this request.</strong></td>
+</tr>
+<tr>
+<td>void</td>
+<td>removeAttribute(java.lang.String name)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Removes an attribute from this request.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>这个域在哪个范围内共享数据呢？</p>
+<p>在request范围内。同一次请求范围内。</p>
+<p>对比下request域跟context域。有和区别？</p>
+<p>Context域是全局的。所有的servlet都可以访问。只要应用没有停止都可以访问。</p>
+<p>Request域<br>是局部范围内的。只能是转发或者包含的范围内可以访问。只存在这次请求的过程中。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/15/JavaWeb/JavaWeb10-Servlet-Request/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Rotate-Image" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/14/leetcode/LeetCode-Rotate-Image/">[LeetCode] Rotate Image</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/14/leetcode/LeetCode-Rotate-Image/" class="archive-article-date">
+  	<time datetime="2017-10-14T15:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>You are given an n x n 2D matrix representing an image.</p>
+<p>Rotate the image by 90 degrees (clockwise).</p>
+<p>Note:<br>You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.<br>DO NOT allocate another 2D matrix and do the rotation.</p>
+<p>Example 1:<br>Given input matrix =<br>[<br>  [1,2,3],<br>  [4,5,6],<br>  [7,8,9]<br>],<br>rotate the input matrix in-place such that it becomes:<br>[<br>  [7,4,1],<br>  [8,5,2],<br>  [9,6,3]<br>]<br>Example 2:<br>Given input matrix =<br>[<br>  [ 5, 1, 9,11],<br>  [ 2, 4, 8,10],<br>  [13, 3, 6, 7],<br>  [15,14,12,16]<br>],<br>rotate the input matrix in-place such that it becomes:<br>[<br>  [15,13, 2, 5],<br>  [14, 3, 4, 1],<br>  [12, 6, 8, 9],<br>  [16, 7,10,11]<br>]</p>
+        
+          <a class="article-more-a" href="/2017/10/14/leetcode/LeetCode-Rotate-Image/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/14/leetcode/LeetCode-Rotate-Image/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Combination-Sum-II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/14/leetcode/LeetCode-Combination-Sum-II/">[LeetCode] Combination Sum II</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/14/leetcode/LeetCode-Combination-Sum-II/" class="archive-article-date">
+  	<time datetime="2017-10-14T15:10:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a collection of candidate numbers (C) and a target number (T),<br>find all unique combinations in C where the candidate numbers sums to T.</p>
+<p>Each number in C may only be used once in the combination.</p>
+<p>Note:<br>All numbers (including target) will be positive integers.<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8,<br>A solution set is:<br>[<br>  [1, 7],<br>  [1, 2, 5],<br>  [2, 6],<br>  [1, 1, 6]<br>]</p>
+        
+          <a class="article-more-a" href="/2017/10/14/leetcode/LeetCode-Combination-Sum-II/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Backtracking</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/14/leetcode/LeetCode-Combination-Sum-II/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Combination-Sum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/13/leetcode/LeetCode-Combination-Sum/">[LeetCode] Combination Sum</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/13/leetcode/LeetCode-Combination-Sum/" class="archive-article-date">
+  	<time datetime="2017-10-13T15:17:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a set of candidate numbers (C) (without duplicates) and a target number (T),<br>find all unique combinations in C where the candidate numbers sums to T.</p>
+<p>The same repeated number may be chosen from C unlimited number of times.</p>
+<p>Note:<br>All numbers (including target) will be positive integers.<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set [2, 3, 6, 7] and target 7,<br>A solution set is:<br>[<br>  [7],<br>  [2, 2, 3]<br>]</p>
+        
+          <a class="article-more-a" href="/2017/10/13/leetcode/LeetCode-Combination-Sum/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Backtracking</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/13/leetcode/LeetCode-Combination-Sum/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JavaWeb/JavaWeb09-servlet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,9 +930,238 @@
 <p>也就是指我们自己写的程序。</p>
 <p>我们自己写的程序需要放在tomcat（JAVAEE容器）里运行——通过servlet</p>
 <p>Servlet 规范。（接口）</p>
-        
-          <a class="article-more-a" href="/2017/10/12/JavaWeb/JavaWeb09-servlet/#more">more >></a>
-        
+<h2 id="官方的说明"><a href="#官方的说明" class="headerlink" title="官方的说明"></a>官方的说明</h2><ul>
+<li><p>Servlet是sun公司提供的一门用于开发动态web资源的技术。</p>
+</li>
+<li><p>动态web技术？</p>
+</li>
+<li><p>A servlet is a small Java program that runs within a Web server.</p>
+</li>
+<li><p>Servlets receive and respond to requests from Web clients, usually across<br>HTTP, the HyperText Transfer Protocol.</p>
+</li>
+<li><p>Servlet本身可以去接收来自客户端的请求。</p>
+</li>
+<li><p>并且响应这个请求。</p>
+</li>
+</ul>
+<h1 id="Servlet-编写"><a href="#Servlet-编写" class="headerlink" title="Servlet 编写 "></a>Servlet 编写 </h1><h2 id="手动实现servlet"><a href="#手动实现servlet" class="headerlink" title="手动实现servlet"></a>手动实现servlet</h2><ul>
+<li><p><strong>编写一个Java类，实现servlet接口。</strong></p>
+</li>
+<li><p><strong>把开发好的Java类部署到web服务器中。（映射）</strong></p>
+</li>
+</ul>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>快速入门，用servlet向浏览器输出“hello servlet”</p>
+<ul>
+<li><p>阅读Servlet API，解决两个问题：</p>
+</li>
+<li><p>输出hello servlet的java代码应该写在servlet的哪个方法内？</p>
+</li>
+<li><p>如何向IE浏览器输出数据？</p>
+</li>
+</ul>
+<p>如何实现serlvet接口？</p>
+<p>To implement this interface,</p>
+<p>you can write a generic servlet that extends javax.servlet.GenericServlet</p>
+<p>or an HTTP servlet that extends javax.servlet.http.HttpServlet.</p>
+<p>Servlet接口</p>
+<p><img src="/images/servlet/6fd5a3c944380b562a4053f33b8617da.png" alt=""></p>
+<h3 id="放法一继承于GenericServlet"><a href="#放法一继承于GenericServlet" class="headerlink" title="放法一继承于GenericServlet"></a>放法一继承于GenericServlet</h3><h4 id="第一步-实现Servlet接口"><a href="#第一步-实现Servlet接口" class="headerlink" title="第一步 实现Servlet接口"></a>第一步 实现Servlet接口</h4><p>GenericServlet</p>
+<p>public abstract class <strong>GenericServlet</strong> implements<br><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\servlet-api.chm::/jsdk23/javax/servlet/Servlet.html" target="_blank" rel="external">Servlet</a>,</p>
+<p>只有一个抽象方法需要我们去实现</p>
+<p><img src="/images/servlet/f1b435f376ed41484e248bc6c3ee149b.png" alt=""></p>
+<p>那我们去写一个serlvet</p>
+<p><img src="/images/servlet/8cb8508cfd58761bc7b40ab54515f4d9.png" alt=""></p>
+<p>编译：</p>
+<p><img src="/images/servlet/6dbad2928a6410c72515d77700ff0090.png" alt=""></p>
+<p>原因是没有Javaee的包。</p>
+<p>如何导包：在命令行下</p>
+<p><img src="/images/servlet/46bb2770d3eb861354b6cc4c59026ff9.png" alt=""></p>
+<p><img src="/images/servlet/a2ee673c6c15b8f98de7dce695983044.png" alt=""></p>
+<p>修改一下</p>
+<p><img src="/images/servlet/cd307e621e36842ff94885869dff96f2.png" alt=""></p>
+<h4 id="如何部署这个serlvet？"><a href="#如何部署这个serlvet？" class="headerlink" title="如何部署这个serlvet？"></a>如何部署这个serlvet？</h4><p>部署成功的话，是需要它去执行的。怎么去执行？</p>
+<p>这个程序应该是通过用户请求去访问的。</p>
+<p>如何去把一个用户请求跟这个程序<strong>对应起来</strong>。</p>
+<p><a href="http://localhost/myapp/01.html" target="_blank" rel="external">http://localhost/myapp/01.html</a> 访问01.html</p>
+<p><a href="http://localhost/myapp/myfirstserlvet" target="_blank" rel="external">http://localhost/myapp/myfirstserlvet</a></p>
+<p>配置：</p>
+<p><img src="/images/servlet/08d20d9c9c0903272fbc5342f1b1a15f.png" alt=""></p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p><img src="/images/servlet/6794a3eeeaeb1bfa9d0d8a5acbf5d419.png" alt=""></p>
+<p><img src="/images/servlet/4ae6f59577552c96aeb5cdc1d5c1d47a.png" alt=""></p>
+<p><img src="/images/servlet/d1345a218e43cf10775f229fcf614e2d.png" alt=""></p>
+<p>修改代码：</p>
+<p><img src="/images/servlet/f31441fb419936bd219d26fb62733e1d.png" alt=""></p>
+<h2 id="IDE去开发JAVAEE（MyEclipse去实现serlvet）"><a href="#IDE去开发JAVAEE（MyEclipse去实现serlvet）" class="headerlink" title="IDE去开发JAVAEE（MyEclipse去实现serlvet）"></a>IDE去开发JAVAEE（MyEclipse去实现serlvet）</h2><h3 id="安装myeclipse"><a href="#安装myeclipse" class="headerlink" title="安装myeclipse"></a>安装myeclipse</h3><h3 id="新建一个Web-project"><a href="#新建一个Web-project" class="headerlink" title="新建一个Web project"></a>新建一个Web project</h3><h3 id="新建servlet"><a href="#新建servlet" class="headerlink" title="新建servlet"></a>新建servlet</h3><p><img src="/images/servlet/90f9f259c2165497b77e28ce4d0e020c.png" alt=""></p>
+<p><img src="/images/servlet/c9cb0b07b12d54be02184df35caf1f1a.png" alt=""></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="自动部署的原理"><a href="#自动部署的原理" class="headerlink" title="自动部署的原理"></a>自动部署的原理</h4><p><img src="/images/servlet/d110ace8e9efb76bbd6841452f762dc8.png" alt=""></p>
+<p>WebRoot表示web项目</p>
+<p>Myeclipse可以一键帮你自动部署到指定的服务器上。</p>
+<p>部署的原理是：</p>
+<p>首先把你写的serlve等java源码编译成字节码文件，放在</p>
+<p><img src="/images/servlet/98f812737bd08f7ff92473e920dc8370.png" alt=""></p>
+<p>里的classes目录</p>
+<p>可以去开发目录验证：</p>
+<p><img src="/images/servlet/f2c2d1ee3d5b49315f062653d0b96f73.png" alt=""></p>
+<p>第二步：myeclipse在一键部署的时候，</p>
+<p>会以你的项目名为文件夹名称，去webapps下建立一个文件夹</p>
+<p>然后把Web-Root里的所有资源放进去。</p>
+<h4 id="去新增web-xml-放在"><a href="#去新增web-xml-放在" class="headerlink" title="去新增web.xml 放在"></a>去新增web.xml 放在</h4><p><img src="/images/servlet/403213ef168db34ed4b572adb1069070.png" alt=""></p>
+<p>里面怎么写</p>
+<p><img src="/images/servlet/119187e6cd9539014f18d0138cba5f6d.png" alt=""></p>
+<h3 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h3><p>先告诉它部署到哪个服务器</p>
+<p>配置服务器</p>
+<p><img src="/images/servlet/9627f0fcd42f1da072bd0ed4061e020e.png" alt=""></p>
+<p>配置完成之后可以去启动服务器</p>
+<p><img src="/images/servlet/2f25550d88dc65c9cb10b29dc7561be6.png" alt=""></p>
+<p>启动成功 console：</p>
+<p><img src="/images/servlet/72a22478ec82ea62817947e802798553.png" alt=""></p>
+<p>一键部署：</p>
+<p><img src="/images/servlet/d0d124ea44574a638b61a8f2ea93f4f9.png" alt=""></p>
+<p><img src="/images/servlet/e82a930793d429e5edf1f93802031fd2.png" alt=""></p>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p><img src="/images/servlet/7d89527aa8ed6118562b1751e26af338.png" alt=""></p>
+<h2 id="实现serlvet方式三"><a href="#实现serlvet方式三" class="headerlink" title="实现serlvet方式三"></a>实现serlvet方式三</h2><p>Write an HTTP servlet that extends javax.servlet.http.HttpServlet</p>
+<p>手写继承HttpServlet</p>
+<h3 id="第一步写代码-，编译"><a href="#第一步写代码-，编译" class="headerlink" title="第一步写代码 ，编译"></a>第一步写代码 ，编译</h3><p><img src="/images/servlet/c771962065ec89db7aff0eedbce2dc8b.png" alt=""></p>
+<p><img src="/images/servlet/8de858f46002d5d1527b07b1f915bb81.png" alt=""></p>
+<h3 id="第二步-配置"><a href="#第二步-配置" class="headerlink" title="第二步 配置"></a>第二步 配置</h3><p><img src="/images/servlet/2a54f653f873087ecb4f758d2e4f143a.png" alt=""></p>
+<h4 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h4><p>正确</p>
+<h2 id="实现4-使用IDE通过HttpServlet来实现"><a href="#实现4-使用IDE通过HttpServlet来实现" class="headerlink" title="实现4 使用IDE通过HttpServlet来实现"></a>实现4 使用IDE通过HttpServlet来实现</h2><h3 id="实现servlet"><a href="#实现servlet" class="headerlink" title="实现servlet"></a>实现servlet</h3><p><img src="/images/servlet/93050a573fb56bc02d327fc7516b0831.png" alt=""></p>
+<p><img src="/images/servlet/0e9ca6419f8cc373d4699ff3b7c8fb76.png" alt=""></p>
+<p>下一步 生成web.xml</p>
+<p><img src="/images/servlet/6cd757f3931778127d573fc5eb7f0b15.png" alt=""></p>
+<p>自动生成配置文件。</p>
+<h2 id="Servlet-的实现的两种不同方式的区别"><a href="#Servlet-的实现的两种不同方式的区别" class="headerlink" title="Servlet 的实现的两种不同方式的区别"></a>Servlet 的实现的两种不同方式的区别</h2><h3 id="继承GenericServlet"><a href="#继承GenericServlet" class="headerlink" title="继承GenericServlet"></a>继承GenericServlet</h3><p><img src="/images/servlet/9d2969018f2e0ba353c8ca1871f8a60c.png" alt=""></p>
+<p>它里面只剩下一个service方法</p>
+<p><img src="/images/servlet/77a45257445f0b0e1374b3451e0b5244.png" alt=""></p>
+<p>service该方法每次请求的时候回调用！</p>
+<p>每次请求的时候，浏览器都会发送一个http请求的报文！</p>
+<h3 id="继承HTTPServlet"><a href="#继承HTTPServlet" class="headerlink" title="继承HTTPServlet"></a>继承HTTPServlet</h3><p><img src="/images/servlet/a9100c995da1f81ae37b5048d7ac25e4.png" alt=""></p>
+<p>它重写了父类的方法</p>
+<p><img src="/images/servlet/58ee0173fb6ae87fe70532f843476a46.png" alt=""></p>
+<p><img src="/images/servlet/7c12a7df54b8eeb782d5582c488dcca2.png" alt=""></p>
+<p>如果是Get请求调用doget，根据多态，调用的是子类的</p>
+<p><img src="/images/servlet/3ca068e2a0c1f89996911f3aa6e1f98d.png" alt=""></p>
+<p>Tomcat收到请求调用一个servlet组件的时候，总是会去调用其Service方法</p>
+<p>打断点验证一下。</p>
+<p><img src="/images/servlet/9a5d121e6da17ceec4e555dea8834045.png" alt=""></p>
+<h3 id="子类的好处"><a href="#子类的好处" class="headerlink" title="子类的好处"></a>子类的好处</h3><p>根据用户请求用的是get方法还是post方法，分别调用两个不同的函数。</p>
+<p>这样的话，更清晰。</p>
+<h1 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h1><h2 id="什么是生命周期"><a href="#什么是生命周期" class="headerlink" title="什么是生命周期"></a>什么是生命周期</h2><p>servlet什么时候创建，什么时候销毁。</p>
+<h2 id="servlet谁创建，谁销毁的？"><a href="#servlet谁创建，谁销毁的？" class="headerlink" title="servlet谁创建，谁销毁的？"></a>servlet谁创建，谁销毁的？</h2><p>每一个servlet如果需要执行，都需要实例化。</p>
+<p>是由web容器来实例化servlet的。（Tomcat）</p>
+<p>通知。当创建完成之后，通知你（执行你的一个方法）。–&gt;回调方法。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="什么时候创建的？"><a href="#什么时候创建的？" class="headerlink" title="什么时候创建的？"></a>什么时候创建的？</h3><p>通常第一次通过某个url去真正访问该serlvet的时候创建的。</p>
+<p>为什么不在tomcat容器启动的时候就去创建这个servlet？</p>
+<p>为了尽可能的去节省内存空间，所以才到真正要用的时候去创建。</p>
+<p>懒加载。</p>
+<p>创建完成之后，就不会创建了。</p>
+<p>一个tomcat容器里，servlet仅仅存在1个实例。 （单例模式）</p>
+<h3 id="什么时候销毁"><a href="#什么时候销毁" class="headerlink" title="什么时候销毁"></a>什么时候销毁</h3><h4 id="容器退出。"><a href="#容器退出。" class="headerlink" title="容器退出。"></a>容器退出。</h4><h4 id="容器并没有退出，但是当前的应用被卸载掉了。"><a href="#容器并没有退出，但是当前的应用被卸载掉了。" class="headerlink" title="容器并没有退出，但是当前的应用被卸载掉了。"></a>容器并没有退出，但是当前的应用被卸载掉了。</h4><p><img src="/images/servlet/c66a850eb0f33f9f8517e487d7feb4e5.png" alt=""></p>
+<h2 id="补充下init方法-初始化"><a href="#补充下init方法-初始化" class="headerlink" title="补充下init方法 初始化"></a>补充下init方法 初始化</h2><p>系统调用的是这个方法</p>
+<p><img src="/images/servlet/c6cb665814c0abb6e2bfac5b16f5d56c.png" alt=""></p>
+<p>传入了一个参数进来。</p>
+<p>啥意思？</p>
+<p>每一个servlet都可以去配置该servlet的信息 如何配置</p>
+<p><img src="/images/servlet/caa8a6d523e94191dfead24e040cd744.png" alt=""></p>
+<p>如何获取？</p>
+<p><img src="/images/servlet/fc8c2e865b88f6f3610487f84e02f9aa.png" alt=""></p>
+<p><img src="/images/servlet/6b46e71c390ec01fc89d1047169c02fe.png" alt=""></p>
+<p><img src="/images/servlet/cca680d142f5da5785b955ae202db657.png" alt=""></p>
+<h2 id="自动加载serlvet"><a href="#自动加载serlvet" class="headerlink" title="自动加载serlvet"></a>自动加载serlvet</h2><p><img src="/images/servlet/b7baf19cc594767d392e15aadc54f1b3.png" alt=""></p>
+<p>在应用启动的时候（tomcat启动的时候就会去实例化该应用）</p>
+<p>通过log可以看到</p>
+<p><img src="/images/servlet/f86d283b543032a6867350eac98b274a.png" alt=""></p>
+<p>应用在启动的时候，（并没有访问该URL，就会实例化该serlvet）</p>
+<h2 id="完整的生命周期描述"><a href="#完整的生命周期描述" class="headerlink" title="完整的生命周期描述"></a>完整的生命周期描述</h2><p>Servlet默认会在用户第一次访问 该servlet对应的url的时候 由tomcat容器创建，</p>
+<p>（如果有配置了load-on-startup，则会在应用加载的时候就去创建servlet的实例）</p>
+<p>创建成功之后，会调用我们init方法。</p>
+<p>--</p>
+<p>每次当用户请求 到来的时候都会执行service方法，去处理用户的请求！</p>
+<p>--</p>
+<p>在tomcat关闭，或者tomcat去停止 、卸载该应用的时候，会把该serlvet销毁。</p>
+<h2 id="关联源码。"><a href="#关联源码。" class="headerlink" title="关联源码。"></a>关联源码。</h2><p><img src="/images/servlet/d3b0a6846f3ea4634780b175e6945248.png" alt=""></p>
+<h1 id="Serlvet的细节"><a href="#Serlvet的细节" class="headerlink" title="Serlvet的细节"></a>Serlvet的细节</h1><h2 id="url的映射"><a href="#url的映射" class="headerlink" title="url的映射"></a>url的映射</h2><h3 id="可以给一个servlet映射多个url"><a href="#可以给一个servlet映射多个url" class="headerlink" title="可以给一个servlet映射多个url"></a>可以给一个servlet映射多个url</h3><p><img src="/images/servlet/0ff2036400178540c158819065110510.png" alt=""></p>
+<p>问：能不能给多个servlet映射一个url</p>
+<p>答：不行。原因是可能会造成混淆。</p>
+<h3 id="url映射的格式"><a href="#url映射的格式" class="headerlink" title="url映射的格式"></a>url映射的格式</h3><h4 id="以-开始"><a href="#以-开始" class="headerlink" title="以/开始"></a>以/开始</h4><p>一般情况下，都要以/开始。</p>
+<p>以/开始的，可以写一级，可以写多级。也可以用*结尾。</p>
+<p>/xxx/xxx/*</p>
+<p><del>/xxx/xxx/*.jpg 此路不行</del></p>
+<p>/*表示映射所有的url</p>
+<h4 id="以-开始（不以-开始）"><a href="#以-开始（不以-开始）" class="headerlink" title="以*开始（不以/开始）"></a>以*开始（不以/开始）</h4><p>*通配符</p>
+<p>可以用 *.后缀名 *.html</p>
+<p>举例：</p>
+<p><img src="/images/servlet/d3029fdf41a4b639e4cdf39acb08e147.png" alt=""></p>
+<p><img src="/images/servlet/69dd20ee0f559e64bfb04c2dcc9c478d.png" alt=""></p>
+<p>通配所有的以*.html结尾的请求。</p>
+<h4 id="冲突情况"><a href="#冲突情况" class="headerlink" title="冲突情况"></a>冲突情况</h4><p>情况1：</p>
+<p>如果存在一个静态文件叫做01.html，和上述配置。</p>
+<p>则优先使用上述配置。</p>
+<p>情况2：</p>
+<p><img src="/images/servlet/673cbbdfc5bc083d2d8cda281d953737.png" alt=""></p>
+<p><img src="/images/servlet/80586d2a84d3575b82ae57feae016c70.png" alt=""></p>
+<p>会如何响应？</p>
+<p>没有*号的映射会先响应。</p>
+<p>情况3：</p>
+<p>输入01.html，一下三个都匹配：</p>
+<p><img src="/images/servlet/c23e31a33b90ef05df4c45c40bbbd4a0.png" alt=""></p>
+<p><img src="/images/servlet/662b50750dbf18e89f94d92247534612.png" alt=""></p>
+<p><img src="/images/servlet/43225f393c18c0e23ac8e9c5b1343c92.png" alt=""></p>
+<p>运行哪个servlet？</p>
+<p>答案：Testservlet；</p>
+<h3 id="总结下url匹配的规则"><a href="#总结下url匹配的规则" class="headerlink" title="总结下url匹配的规则"></a>总结下url匹配的规则</h3><p>案例的分析</p>
+<p>URL为“/abc/a.html” 可以匹配的是：serlvet1 Servlet2 选择的是：servlet1</p>
+<p>URL为“/abc”时 可以匹配的是：servlet1 servlet2 serlvet3 选择的是 servlet3</p>
+<p>URL为“/abc/a.do” 可以匹配的是：Servlet1 serlvet2 serlvet4 选择的是 servlet1</p>
+<p>URL为“/a.do”时 可以匹配的是：serlvet2 serlvet4 选择的是2</p>
+<p>URL为“/xxx/yyy/a.do” 可以匹配的是 ： Servlet2 servlet4 选择 serlvet2</p>
+<p>总结规则：</p>
+<p>如果可以精确匹配，找最精确匹配的哪个serlvet！</p>
+<p>映射以/开始的serlvet优先级高于映射以*.do的serlvetg</p>
+<h3 id="默认的servlet"><a href="#默认的servlet" class="headerlink" title="默认的servlet"></a>默认的servlet</h3><ul>
+<li>定义：如果某个Servlet的映射路径仅仅为一个正斜杠（/），那么这个Servlet就成为当前Web应用程序的缺省Servlet。</li>
+</ul>
+<p><img src="/images/servlet/cc6c1d995e0b86a855b76b2348f6cbed.png" alt=""></p>
+<p>作用：</p>
+<ul>
+<li>凡是在web.xml文件中找不到匹配的\<servlet-mapping\>元素的URL，它们的访问请求都将交给缺省Servlet处理，也就是说，缺省Servlet用于处理所有其他Servlet都不处理的访问请求。</servlet-mapping\></li>
+</ul>
+<p>如果有/*存在。默认的就没有意义了。</p>
+<p>系统的web.xml里有如下配置</p>
+<p>会落在系统默认的servlet去处理：</p>
+<p><img src="/images/servlet/df6b61890d6e1bf1b1f8cdb29e4b7db5.png" alt=""></p>
+<p><img src="/images/servlet/f84680c9b81508c467fcbf66db4db96a.png" alt=""></p>
+<p>系统默认的serlvet，对于一个url，如果你的所有的servlet都不能匹配映射，则就给他处理。</p>
+<p>他会去找这个静态资源，然后返回资源数据。</p>
+<p>如果找不到。默认的serlvet会返回如下数据（404）：</p>
+<p><img src="/images/servlet/46fe31de76b9f0b8b1894b44c107b3de.png" alt=""></p>
+<p>浏览器解析完之后：</p>
+<p><img src="/images/servlet/f8954b1ff52d50192da01fe50023b8a6.png" alt=""></p>
+<p>如果我自己定义了一个默认servlet，</p>
+<p><img src="/images/servlet/ae7b55aa7ebcf65d9c0c6b9dce0e69c5.png" alt=""></p>
+<p>影响是？</p>
+<p>无法正确的显示静态文件，以及404页面。</p>
+<h1 id="ServletContext对象"><a href="#ServletContext对象" class="headerlink" title="ServletContext对象"></a>ServletContext对象</h1><h2 id="干嘛的"><a href="#干嘛的" class="headerlink" title="干嘛的"></a>干嘛的</h2><p><img src="/images/servlet/94779e367ce9f100bfbb45eaad3d954f.png" alt=""></p>
+<p>Defines a set of methods that a servlet uses to communicate with its servlet<br>container</p>
+<p>There is one context per “web application” per Java Virtual Machine.</p>
+<p>一个context元素对应一个web 应用。</p>
+<p>一个context元素就对应一个ServletContext的实例。</p>
+<p>如何获取一个servletContext对象</p>
+<p>在servlet内部直接调用这个api即可</p>
+<p><img src="/images/servlet/17dba30bce389b5769d0b7e96b364f53.png" alt=""></p>
+<p>在同一个应用的任何地方，获取到的servletContext对象都是同一个。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><h3 id="作用1把servletcontext作为一个共享数据的容器"><a href="#作用1把servletcontext作为一个共享数据的容器" class="headerlink" title="作用1把servletcontext作为一个共享数据的容器"></a>作用1把servletcontext作为一个共享数据的容器</h3><p>如何放数据</p>
+<p><img src="/images/servlet/9f7a45f851ee6797cd2c19c893732000.png" alt=""></p>
+<p>如何取数据</p>
+<p><img src="/images/servlet/fa73231977453a86bce91dd6b9d4b27d.png" alt=""></p>
+<p><img src="/images/servlet/f904eb794781e221265a313bf8ab4f93.png" alt=""></p>
+<h3 id="作用2-获取我们web项目里某个文件的绝对路径"><a href="#作用2-获取我们web项目里某个文件的绝对路径" class="headerlink" title="作用2 获取我们web项目里某个文件的绝对路径"></a>作用2 获取我们web项目里某个文件的绝对路径</h3><p><img src="/images/servlet/f4b990f3bcee5b02fa9e9efc913ec08d.png" alt=""></p>
+<p>你给他一个相对路径</p>
+<p>他返回一个绝对路径 （在所有的操作系统上都正确）</p>
+<p><img src="/images/servlet/c3ae1087a0d6d5b7fa28b67fc46341b6.png" alt=""></p>
+<p><strong>这两种写法都可以</strong></p>
+<p><img src="/images/servlet/8cb5c08225188fc5a130663c09bdc9ff.png" alt=""></p>
+
       
 
       
@@ -745,475 +1732,6 @@ javax.xml:提供了解析XML文档的类
 
 
   
-    <article id="post-leetcode/LeetCode-Search-for-a-Range" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/03/leetcode/LeetCode-Search-for-a-Range/">[LeetCode] Search for a Range</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/03/leetcode/LeetCode-Search-for-a-Range/" class="archive-article-date">
-  	<time datetime="2017-10-03T13:51:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array of integers sorted in ascending order, find the starting and ending position of a given target value.</p>
-<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
-<p>If the target is not found in the array, return [-1, -1].</p>
-<p>For example,<br>Given [5, 7, 7, 8, 8, 10] and target value 8,<br>return [3, 4].</p>
-        
-          <a class="article-more-a" href="/2017/10/03/leetcode/LeetCode-Search-for-a-Range/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/03/leetcode/LeetCode-Search-for-a-Range/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaWeb/JavaWeb05-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/03/JavaWeb/JavaWeb05-DOM/">JavaWeb05-DOM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/03/JavaWeb/JavaWeb05-DOM/" class="archive-article-date">
-  	<time datetime="2017-10-03T12:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><ul>
-<li><p>document object model  文档对象模型:是W3C织制订的一套用于访问XML和HTML文档的标准.允许脚本动态地访问和更新文档的内容、结构和样式</p>
-</li>
-<li><p>分类</p>
-</li>
-</ul>
-<pre><code>DOM Core
-XML DOM
-HTML DOM
-</code></pre><ul>
-<li><p>XML:可扩展的标签语言</p>
-</li>
-<li><p>xml dom vs html dom<br>  <img src="/images/xmldomvshtmldom.png" alt=""></p>
-</li>
-</ul>
-<ul>
-<li><p>DOM树<br>  <img src="/images/dom树.png" alt=""></p>
-</li>
-<li><p>替换节点</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//当单击”北京”这个节点时,北京这个节点被"打农药”替换</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeNode1</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">   <span class="keyword">var</span> parentnode= <span class="built_in">document</span>.getElementsByTagName(<span class="string">"ul"</span>)[<span class="number">0</span>];</div><div class="line"></div><div class="line">   <span class="keyword">var</span> bjnode=  <span class="built_in">document</span>.getElementById(<span class="string">"bj"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">var</span> newnode = <span class="built_in">document</span>.getElementById(<span class="string">"game"</span>);</div><div class="line"></div><div class="line"></div><div class="line">   parentnode.replaceChild(newnode,bjnode);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeNode</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> parentnode= <span class="built_in">document</span>.getElementsByTagName(<span class="string">"ul"</span>)[<span class="number">0</span>];</div><div class="line"></div><div class="line">    <span class="keyword">var</span> bjnode=  <span class="built_in">document</span>.getElementById(<span class="string">"bj"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> gamenode = <span class="built_in">document</span>.getElementById(<span class="string">"game"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//复制一个节点</span></div><div class="line">    <span class="keyword">var</span> newnode =gamenode.cloneNode(<span class="literal">true</span>);</div><div class="line"></div><div class="line">    parentnode.replaceChild(newnode,bjnode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>增加节点</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出select元素下的所有option元素中对应的文本内容</span></div><div class="line"></div><div class="line"><span class="comment">// xmldom :这里我们使用的就是xmldom</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// &lt;option value="初中"&gt;初中&lt;/option&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">//1 先创建一个元素节点 option</span></div><div class="line">    <span class="keyword">var</span> optionNode = <span class="built_in">document</span>.createElement(<span class="string">"option"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//2 给这个option元素节点增加一个属性</span></div><div class="line">    optionNode.setAttribute(<span class="string">"value"</span>, <span class="string">"初中"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//3 给这个option增加一个文本子节点</span></div><div class="line">    <span class="keyword">var</span> textNode = <span class="built_in">document</span>.createTextNode(<span class="string">"初中"</span>);</div><div class="line">    optionNode.appendChild(textNode);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//4找到select节点，并且把新创建的option节点增加上去</span></div><div class="line">    <span class="keyword">var</span> selectNode = <span class="built_in">document</span>.getElementById(<span class="string">"edu"</span>);</div><div class="line">    <span class="keyword">var</span> beforenode = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"option"</span>)[<span class="number">3</span>];</div><div class="line">    selectNode.insertBefore(optionNode, beforenode);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// htmldom</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//&lt;option value="初中"&gt;初中&lt;/option&gt;</span></div><div class="line">    <span class="keyword">var</span> option = <span class="keyword">new</span> Option();</div><div class="line">    option.value = <span class="string">"初中"</span>;</div><div class="line">    option.text = <span class="string">"初中"</span>;</div><div class="line">    <span class="keyword">var</span> selectNode = <span class="built_in">document</span>.getElementById(<span class="string">"edu"</span>);</div><div class="line">    selectNode.add(option, <span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delete2</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//待删除的节点</span></div><div class="line">    <span class="keyword">var</span> toDeleteNode = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"option"</span>)[<span class="number">4</span>];</div><div class="line"></div><div class="line">    <span class="comment">//父节点删除之</span></div><div class="line">    toDeleteNode.parentNode.removeChild(toDeleteNode);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/03/JavaWeb/JavaWeb05-DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaWeb/JavaWeb04-BOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/02/JavaWeb/JavaWeb04-BOM/">JavaWeb04 BOM</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/02/JavaWeb/JavaWeb04-BOM/" class="archive-article-date">
-  	<time datetime="2017-10-02T11:39:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="BOM-Browser-Object-Model，浏览器对象模型"><a href="#BOM-Browser-Object-Model，浏览器对象模型" class="headerlink" title="BOM:Browser Object Model，浏览器对象模型"></a>BOM:Browser Object Model，浏览器对象模型</h3><pre><code>BOM Window
-BOM Navigator
-BOM Screen
-BOM History
-BOM Location
-</code></pre><h4 id="BOM-Window"><a href="#BOM-Window" class="headerlink" title="BOM Window"></a>BOM Window</h4><ul>
-<li><p>Window 对象表示浏览器中打开的窗口</p>
-</li>
-<li><p>如果文档包含框架（ iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象</p>
-</li>
-<li><p>window.frames 返回窗口中所有命名的框架对应的window对象</p>
-</li>
-<li><p>top是最顶级父窗口（有的窗口中套了好几层frameset或者iframe）</p>
-</li>
-<li><p>parent是父窗口（<strong>如果窗口是顶级窗口，那么parent\==self\==top</strong>）</p>
-</li>
-<li><p>self是当前窗口（等价window）</p>
-</li>
-<li><p>opener是用open方法打开当前窗口的那个窗口</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">openNewWindow</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">window</span>.open(<span class="string">"02hello.html"</span>,<span class="string">"window1"</span> ,<span class="string">"toolbar=yes, location=no, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>与对话框有关的方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.alert(<span class="built_in">String</span>)</div><div class="line"></div><div class="line"><span class="built_in">Boolean</span> <span class="built_in">window</span>.confirm(<span class="built_in">String</span>)</div><div class="line"></div><div class="line"><span class="built_in">String</span> <span class="built_in">window</span>.prompt(<span class="built_in">String</span>)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="BOM-History"><a href="#BOM-History" class="headerlink" title="BOM History"></a>BOM History</h4><ul>
-<li>保持使用的功能只有 back()、forward() 和 go() 方法。<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">back()      加载 history 列表中的前一个 URL</div><div class="line">forward()   加载 history 列表中的下一个 URL</div><div class="line">go()        加载 history 列表中的某个具体页面</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="BOM-Location"><a href="#BOM-Location" class="headerlink" title="BOM Location"></a>BOM Location</h4><ul>
-<li>Location 对象包含有关当前 URL 的信息</li>
-</ul>
-<h3 id="JavaScript常用事件"><a href="#JavaScript常用事件" class="headerlink" title="JavaScript常用事件"></a>JavaScript常用事件</h3><ul>
-<li><p>鼠标移动事件 <code>onmousemove/onmouseout/onmouseover</code></p>
-</li>
-<li><p>鼠标点击事件 <code>onclick/ondblclick/onmousedown/onmouseup</code></p>
-</li>
-<li><p>加载与卸载事件<code>onload/onunload</code></p>
-</li>
-<li><p>聚焦与离焦事件 <code>onfocus/onblur</code></p>
-</li>
-<li><p>键盘事件 <code>onkeydown/onkeyup/onkeypress</code></p>
-</li>
-<li><p>提交与重置事件 <code>onsubmit/onreset</code></p>
-</li>
-<li><p>选择与改变事件<code>onselect/onchange</code></p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/02/JavaWeb/JavaWeb04-BOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-Search-in-Rotated-Sorted-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/">[LeetCode] Search in Rotated Sorted Array</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/" class="archive-article-date">
-  	<time datetime="2017-10-02T01:26:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-<p>You may assume no duplicate exists in the array.</p>
-        
-          <a class="article-more-a" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-Next-Permutation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/">[LeetCode] Next Permutation</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/01/leetcode/LeetCode-Next-Permutation/" class="archive-article-date">
-  	<time datetime="2017-10-01T15:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
-<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
-<p>The replacement must be in-place, do not allocate extra memory.</p>
-<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
-        
-          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1315,6 +1833,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
@@ -1323,19 +1845,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XML</a>
+                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
+                <a href="javascript:void(0)" class="js-tag color4">XML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1348,6 +1866,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
