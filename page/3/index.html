@@ -148,6 +148,793 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaWeb/JavaWeb05-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/03/JavaWeb/JavaWeb05-DOM/">JavaWeb05-DOM</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/03/JavaWeb/JavaWeb05-DOM/" class="archive-article-date">
+  	<time datetime="2017-10-03T12:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><ul>
+<li><p>document object model  文档对象模型:是W3C织制订的一套用于访问XML和HTML文档的标准.允许脚本动态地访问和更新文档的内容、结构和样式</p>
+</li>
+<li><p>分类</p>
+</li>
+</ul>
+<pre><code>DOM Core
+XML DOM
+HTML DOM
+</code></pre><ul>
+<li><p>XML:可扩展的标签语言</p>
+</li>
+<li><p>xml dom vs html dom<br>  <img src="/images/xmldomvshtmldom.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>DOM树<br>  <img src="/images/dom树.png" alt=""></p>
+</li>
+<li><p>替换节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//当单击”北京”这个节点时,北京这个节点被"打农药”替换</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeNode1</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">   <span class="keyword">var</span> parentnode= <span class="built_in">document</span>.getElementsByTagName(<span class="string">"ul"</span>)[<span class="number">0</span>];</div><div class="line"></div><div class="line">   <span class="keyword">var</span> bjnode=  <span class="built_in">document</span>.getElementById(<span class="string">"bj"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">var</span> newnode = <span class="built_in">document</span>.getElementById(<span class="string">"game"</span>);</div><div class="line"></div><div class="line"></div><div class="line">   parentnode.replaceChild(newnode,bjnode);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeNode</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> parentnode= <span class="built_in">document</span>.getElementsByTagName(<span class="string">"ul"</span>)[<span class="number">0</span>];</div><div class="line"></div><div class="line">    <span class="keyword">var</span> bjnode=  <span class="built_in">document</span>.getElementById(<span class="string">"bj"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> gamenode = <span class="built_in">document</span>.getElementById(<span class="string">"game"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//复制一个节点</span></div><div class="line">    <span class="keyword">var</span> newnode =gamenode.cloneNode(<span class="literal">true</span>);</div><div class="line"></div><div class="line">    parentnode.replaceChild(newnode,bjnode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>增加节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出select元素下的所有option元素中对应的文本内容</span></div><div class="line"></div><div class="line"><span class="comment">// xmldom :这里我们使用的就是xmldom</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// &lt;option value="初中"&gt;初中&lt;/option&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">//1 先创建一个元素节点 option</span></div><div class="line">    <span class="keyword">var</span> optionNode = <span class="built_in">document</span>.createElement(<span class="string">"option"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//2 给这个option元素节点增加一个属性</span></div><div class="line">    optionNode.setAttribute(<span class="string">"value"</span>, <span class="string">"初中"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//3 给这个option增加一个文本子节点</span></div><div class="line">    <span class="keyword">var</span> textNode = <span class="built_in">document</span>.createTextNode(<span class="string">"初中"</span>);</div><div class="line">    optionNode.appendChild(textNode);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//4找到select节点，并且把新创建的option节点增加上去</span></div><div class="line">    <span class="keyword">var</span> selectNode = <span class="built_in">document</span>.getElementById(<span class="string">"edu"</span>);</div><div class="line">    <span class="keyword">var</span> beforenode = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"option"</span>)[<span class="number">3</span>];</div><div class="line">    selectNode.insertBefore(optionNode, beforenode);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// htmldom</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//&lt;option value="初中"&gt;初中&lt;/option&gt;</span></div><div class="line">    <span class="keyword">var</span> option = <span class="keyword">new</span> Option();</div><div class="line">    option.value = <span class="string">"初中"</span>;</div><div class="line">    option.text = <span class="string">"初中"</span>;</div><div class="line">    <span class="keyword">var</span> selectNode = <span class="built_in">document</span>.getElementById(<span class="string">"edu"</span>);</div><div class="line">    selectNode.add(option, <span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delete2</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//待删除的节点</span></div><div class="line">    <span class="keyword">var</span> toDeleteNode = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"option"</span>)[<span class="number">4</span>];</div><div class="line"></div><div class="line">    <span class="comment">//父节点删除之</span></div><div class="line">    toDeleteNode.parentNode.removeChild(toDeleteNode);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/03/JavaWeb/JavaWeb05-DOM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaWeb/JavaWeb04-BOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/JavaWeb/JavaWeb04-BOM/">JavaWeb04 BOM</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/02/JavaWeb/JavaWeb04-BOM/" class="archive-article-date">
+  	<time datetime="2017-10-02T11:39:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="BOM-Browser-Object-Model，浏览器对象模型"><a href="#BOM-Browser-Object-Model，浏览器对象模型" class="headerlink" title="BOM:Browser Object Model，浏览器对象模型"></a>BOM:Browser Object Model，浏览器对象模型</h3><pre><code>BOM Window
+BOM Navigator
+BOM Screen
+BOM History
+BOM Location
+</code></pre><h4 id="BOM-Window"><a href="#BOM-Window" class="headerlink" title="BOM Window"></a>BOM Window</h4><ul>
+<li><p>Window 对象表示浏览器中打开的窗口</p>
+</li>
+<li><p>如果文档包含框架（ iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象</p>
+</li>
+<li><p>window.frames 返回窗口中所有命名的框架对应的window对象</p>
+</li>
+<li><p>top是最顶级父窗口（有的窗口中套了好几层frameset或者iframe）</p>
+</li>
+<li><p>parent是父窗口（<strong>如果窗口是顶级窗口，那么parent\==self\==top</strong>）</p>
+</li>
+<li><p>self是当前窗口（等价window）</p>
+</li>
+<li><p>opener是用open方法打开当前窗口的那个窗口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">openNewWindow</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">window</span>.open(<span class="string">"02hello.html"</span>,<span class="string">"window1"</span> ,<span class="string">"toolbar=yes, location=no, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>与对话框有关的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.alert(<span class="built_in">String</span>)</div><div class="line"></div><div class="line"><span class="built_in">Boolean</span> <span class="built_in">window</span>.confirm(<span class="built_in">String</span>)</div><div class="line"></div><div class="line"><span class="built_in">String</span> <span class="built_in">window</span>.prompt(<span class="built_in">String</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="BOM-History"><a href="#BOM-History" class="headerlink" title="BOM History"></a>BOM History</h4><ul>
+<li>保持使用的功能只有 back()、forward() 和 go() 方法。<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">back()      加载 history 列表中的前一个 URL</div><div class="line">forward()   加载 history 列表中的下一个 URL</div><div class="line">go()        加载 history 列表中的某个具体页面</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="BOM-Location"><a href="#BOM-Location" class="headerlink" title="BOM Location"></a>BOM Location</h4><ul>
+<li>Location 对象包含有关当前 URL 的信息</li>
+</ul>
+<h3 id="JavaScript常用事件"><a href="#JavaScript常用事件" class="headerlink" title="JavaScript常用事件"></a>JavaScript常用事件</h3><ul>
+<li><p>鼠标移动事件 <code>onmousemove/onmouseout/onmouseover</code></p>
+</li>
+<li><p>鼠标点击事件 <code>onclick/ondblclick/onmousedown/onmouseup</code></p>
+</li>
+<li><p>加载与卸载事件<code>onload/onunload</code></p>
+</li>
+<li><p>聚焦与离焦事件 <code>onfocus/onblur</code></p>
+</li>
+<li><p>键盘事件 <code>onkeydown/onkeyup/onkeypress</code></p>
+</li>
+<li><p>提交与重置事件 <code>onsubmit/onreset</code></p>
+</li>
+<li><p>选择与改变事件<code>onselect/onchange</code></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/02/JavaWeb/JavaWeb04-BOM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Search-in-Rotated-Sorted-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/">[LeetCode] Search in Rotated Sorted Array</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/" class="archive-article-date">
+  	<time datetime="2017-10-02T01:26:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+        
+          <a class="article-more-a" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/02/leetcode/LeetCode-Search-in-Rotated-Sorted-Array/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Next-Permutation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/">[LeetCode] Next Permutation</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/01/leetcode/LeetCode-Next-Permutation/" class="archive-article-date">
+  	<time datetime="2017-10-01T15:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+<p>The replacement must be in-place, do not allocate extra memory.</p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
+        
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Next-Permutation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-4Sum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/01/leetcode/LeetCode-4Sum/">[LeetCode] 4Sum</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/01/leetcode/LeetCode-4Sum/" class="archive-article-date">
+  	<time datetime="2017-10-01T08:33:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target?<br>Find all unique quadruplets in the array which gives the sum of target.</p>
+<p>Note: The solution set must not contain duplicate quadruplets.</p>
+<p>For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.</p>
+<p>A solution set is:<br>[<br>  [-1,  0, 0, 1],<br>  [-2, -1, 1, 2],<br>  [-2,  0, 0, 2]<br>]</p>
+        
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-4Sum/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-4Sum/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Merge-Sorted-Arrary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/01/leetcode/LeetCode-Merge-Sorted-Arrary/">[LeetCode] Merge Sorted Array</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/01/leetcode/LeetCode-Merge-Sorted-Arrary/" class="archive-article-date">
+  	<time datetime="2017-10-01T00:53:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.</p>
+<p>Note:<br>You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.<br>The number of elements initialized in nums1 and nums2 are m and n respectively.</p>
+        
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Merge-Sorted-Arrary/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/01/leetcode/LeetCode-Merge-Sorted-Arrary/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaWeb/JavaWeb03-JavaScript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/30/JavaWeb/JavaWeb03-JavaScript/">JavaWeb03-JavaScript</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/30/JavaWeb/JavaWeb03-JavaScript/" class="archive-article-date">
+  	<time datetime="2017-09-30T15:36:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>JavaScript是一种基于对象和事件驱动的脚本语言 </li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/09/30/JavaWeb/JavaWeb03-JavaScript/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/30/JavaWeb/JavaWeb03-JavaScript/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Maximum-Subarray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/30/leetcode/LeetCode-Maximum-Subarray/">[LeetCode] Maximum Subarray </a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/30/leetcode/LeetCode-Maximum-Subarray/" class="archive-article-date">
+  	<time datetime="2017-09-30T13:50:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+<p>For example, given the array [-2,1,-3,4,-1,2,1,-5,4],<br>the contiguous subarray [4,-1,2,1] has the largest sum = 6.</p>
+        
+          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Maximum-Subarray/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Maximum-Subarray/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode/LeetCode-Plus-One" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/30/leetcode/LeetCode-Plus-One/">[LeetCode] Plus One</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/30/leetcode/LeetCode-Plus-One/" class="archive-article-date">
+  	<time datetime="2017-09-30T13:48:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.</p>
+<p>You may assume the integer do not contain any leading zero, except the number 0 itself.</p>
+<p>The digits are stored such that the most significant digit is at the head of the list.</p>
+        
+          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Plus-One/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Plus-One/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JavaWeb/JavaWeb02-CSS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -230,772 +1017,9 @@
 
 
   
-    <article id="post-leetcode/LeetCode-Search-Insert-Position" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/30/leetcode/LeetCode-Search-Insert-Position/">[LeetCode] Search Insert Position</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/30/leetcode/LeetCode-Search-Insert-Position/" class="archive-article-date">
-  	<time datetime="2017-09-30T00:54:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sorted array and a target value, return the index if the target is found. If not,<br>return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
-        
-          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Search-Insert-Position/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/30/leetcode/LeetCode-Search-Insert-Position/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaWeb/JavaWeb01-HTML5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/29/JavaWeb/JavaWeb01-HTML5/">JavaWeb01-HTML5</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/29/JavaWeb/JavaWeb01-HTML5/" class="archive-article-date">
-  	<time datetime="2017-09-29T01:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>HTML = hyper text markup language     超文本标记语言</p>
-</li>
-<li><p>http = hyper text transport protocol  超文本传输协议</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/09/29/JavaWeb/JavaWeb01-HTML5/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/29/JavaWeb/JavaWeb01-HTML5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-Remove-Element" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/28/leetcode/LeetCode-Remove-Element/">[LeetCode] Remove Element</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/28/leetcode/LeetCode-Remove-Element/" class="archive-article-date">
-  	<time datetime="2017-09-28T14:46:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array and a value, remove all instances of that value in place and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
-<p>Example:<br>Given input array nums = [3,2,2,3], val = 3</p>
-<p>Your function should return length = 2, with the first two elements of nums being 2.</p>
-        
-          <a class="article-more-a" href="/2017/09/28/leetcode/LeetCode-Remove-Element/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/28/leetcode/LeetCode-Remove-Element/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-Remove-Duplicates-from-Sorted-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/leetcode/LeetCode-Remove-Duplicates-from-Sorted-Array/">[LeetCode] Remove Duplicates from Sorted Array</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/27/leetcode/LeetCode-Remove-Duplicates-from-Sorted-Array/" class="archive-article-date">
-  	<time datetime="2017-09-27T14:29:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
-<p>For example,<br>Given input array nums = [1,1,2],</p>
-<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.<br>It doesn’t matter what you leave beyond the new length.</p>
-        
-          <a class="article-more-a" href="/2017/09/27/leetcode/LeetCode-Remove-Duplicates-from-Sorted-Array/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/27/leetcode/LeetCode-Remove-Duplicates-from-Sorted-Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-3Sum-Closest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/leetcode/LeetCode-3Sum-Closest/">[LeetCode] 3Sum Closest</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/leetcode/LeetCode-3Sum-Closest/" class="archive-article-date">
-  	<time datetime="2017-09-26T14:43:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target.<br>Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
-<p>For example, given array S = {-1 2 1 -4}, and target = 1.</p>
-<p>The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</p>
-        
-          <a class="article-more-a" href="/2017/09/26/leetcode/LeetCode-3Sum-Closest/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/26/leetcode/LeetCode-3Sum-Closest/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-ContainerWithMostWater" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/leetcode/LeetCode-ContainerWithMostWater/">[LeetCode] Container With Most Water</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/leetcode/LeetCode-ContainerWithMostWater/" class="archive-article-date">
-  	<time datetime="2017-09-25T14:59:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai).<br>n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).<br>Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p>Note: You may not slant the container and n is at least 2.</p>
-        
-          <a class="article-more-a" href="/2017/09/25/leetcode/LeetCode-ContainerWithMostWater/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/leetcode/LeetCode-ContainerWithMostWater/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java基础/Java学习笔记15-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/Java基础/Java学习笔记15-注解/">Java学习笔记15-注解</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/Java基础/Java学习笔记15-注解/" class="archive-article-date">
-  	<time datetime="2017-09-25T12:26:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>注解</li>
-</ul>
-<pre><code>一种Java语言用来在代码中添加额外信息的形式化方法，使得Java程序可以在编译
-或者运行之后的某个时刻很方便的去使用这些额外信息（数据）
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/09/25/Java基础/Java学习笔记15-注解/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/Java基础/Java学习笔记15-注解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java基础/Java学习笔记14-MemoryManagement" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/Java基础/Java学习笔记14-MemoryManagement/">Java学习笔记14-MemoryManagement</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/Java基础/Java学习笔记14-MemoryManagement/" class="archive-article-date">
-  	<time datetime="2017-09-25T01:31:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>JVM 体系结构<br><img src="/images/一般JVM架构.png" alt="一般JVM架构"></li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/09/25/Java基础/Java学习笔记14-MemoryManagement/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/Java基础/Java学习笔记14-MemoryManagement/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/LeetCode-3Sum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/leetcode/LeetCode-3Sum/">[LeetCode] 3Sum</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/leetcode/LeetCode-3Sum/" class="archive-article-date">
-  	<time datetime="2017-09-25T01:14:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.</p>
-<p>Note: The solution set must not contain duplicate triplets.</p>
-<p>For example, given array S = [-1, 0, 1, 2, -1, -4],</p>
-<p>A solution set is:<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
-        
-          <a class="article-more-a" href="/2017/09/25/leetcode/LeetCode-3Sum/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BinarySearch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/leetcode/LeetCode-3Sum/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1082,7 +1106,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1090,11 +1114,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1103,6 +1127,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,15 +1158,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
             
             <div class="clearfix"></div>

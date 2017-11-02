@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yoursite.com/images/servletresponse/1dc8cdcf2c04f128da2d18480b4ef35d.png">
 <meta property="og:image" content="http://yoursite.com/images/servletresponse/08402d657a773b9ef4480e91f2856a3a.png">
 <meta property="og:image" content="http://yoursite.com/images/servletresponse/b6b23741a61b70a336146b720a8a71ac.png">
-<meta property="og:updated_time" content="2017-10-15T09:23:22.046Z">
+<meta property="og:updated_time" content="2017-10-19T14:34:15.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb11 Servlet Response">
 <meta name="twitter:description" content="ResponseReponse的引入Response的基本使用输出数据输出字符数据使用字符流 To send character data, use the PrintWriter object returned by getWriter(). PrintWriter pw =Response.getWriter(); //字符打印流 按照打印流的格式输出。 我们关心的是输出的乱码问题   编解码">
@@ -252,7 +252,20 @@
 <h3 id="设置一个页面浏览器的缓存时间"><a href="#设置一个页面浏览器的缓存时间" class="headerlink" title="设置一个页面浏览器的缓存时间"></a>设置一个页面浏览器的缓存时间</h3><p><img src="/images/servletresponse/f3c9f878c56b3929715748162a36e32f.png" alt=""></p>
 <p><img src="/images/servletresponse/716588a2fee7f854a0954d7ecee17051.png" alt=""></p>
 <h3 id="通过response实现请求重定向。"><a href="#通过response实现请求重定向。" class="headerlink" title="通过response实现请求重定向。"></a>通过response实现请求重定向。</h3><h4 id="如何实现重定向"><a href="#如何实现重定向" class="headerlink" title="如何实现重定向"></a>如何实现重定向</h4><p><img src="/images/servletresponse/2059134d2c2e8f718c8e6facd294473b.png" alt=""></p>
-<p>| void | <a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/http/HttpServletResponse.html#sendRedirect(java.lang.String" target="_blank" rel="external">sendRedirect</a>)(java.lang.String location)                                                                                             |<br>|      | Sends a temporary redirect response to the client using the specified redirect location URL.                                                                                                                                                                                                                  |<br>|——|—————————————————————————————————————————————————————————————————————————————————————————————————————|</p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><a href="mk:@MSITStore:F:\王道训练营%20JAVA方向%20第七期\第二阶段%20JavaWeb\servlet-api.chm::/jsdk23/javax/servlet/http/HttpServletResponse.html#sendRedirect(java.lang.String" target="_blank" rel="external">sendRedirect</a>)(java.lang.String location)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Sends a temporary redirect response to the client using the specified redirect location URL.</td>
+</tr>
+</tbody>
+</table>
 <p><img src="/images/servletresponse/857da586d6568c488f7f27c2be8cd131.png" alt=""></p>
 <h4 id="重定向-vs-请求转发"><a href="#重定向-vs-请求转发" class="headerlink" title="重定向 vs 请求转发"></a>重定向 vs 请求转发</h4><p>相同点：都可以实现转到另一个页面去显示</p>
 <p>不同点：</p>
@@ -385,6 +398,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/10/15/JavaWeb/JavaWeb-路径的写法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaWeb 路径的写法
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/10/15/JavaWeb/JavaWeb10-Servlet-Request/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">JavaWeb10 Servlet Request</div>
@@ -406,6 +428,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Response"><span class="toc-number">1.</span> <span class="toc-text">Response</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reponse的引入"><span class="toc-number">2.</span> <span class="toc-text">Reponse的引入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Response的基本使用"><span class="toc-number">3.</span> <span class="toc-text">Response的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#输出数据"><span class="toc-number">3.1.</span> <span class="toc-text">输出数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出字符数据"><span class="toc-number">3.1.1.</span> <span class="toc-text">输出字符数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何解决乱码"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">如何解决乱码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出字节数据"><span class="toc-number">3.1.2.</span> <span class="toc-text">输出字节数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何解决乱码-1"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">如何解决乱码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Response的其他案例"><span class="toc-number">3.2.</span> <span class="toc-text">Response的其他案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发送http头，控制浏览器定时刷新网页"><span class="toc-number">3.2.1.</span> <span class="toc-text">发送http头，控制浏览器定时刷新网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置一个页面浏览器的缓存时间"><span class="toc-number">3.2.2.</span> <span class="toc-text">设置一个页面浏览器的缓存时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过response实现请求重定向。"><span class="toc-number">3.2.3.</span> <span class="toc-text">通过response实现请求重定向。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何实现重定向"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">如何实现重定向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向-vs-请求转发"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">重定向 vs 请求转发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向里的细节补充"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">重定向里的细节补充</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#response细节"><span class="toc-number">3.3.</span> <span class="toc-text">response细节</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -521,7 +556,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,11 +564,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,6 +577,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,15 +608,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">BinarySearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
             
             <div class="clearfix"></div>
